@@ -1,113 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed;
-    public float health;
-    public float maxHealth;
-    public RuntimeAnimatorController[] animCon;
-    public Rigidbody2D target;
+    public float speed = 5f;
+    public float rotationSpeed = 5f;
 
-    bool isLive;
+    private Transform player;
 
-    Rigidbody2D rigid;
-    Collider2D coll;
-    Animator anim;
-    SpriteRenderer spriteRenderer;
-    WaitForFixedUpdate wait;
+    public float radius = 0f;
 
-    private void Awake()
+    public LayerMask layer;
+
+    public Collider2D[] coll;
+    public Collider2D Short_player;
+    private SpriteRenderer spriteRenderer;
+
+
+    void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        wait = new WaitForFixedUpdate();
     }
 
-
-    private void FixedUpdate()
+    void Update()
     {
-        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        coll = Physics2D.OverlapCircleAll((Vector2)transform.position, radius, layer);
+
+        if (coll.Length > 0)
         {
-            return;
+            float short_distance = Vector3.Distance(transform.position, coll[0].transform.position);
+
+            foreach (Collider2D col in coll)
+            {
+                if (col == null) continue;
+
+                float short_distance2 = Vector3.Distance(transform.position, col.transform.position);
+                if (short_distance > short_distance2)
+                {
+                    short_distance = short_distance2;
+                    Short_player = col;
+                }
+            }
+
+            if (Short_player != null)
+            {
+                // 방향 구하기
+                Vector3 direction = Short_player.transform.position - transform.position;
+                direction.Normalize();
+
+                // 이동 (X축만 이동)
+                transform.position += new Vector3(direction.x, 0, 0) * speed * Time.deltaTime;
+
+                // 좌우 반전 (플레이어 위치에 따라 flip)
+                if (direction.x < 0)
+                    spriteRenderer.flipX = false; // 왼쪽 바라봄
+                else if (direction.x > 0)
+                    spriteRenderer.flipX = true;  // 오른쪽 바라봄
+            }
         }
-
-        Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
-        rigid.velocity = Vector2.zero;
     }
 
-    private void LateUpdate()
+    private void OnDestroy()
     {
-        if (!isLive)
-        {
-            return;
-        }
-        spriteRenderer.flipX = target.position.x > rigid.position.x;
+        Short_player = null;
     }
 
-    private void OnEnable()
+    private void OnDrawGizmosSelected()
     {
-        //target = GameManager.instance.player.GetComponent<Rigidbody2D>();
-        isLive = true;
-        coll.enabled = true;
-        rigid.simulated = true;
-        spriteRenderer.sortingOrder = 2;
-        anim.SetBool("Dead", false);
-        health = maxHealth;
-    }
-
-    public void Init(SpawnData data)
-    {
-        anim.runtimeAnimatorController = animCon[data.spriteType];
-        speed = data.speed;
-        maxHealth = data.health;
-        health = data.health;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Bullet") || !isLive)
-        {
-            return;
-        }
-
-        //health -= collision.GetComponent<Bullet>().damage;
-        StartCoroutine(KnockBack());
-
-        if (health > 0)
-        {
-            anim.SetTrigger("Hit");
-        }
-        else
-        {
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriteRenderer.sortingOrder = 1;
-            anim.SetBool("Dead", true);
-
-            GameManager.instance.kill++;
-            GameManager.instance.GetExp();
-            Dead();
-        }
-
-    }
-
-    private IEnumerator KnockBack()
-    {
-        yield return wait; // 하나의 물리 프레임 딜레이주기
-        Vector3 playerPos = GameManager.instance.player.transform.position;
-        Vector3 dirVec = transform.position - playerPos;
-        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-    }
-
-    private void Dead()
-    {
-        gameObject.SetActive(false);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

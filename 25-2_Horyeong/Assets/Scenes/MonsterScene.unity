@@ -610,6 +610,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1160914280550714220, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: Short_player
+      value: 
+      objectReference: {fileID: 9048772}
+    - target: {fileID: 1160914280550714220, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: Race_enumType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_Name
       value: STRAYDOG
@@ -620,7 +628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.57585
+      value: -2.23
       objectReference: {fileID: 0}
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.z

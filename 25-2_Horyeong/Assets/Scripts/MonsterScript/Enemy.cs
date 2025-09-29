@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -58,6 +59,10 @@ public class Enemy : MonoBehaviour
     public Collider2D Short_player;
     private SpriteRenderer spriteRenderer;
 
+    public race monsterType;
+    public monster_id monsterId;
+    public monster_attack_type monsterAttackType;
+
 
     private void Start()
     {
@@ -81,6 +86,65 @@ public class Enemy : MonoBehaviour
     {
         MonsterSightRange();
         MonsterAttack();
+
+        switch(monsterType)
+        {
+            case race.ANIMAL:
+                switch(monsterId)
+                {
+                    case monster_id.CROW:
+                        Crow();
+                        break;
+                    case monster_id.STRAYDOG:
+                        Dog();
+                        break;
+                }
+                break;
+            case race.PLANT:
+                switch (monsterId)
+                {
+                    case monster_id.PINE:
+                        Tree();
+                        break;
+                    case monster_id.DANDELION:
+                        Grass();
+                        break;
+                }
+                break;
+            case race.HUMAN:
+
+                break;
+        }
+    }
+
+    private void Rat()
+    {
+
+    }
+
+    private void Cat()
+    {
+
+    }
+
+    private void Dog()
+    {
+
+    }
+
+    private void Crow()
+    {
+
+    }
+
+    private void Tree()
+    {
+
+    }
+
+    private void Grass()
+    {
+
     }
 
     private void MonsterSightRange()

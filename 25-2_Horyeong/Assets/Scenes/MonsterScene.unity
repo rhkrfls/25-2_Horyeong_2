@@ -477,6 +477,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &647244978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+  m_PrefabInstance: {fileID: 1136308814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &647244984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647244978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0a3a486bd23d64fb6815ec6aa53c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  Attack_enumType: 0
+  Id_enumType: 0
+  Race_enumType: 1
+  monster_damage: 1
+  attackDelay: 1
+  attackDistance: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+  sound_Normal: []
+  sound_Hurt: {fileID: 0}
+  sound_Dead: {fileID: 0}
+  monster_hp: 1
+  monster_maxHp: 1
+  monster_sight_range: 2
+  monster_attack_range: 3
+  monster_chase_ranges: 4
+  monster_speed: 5
+  monster_rotationSpeed: 5
+  coll: []
+  Short_player: {fileID: 9048772}
+  itemNumber: 0
+  animator: {fileID: 0}
+  rigid: {fileID: 0}
+  boxCol: {fileID: 0}
+  theAudio: {fileID: 0}
 --- !u!1 &1016088218
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +708,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 647244984}
   m_SourcePrefab: {fileID: 100100000, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
 --- !u!1 &1274825959
 GameObject:

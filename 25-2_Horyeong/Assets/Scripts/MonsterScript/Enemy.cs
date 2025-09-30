@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
     private float attackDelay;            // 공격 딜레이
     [SerializeField]
     private float attackDistance;         // 사정거리
+    [SerializeField]
+    public float stunDuration = 2f;       // 제압 지속 시간
 
     [Header("# Monster_LayerMask")]
     public LayerMask layer;         // 타겟 마스크
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
     private bool monster_attacking = false;
     private bool monster_chasing = false;
     private bool isStunned = false;
+
 
     private Transform player;
 
@@ -163,24 +166,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-    // 행동제약
-    public void Stun(float duration)
-    {
-        if (!isStunned)
-            StartCoroutine(StunRoutine(duration));
-    }
-
-    private IEnumerator StunRoutine(float duration)
-    {
-        isStunned = true;
-        Debug.Log("플레이어 제압 상태 (이동 불가, 공격 가능)");
-        yield return new WaitForSeconds(duration);
-        isStunned = false;
-        monster_attacking = false;
-        Debug.Log("제압 해제");
-    }
-
     private void MonsterSightRange()
     {
         coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_sight_range, layer);
@@ -251,7 +236,11 @@ public class Enemy : MonoBehaviour
                         
                         break;
                     case monster_id.STRAYDOG:
-                        Stun(1f);
+                        if (Random.value < 0.1f) // Random.value는 0.0 ~ 1.0 사이의 float
+                        {
+                            StartCoroutine(DogSpecialAttack(/*player*/));
+                            Debug.Log("10% 확률로 실행!");
+                        }
                         break;
                     case monster_id.PINE:
                         
@@ -265,6 +254,41 @@ public class Enemy : MonoBehaviour
         else
         {
             monster_attacking = false;
+        }
+    }
+
+    // 행동제약
+    public void Stun(float duration)        // 플레이어 쪽에서 stun구현후 삭제
+    {
+        if (!isStunned)
+            StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)     // 플레이어 쪽에서 stun구현후 삭제
+    {
+        isStunned = true;
+        Debug.Log("플레이어 제압 상태 (이동 불가, 공격 가능)");
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+        monster_attacking = false;
+        Debug.Log("제압 해제");
+    }
+
+    private IEnumerator DogSpecialAttack(/*Player player*/)
+    {
+        float damage = monster_damage * 0.5f;
+
+        // 먼저 플레이어 제압
+        Stun(stunDuration);
+        // player.Stun(stunDuration);
+
+        // 0.5배 공격 3번 실행
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.Log($"특수 공격 {i + 1}회차: {damage}");
+            // player.TakeDamage(damage);
+
+            yield return new WaitForSeconds(attackDelay);
         }
     }
 

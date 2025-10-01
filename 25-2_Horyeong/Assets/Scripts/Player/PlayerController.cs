@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private PLAYERNAME playerName;
     private PLAYERSTATE playerstate;
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
 
     [Header("이동")]
@@ -34,13 +36,17 @@ public class PlayerController : MonoBehaviour
         playerstate = PLAYERSTATE.IDLE;
 
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        animator.SetTrigger("isWalkStart");
         moveInput = context.ReadValue<Vector2>();
     }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -53,7 +59,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 2. 바닥 체크 함수
+    private void FlipCharacter(float horizontalVelocity)
+    {
+        if (horizontalVelocity > 0.01f) 
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (horizontalVelocity < -0.01f)
+        {
+            spriteRenderer.flipX = true; 
+        }
+    }
+
     private void CheckGround()
     {
         isGrounded = Physics2D.BoxCast(
@@ -68,6 +85,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
+        animator.SetFloat("isWalk", horizontalVelocity);
+
+        FlipCharacter(rb.linearVelocityX);
         CheckGround();
     }
 

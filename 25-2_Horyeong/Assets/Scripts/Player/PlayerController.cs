@@ -1,38 +1,75 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+enum PLAYERSTATE
+{
+    IDLE, WALK, RUN, 
+}
+
+enum PLAYERNAME
+{
+    YUSEONG, SEOLHAN
+}
+
 public class PlayerController : MonoBehaviour
 {
-    // 이동 속도를 Inspector에서 설정할 수 있도록 public 변수 선언
-    public float moveSpeed = 5f;
-
-    // Rigidbody2D 컴포넌트를 저장할 변수
+    private PLAYERNAME playerName;
+    private PLAYERSTATE playerstate;
     private Rigidbody2D rb;
-
-    // Input System으로부터 받은 입력 값을 저장할 Vector2 변수
     private Vector2 moveInput;
 
-    // 스크립트가 처음 활성화될 때 한 번 호출
-    void Awake()
+    [Header("이동")]
+    public float moveSpeed = 5f;
+
+    [Header("점프")]
+    public float jumpForce = 8f;        // 점프 시 가할 힘의 크기
+    public LayerMask groundLayer;       // 바닥으로 인식할 레이어
+    public bool isGrounded = true;            // 현재 바닥에 닿아있는지 여부
+    public BoxCollider2D coll;         // 바닥 체크를 위해 Collider2D 추가
+
+
+    private void Awake()
     {
-        // Rigidbody2D 컴포넌트를 가져와서 rb 변수에 할당
+        playerName = PLAYERNAME.YUSEONG;
+        playerstate = PLAYERSTATE.IDLE;
+
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
     }
 
-    // FixedUpdate는 물리 계산을 위해 일정한 시간 간격으로 호출됩니다.
-    void FixedUpdate()
-    {
-        // 입력 값(moveInput)을 기반으로 Rigidbody2D의 선형 속도(linearVelocity)를 설정
-        // y축 속도는 중력에 의해 자연스럽게 변하도록 유지 (rb.linearVelocity.y)
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-    }
-
-    // New Input System에서 Move Action이 호출될 때 자동으로 실행되는 콜백 함수
-    // Player Input 컴포넌트에서 Move Action의 Type을 Value로 설정하고, 
-    // Behavior를 Invoke Unity Events로 설정해야 합니다.
     public void OnMove(InputAction.CallbackContext context)
     {
-        // 입력 값(Vector2)을 읽어서 moveInput 변수에 저장
         moveInput = context.ReadValue<Vector2>();
     }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (isGrounded)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                Debug.Log("점프!");
+            }
+        }
+    }
+
+    // 2. 바닥 체크 함수
+    private void CheckGround()
+    {
+        isGrounded = Physics2D.BoxCast(
+            coll.bounds.center, // 박스캐스트 시작점
+            coll.bounds.size,   // 박스캐스트 크기 (캐릭터 콜라이더와 동일)
+            0f,                 // 회전 각도
+            Vector2.down,       // 아래 방향으로 캐스팅
+            0.1f,               // 캐스팅 거리 (아주 짧게)
+            groundLayer         // 바닥 레이어 마스크
+        );
+    }
+    void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        CheckGround();
+    }
+
+
 }

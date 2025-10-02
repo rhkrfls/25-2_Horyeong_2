@@ -12,6 +12,10 @@ public class Dog : Enemy
 
     protected override void Update()
     {
-        
+        MonsterSightRange();
+        if (MonsterView() && !monster_attacking)
+        {
+            StartCoroutine(MonsterAttackCoroutine());
+        }
     }
 }

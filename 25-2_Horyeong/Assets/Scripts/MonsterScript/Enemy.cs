@@ -41,10 +41,10 @@ public class Enemy : MonoBehaviour
     protected float attackDelay;            // 공격 딜레이
     [SerializeField]
     protected float attackDistance;         // 사정거리
-    [SerializeField]
-    protected float stunDuration = 2f;       // 제압 지속 시간
+
 
     [Header("# Monster_LayerMask")]
+    [SerializeField]
     protected LayerMask layer;         // 타겟 마스크
 
     [Header("# Sound")]
@@ -56,16 +56,23 @@ public class Enemy : MonoBehaviour
     protected AudioClip sound_Dead;
 
     [Header("# Monster_Hp")]
+    [SerializeField]
     protected int monster_hp = 1;
+    [SerializeField]
     protected int monster_maxHp = 1;
 
     [Header("# Monster_Range")]
+    [SerializeField]
     protected float monster_sight_range = 0f;
+    [SerializeField]
     protected float monster_attack_range = 0f;
+    [SerializeField]
     protected float monster_chase_ranges = 0f;
 
     [Header("# Monster_Speed")]
+    [SerializeField]
     protected float monster_speed = 5f;
+    [SerializeField]
     protected float monster_rotationSpeed = 5f;
 
     [Header("# Monster_Bool")]
@@ -76,9 +83,13 @@ public class Enemy : MonoBehaviour
 
 
     protected Transform player;
+    [SerializeField]
     protected Gamemanager gameManager;
+    [SerializeField]
     protected Collider2D[] coll;
+    [SerializeField]
     protected Collider2D Short_player;
+    [SerializeField]
     protected SpriteRenderer spriteRenderer;
 
     /*[SerializeField]
@@ -98,6 +109,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody rigid;
     [SerializeField]
     protected BoxCollider boxCol;
+    [SerializeField]
     protected AudioSource theAudio;
 
     private void Start()
@@ -108,18 +120,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    protected void OnEnable()
-    {
-        foreach(Collider2D collider2D in coll)
-        {
-            if(collider2D != null)
-            {
-                collider2D.enabled = true;
-            }
-        }
-        monster_hp = monster_maxHp;
-    }
-
     protected virtual void Update()
     {
         if (!isDead)
@@ -127,40 +127,19 @@ public class Enemy : MonoBehaviour
             switch (Race_enumType)
             {
                 case race.ANIMAL:
-
                     break;
                 case race.PLANT:
-
                     break;
                 case race.HUMAN:
-
                     break;
             }
             switch (Attack_enumType)
             {
                 case monster_attack_type.MELEE:
-
                     break;
                 case monster_attack_type.MID_RANGED:
-
                     break;
                 case monster_attack_type.RANGED:
-
-                    break;
-            }
-            switch (Id_enumType)
-            {
-                case monster_id.CROW:
-                    Crow();
-                    break;
-                case monster_id.STRAYDOG:
-                    Dog();
-                    break;
-                case monster_id.PINE:
-                    Tree();
-                    break;
-                case monster_id.DANDELION:
-                    Grass();
                     break;
             }
         }
@@ -207,7 +186,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void MonsterAttack()
+    protected bool MonsterView()
     {
         coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_attack_range, layer);
 
@@ -229,51 +208,56 @@ public class Enemy : MonoBehaviour
 
             if (Short_player != null)
             {
-                monster_attacking = true;
-                switch (Id_enumType)
-                {
-                    case monster_id.CROW:
-                        
-                        break;
-                    case monster_id.STRAYDOG:
-                        if (Random.value < 0.1f)
-                        {
-                            isStunned = true;
-                            if (isStunned)
-                            {
-                                gameManager.isGroggy = true;
-                                Debug.Log("10% 확률로 실행!");
-                                Invoke("DogSpecialAttack", attackDelay);
-                            }
-                        }
-                        break;
-                    case monster_id.PINE:
-                        
-                        break;
-                    case monster_id.DANDELION:
-                        
-                        break;
-                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         else
         {
-            monster_attacking = false;
+            return false;
         }
     }
 
-    // 행동제약
-    protected void DogSpecialAttack()
+
+    // 공격
+    protected IEnumerator MonsterAttackCoroutine()
     {
+        monster_attacking = true;
+        switch (Id_enumType)
+        {
+            case monster_id.STRAYDOG:
+                if (Random.value < 0.3f && !isStunned)
+                {
+                    StartCoroutine(DogSpecialAttack());
+                }
+                else
+                {
+                    Debug.Log("공격");
+                }
+                break;
+        }
+        yield return new WaitForSeconds(attackDelay);
+        monster_attacking = false;
+    }
+
+    // 스턴
+    protected IEnumerator DogSpecialAttack()
+    {
+        Debug.Log("10% 확률로 실행!");
+        gameManager.isGroggy = true;
+        isStunned = true;
         // 0.5배 공격 3번 실행
         for (int i = 0; i < 3; i++)
         {
             float damage = monster_damage * 0.5f;
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
+            yield return new WaitForSeconds(0.2f);
             // player.TakeDamage(damage);
         }
         isStunned = false;
-        monster_attacking = true;
     }
 
     protected void OnDestroy()
@@ -307,37 +291,6 @@ public class Enemy : MonoBehaviour
             PlaySE(sound_Hurt);
             //animator.SetTrigger("Hit");
         }
-    }
-
-    protected void Rat()
-    {
-
-    }
-
-    protected void Cat()
-    {
-
-    }
-
-    protected void Dog()
-    {
-        MonsterSightRange();
-        MonsterAttack();
-    }
-
-    private void Crow()
-    {
-
-    }
-
-    private void Tree()
-    {
-
-    }
-
-    private void Grass()
-    {
-
     }
 
     protected void Dead()

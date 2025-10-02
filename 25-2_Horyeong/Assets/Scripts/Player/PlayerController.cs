@@ -6,14 +6,8 @@ enum PLAYERSTATE
     IDLE, WALK, RUN, 
 }
 
-enum PLAYERNAME
-{
-    YUSEONG, SEOLHAN
-}
-
 public class PlayerController : MonoBehaviour
 {
-    private PLAYERNAME playerName;
     private PLAYERSTATE playerstate;
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,19 +16,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("이동")]
     public float moveSpeed = 5f;
+    public bool isMoving = false;
 
     [Header("점프")]
     public float jumpForce = 8f;        // 점프 시 가할 힘의 크기
     public LayerMask groundLayer;       // 바닥으로 인식할 레이어
-    public bool isGrounded = true;            // 현재 바닥에 닿아있는지 여부
-    public BoxCollider2D coll;         // 바닥 체크를 위해 Collider2D 추가
+    public bool isGrounded = true;      // 현재 바닥에 닿아있는지 여부
+    public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
 
 
     private void Awake()
     {
-        playerName = PLAYERNAME.YUSEONG;
-        playerstate = PLAYERSTATE.IDLE;
-
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -43,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        animator.SetTrigger("isWalkStart");
+        if (isMoving == false && context.started)
+            animator.SetTrigger("isWalkStart");
+
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -84,11 +78,27 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-        float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
-        animator.SetFloat("isWalk", horizontalVelocity);
+        // 이동
+        if (moveInput.x != 0)
+        {
+            isMoving = true;
+            rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+            float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
+            animator.SetFloat("isWalk", horizontalVelocity);
+        }
 
+        else
+        {
+            isMoving = false;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetFloat("isWalk", 0);
+            animator.SetTrigger("isWalkEnd");
+        }
+
+        // 좌우반전
         FlipCharacter(rb.linearVelocityX);
+        
+        // 바닥 체크
         CheckGround();
     }
 

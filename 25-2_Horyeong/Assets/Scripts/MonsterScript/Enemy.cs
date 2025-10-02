@@ -7,14 +7,14 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public enum monster_attack_type
+    protected enum monster_attack_type
     {
         MELEE,
         MID_RANGED,
         RANGED
     };
 
-    public enum monster_id
+    protected enum monster_id
     {
         STRAYDOG,
         CROW,
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         DANDELION
     };
 
-    public enum race
+    protected enum race
     {
         HUMAN,
         ANIMAL,
@@ -30,75 +30,75 @@ public class Enemy : MonoBehaviour
     };
 
     [Header("# Monster_Enum_type")]
-    public monster_attack_type Attack_enumType;
-    public monster_id Id_enumType;
-    public race Race_enumType;
+    protected monster_attack_type Attack_enumType;
+    protected monster_id Id_enumType;
+    protected race Race_enumType;
 
     [Header("# Monster_Attack")]
     [SerializeField]
-    private int monster_damage;           // 공격 데미지
+    protected int monster_damage;           // 공격 데미지
     [SerializeField]
-    private float attackDelay;            // 공격 딜레이
+    protected float attackDelay;            // 공격 딜레이
     [SerializeField]
-    private float attackDistance;         // 사정거리
+    protected float attackDistance;         // 사정거리
     [SerializeField]
-    public float stunDuration = 2f;       // 제압 지속 시간
+    protected float stunDuration = 2f;       // 제압 지속 시간
 
     [Header("# Monster_LayerMask")]
-    public LayerMask layer;         // 타겟 마스크
+    protected LayerMask layer;         // 타겟 마스크
 
     [Header("# Sound")]
     [SerializeField]
-    private AudioClip[] sound_Normal;
+    protected AudioClip[] sound_Normal;
     [SerializeField]
-    private AudioClip sound_Hurt;
+    protected AudioClip sound_Hurt;
     [SerializeField]
-    private AudioClip sound_Dead;
+    protected AudioClip sound_Dead;
 
     [Header("# Monster_Hp")]
-    public int monster_hp = 1;
-    public int monster_maxHp = 1;
+    protected int monster_hp = 1;
+    protected int monster_maxHp = 1;
 
     [Header("# Monster_Range")]
-    public float monster_sight_range = 0f;
-    public float monster_attack_range = 0f;
-    public float monster_chase_ranges = 0f;
+    protected float monster_sight_range = 0f;
+    protected float monster_attack_range = 0f;
+    protected float monster_chase_ranges = 0f;
 
     [Header("# Monster_Speed")]
-    public float monster_speed = 5f;
-    public float monster_rotationSpeed = 5f;
+    protected float monster_speed = 5f;
+    protected float monster_rotationSpeed = 5f;
 
     [Header("# Monster_Bool")]
-    private bool monster_detected = false;
-    private bool monster_attacking = false;
-    private bool monster_chasing = false;
-    private bool isStunned = false;
+    protected bool monster_detected = false;
+    protected bool monster_attacking = false;
+    protected bool monster_chasing = false;
+    protected bool isStunned = false;
 
 
-    private Transform player;
-
-    public Collider2D[] coll;
-    public Collider2D Short_player;
-    private SpriteRenderer spriteRenderer;
+    protected Transform player;
+    protected Gamemanager gameManager;
+    protected Collider2D[] coll;
+    protected Collider2D Short_player;
+    protected SpriteRenderer spriteRenderer;
 
     /*[SerializeField]
     private Item item_Prefab;             // 아이템*/
     [SerializeField]
-    public int itemNumber;             // 아이템 획득 개수
+    protected int itemNumber;             // 아이템 획득 개수
 
     // 상태변수
-    private bool isChasing;             // 추격중인지 판별
-    private bool isAttacking;           // 공격중인 판별
-    private bool isDead;                   // 죽었는지 판별
+    protected bool isChasing;             // 추격중인지 판별
+    protected bool isAttacking;           // 공격중인 판별
+    protected bool isDead;                   // 죽었는지 판별
 
     // 필요한 컴포넌트
     [SerializeField]
-    public Animator animator;
+    protected Animator animator;
     [SerializeField]
-    public Rigidbody rigid;
+    protected Rigidbody rigid;
     [SerializeField]
-    public BoxCollider boxCol;
-    public AudioSource theAudio;
+    protected BoxCollider boxCol;
+    protected AudioSource theAudio;
 
     private void Start()
     {
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         foreach(Collider2D collider2D in coll)
         {
@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void MonsterSightRange()
+    protected void MonsterSightRange()
     {
         coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_sight_range, layer);
 
@@ -207,7 +207,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void MonsterAttack()
+    protected void MonsterAttack()
     {
         coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_attack_range, layer);
 
@@ -236,10 +236,15 @@ public class Enemy : MonoBehaviour
                         
                         break;
                     case monster_id.STRAYDOG:
-                        if (Random.value < 0.1f) // Random.value는 0.0 ~ 1.0 사이의 float
+                        if (Random.value < 0.1f)
                         {
-                            StartCoroutine(DogSpecialAttack(/*player*/));
-                            Debug.Log("10% 확률로 실행!");
+                            isStunned = true;
+                            if (isStunned)
+                            {
+                                gameManager.isGroggy = true;
+                                Debug.Log("10% 확률로 실행!");
+                                Invoke("DogSpecialAttack", attackDelay);
+                            }
                         }
                         break;
                     case monster_id.PINE:
@@ -258,46 +263,25 @@ public class Enemy : MonoBehaviour
     }
 
     // 행동제약
-    public void Stun(float duration)        // 플레이어 쪽에서 stun구현후 삭제
+    protected void DogSpecialAttack()
     {
-        if (!isStunned)
-            StartCoroutine(StunRoutine(duration));
-    }
-
-    private IEnumerator StunRoutine(float duration)     // 플레이어 쪽에서 stun구현후 삭제
-    {
-        isStunned = true;
-        Debug.Log("플레이어 제압 상태 (이동 불가, 공격 가능)");
-        yield return new WaitForSeconds(duration);
-        isStunned = false;
-        monster_attacking = false;
-        Debug.Log("제압 해제");
-    }
-
-    private IEnumerator DogSpecialAttack(/*Player player*/)
-    {
-        float damage = monster_damage * 0.5f;
-
-        // 먼저 플레이어 제압
-        Stun(stunDuration);
-        // player.Stun(stunDuration);
-
         // 0.5배 공격 3번 실행
         for (int i = 0; i < 3; i++)
         {
+            float damage = monster_damage * 0.5f;
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
             // player.TakeDamage(damage);
-
-            yield return new WaitForSeconds(attackDelay);
         }
+        isStunned = false;
+        monster_attacking = true;
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         Short_player = null;
     }
 
-    private void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, monster_sight_range);
@@ -308,7 +292,7 @@ public class Enemy : MonoBehaviour
     }
     // 비공격 스크립트
 
-    public virtual void Damage(int _dmg)
+    protected virtual void Damage(int _dmg)
     {
         if (!isDead)
         {
@@ -325,17 +309,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Rat()
+    protected void Rat()
     {
 
     }
 
-    private void Cat()
+    protected void Cat()
     {
 
     }
 
-    private void Dog()
+    protected void Dog()
     {
         MonsterSightRange();
         MonsterAttack();

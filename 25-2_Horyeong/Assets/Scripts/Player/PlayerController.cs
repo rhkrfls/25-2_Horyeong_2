@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
 
 
+    public Gamemanager gameManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -76,23 +78,27 @@ public class PlayerController : MonoBehaviour
             groundLayer         // 바닥 레이어 마스크
         );
     }
+
     void FixedUpdate()
     {
-        // 이동
-        if (moveInput.x != 0)
+        if (!gameManager.isGroggy)
         {
-            isMoving = true;
-            rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-            float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
-            animator.SetFloat("isWalk", horizontalVelocity);
-        }
+            // 이동
+            if (moveInput.x != 0)
+            {
+                isMoving = true;
+                rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+                float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
+                animator.SetFloat("isWalk", horizontalVelocity);
+            }
 
-        else
-        {
-            isMoving = false;
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetFloat("isWalk", 0);
-            animator.SetTrigger("isWalkEnd");
+            else
+            {
+                isMoving = false;
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                animator.SetFloat("isWalk", 0);
+                animator.SetTrigger("isWalkEnd");
+            }
         }
 
         // 좌우반전

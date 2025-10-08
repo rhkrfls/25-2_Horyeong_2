@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using System.Collections; 
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
 
     protected enum monster_id
     {
+        RAT,
+        CAT,
         STRAYDOG,
         CROW,
         PINE,
@@ -30,15 +32,16 @@ public class Enemy : MonoBehaviour
     };
 
     [Header("# Monster_Enum_type")]
+    [SerializeField]
     protected monster_attack_type Attack_enumType;
+    [SerializeField]
     protected monster_id Id_enumType;
+    [SerializeField]
     protected race Race_enumType;
 
     [Header("# Monster_Attack")]
     [SerializeField]
     protected int monster_damage;           // 공격 데미지
-    [SerializeField]
-    protected float attackDelay;            // 공격 딜레이
     [SerializeField]
     protected float attackDistance;         // 사정거리
 
@@ -57,9 +60,8 @@ public class Enemy : MonoBehaviour
 
     [Header("# Monster_Hp")]
     [SerializeField]
-    protected int monster_hp = 1;
-    [SerializeField]
     protected int monster_maxHp = 1;
+    protected int monster_hp = 1;
 
     [Header("# Monster_Range")]
     [SerializeField]
@@ -77,10 +79,11 @@ public class Enemy : MonoBehaviour
 
     [Header("# Monster_Bool")]
     protected bool monster_detected = false;
-    protected bool monster_attacking = false;
+    protected bool monster_attacking = false;        // 공격중인 판별
     protected bool monster_chasing = false;
     protected bool isStunned = false;
-
+    protected bool isChasing;                   // 추격중인지 판별
+    protected bool isDead;                      // 죽었는지 판별
 
     protected Transform player;
     [SerializeField]
@@ -96,11 +99,6 @@ public class Enemy : MonoBehaviour
     private Item item_Prefab;             // 아이템*/
     [SerializeField]
     protected int itemNumber;             // 아이템 획득 개수
-
-    // 상태변수
-    protected bool isChasing;             // 추격중인지 판별
-    protected bool isAttacking;           // 공격중인 판별
-    protected bool isDead;                   // 죽었는지 판별
 
     // 필요한 컴포넌트
     [SerializeField]
@@ -223,7 +221,7 @@ public class Enemy : MonoBehaviour
 
 
     // 공격
-    protected IEnumerator MonsterAttackCoroutine()
+    protected IEnumerator MonsterAttackCoroutine(float AttackDelay, float StunDelay)
     {
         monster_attacking = true;
         switch (Id_enumType)
@@ -231,20 +229,32 @@ public class Enemy : MonoBehaviour
             case monster_id.STRAYDOG:
                 if (Random.value < 0.3f && !isStunned)
                 {
-                    StartCoroutine(DogSpecialAttack());
+                    StartCoroutine(DogSpecialAttack(StunDelay));
                 }
                 else
                 {
-                    Debug.Log("공격");
+                    Attack();
                 }
                 break;
+            case monster_id.CAT:
+                Attack();
+                break;
         }
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(AttackDelay);
         monster_attacking = false;
     }
 
+    // 공격
+    protected void Attack()
+    {
+        Debug.Log("일반공격");
+        //animator.SetTrigger("Attack");
+        //thePlayerStatus.DecreaseHP(attackDamage);
+        //GameManager.damage = true;
+    }
+
     // 스턴
-    protected IEnumerator DogSpecialAttack()
+    protected IEnumerator DogSpecialAttack(float StunDelay)
     {
         Debug.Log("10% 확률로 실행!");
         gameManager.isGroggy = true;
@@ -254,7 +264,7 @@ public class Enemy : MonoBehaviour
         {
             float damage = monster_damage * 0.5f;
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(StunDelay);
             // player.TakeDamage(damage);
         }
         isStunned = false;
@@ -296,9 +306,15 @@ public class Enemy : MonoBehaviour
     protected void Dead()
     {
         PlaySE(sound_Dead);
-        isAttacking = false;
+        monster_attacking = false;
         isDead = true;
         animator.SetTrigger("Dead");
+    }
+
+    protected virtual void ReSet()
+    {
+        //isWalking = false;
+        //animator.SetBool("Running", isRunning);
     }
 
     protected void RandomSound()

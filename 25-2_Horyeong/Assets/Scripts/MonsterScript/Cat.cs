@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public class Dog : Enemy
+public class Cat : Enemy
 {
     [Header("# Monster_AttackDelay")]
     [SerializeField]
-    protected float attackDelay_Dog;        // 똥개 공격 딜레이
-    [SerializeField]
-    protected float attackStunDelay;        // 스턴 공격 딜레이
+    protected float attackDelay_Cat;        // 냥이 공격 딜레이
 
     void Start()
     {
@@ -21,7 +19,7 @@ public class Dog : Enemy
         MonsterSightRange();
         if (MonsterView() && !monster_attacking)
         {
-            StartCoroutine(MonsterAttackCoroutine(attackDelay_Dog, attackStunDelay));
+            StartCoroutine(MonsterAttackCoroutine(attackDelay_Cat, 0));
         }
     }
 }

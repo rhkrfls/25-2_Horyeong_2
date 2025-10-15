@@ -7,7 +7,7 @@ public enum WEAPONTYPE
 public class Weapon : MonoBehaviour
 {
     [Header("¹«±â")]
-    public Player player;
+    public PlayerController player;
     public WEAPONTYPE   weaponType;
     public int          damage;
     public int          skillDamage;

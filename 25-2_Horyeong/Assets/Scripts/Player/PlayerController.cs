@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-enum PLAYERSTATE
+public enum PLAYERSTATE
 {
     IDLE, WALK, RUN, 
 }
 
 public class PlayerController : Player
 {
-    private PLAYERSTATE playerstate;
-    private Rigidbody2D rb;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private Vector2 moveInput;
+    public PLAYERSTATE playerstate;
+    public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+    public Vector2 moveInput;
 
     [Header("이동")]
     public float moveSpeed = 5f;
@@ -25,6 +25,9 @@ public class PlayerController : Player
     public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
 
     [Header("무기")]
+    public Weapon currentWeapon;
+    public Gun yuseongWeapon;
+    public bool isAttacking = false;
 
     [Header("Managers")]
     public Gamemanager gameManager;
@@ -35,6 +38,8 @@ public class PlayerController : Player
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+
+        yuseongWeapon = GetComponentInChildren<Gun>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -53,6 +58,7 @@ public class PlayerController : Player
         {
             if (isGrounded)
             {
+                animator.SetTrigger("isJump");
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 Debug.Log("점프!");
             }
@@ -63,7 +69,8 @@ public class PlayerController : Player
     {
         if (context.started)
         {
-            animator.SetBool("isAttack", true);
+            isAttacking = true;
+            animator.SetTrigger("isAttack");
         }
     }
 
@@ -109,7 +116,7 @@ public class PlayerController : Player
         );
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!gameManager.isGroggy)
         {
@@ -119,7 +126,9 @@ public class PlayerController : Player
                 isMoving = true;
                 rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
                 float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
-                animator.SetFloat("isWalk", horizontalVelocity);
+
+                if (isGrounded)
+                    animator.SetFloat("isWalk", horizontalVelocity);
             }
 
             else

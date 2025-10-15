@@ -7,29 +7,11 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    protected enum monster_attack_type
-    {
-        MELEE,
-        MID_RANGED,
-        RANGED
-    };
+    protected enum monster_attack_type { MELEE, MID_RANGED, RANGED };
 
-    protected enum monster_id
-    {
-        RAT,
-        CAT,
-        STRAYDOG,
-        CROW,
-        PINE,
-        DANDELION
-    };
+    protected enum monster_id { RAT, CAT, STRAYDOG, CROW, PINE, DANDELION };
 
-    protected enum race
-    {
-        HUMAN,
-        ANIMAL,
-        PLANT
-    };
+    protected enum race { HUMAN, ANIMAL, PLANT };
 
     [Header("# Monster_Enum_type")]
     [SerializeField]
@@ -39,11 +21,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected race Race_enumType;
 
-    [Header("# Monster_Attack")]
-    [SerializeField]
+    // Monster_Attack
     protected int monster_damage;           // 공격 데미지
-    [SerializeField]
-    protected float attackDistance;         // 사정거리
 
 
     [Header("# Monster_LayerMask")]
@@ -57,33 +36,43 @@ public class Enemy : MonoBehaviour
     protected AudioClip sound_Hurt;
     [SerializeField]
     protected AudioClip sound_Dead;
-
-    [Header("# Monster_Hp")]
     [SerializeField]
+    protected AudioClip sound_Attack;
+
+    // Monster_Hp
     protected int monster_maxHp = 1;
     protected int monster_hp = 1;
 
-    [Header("# Monster_Range")]
-    [SerializeField]
+    // Monster_Range
     protected float monster_sight_range = 0f;
-    [SerializeField]
     protected float monster_attack_range = 0f;
-    [SerializeField]
-    protected float monster_chase_ranges = 0f;
 
-    [Header("# Monster_Speed")]
-    [SerializeField]
+    // Monster_Speed
     protected float monster_speed = 5f;
-    [SerializeField]
     protected float monster_rotationSpeed = 5f;
 
-    [Header("# Monster_Bool")]
-    protected bool monster_detected = false;
-    protected bool monster_attacking = false;        // 공격중인 판별
-    protected bool monster_chasing = false;
+    // Monster_Bool
+    protected bool isAction;                        // 행동중인지 아닌지 판별
+    protected bool monster_detected = false;        // 플레이어 감지
+    [SerializeField]
+    protected bool monster_attacking = false;       // 공격중인 판별
     protected bool isStunned = false;
-    protected bool isChasing;                   // 추격중인지 판별
-    protected bool isDead;                      // 죽었는지 판별
+    protected bool isChasing;                       // 추격중인지 판별
+    protected bool isDead;                          // 죽었는지 판별
+    protected bool stopAction = false;
+
+    // Monster_Patrol
+    protected bool usePatrol = true;        // 순찰 기능 켜기
+    protected float patrolRange = 3f;       // 왕복 거리
+    protected float patrolSpeed = 2f;       // 순찰 속도
+    protected float patrolWaitTime = 2f;    // 끝점에서 대기 시간
+    private Vector3 startPos;               // 시작 지점
+    private bool movingRight = true;        // 이동 방향 판별
+    private bool isWaiting = false;         // 대기 중인지
+    private bool isReturning = false;       // 복귀 중인지
+
+    protected float attack_delay;
+    protected float stun_delay;
 
     protected Transform player;
     [SerializeField]
@@ -110,40 +99,49 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected AudioSource theAudio;
 
-    private void Start()
+    protected virtual void Start()
     {
         theAudio = GetComponent<AudioSource>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        startPos = transform.position;
+        StartCoroutine(PatrolRoutine());
     }
 
     protected virtual void Update()
     {
-        if (!isDead)
+        if (isDead || isStunned) return;
+
+        monster_detected = MonsterSightRange();
+        bool inAttackRange = MonsterInAttackRange();
+
+        if (monster_detected)
         {
-            switch (Race_enumType)
+            // 공격 범위 안이면 추격 중지, 제자리에서 공격
+            if (inAttackRange)
             {
-                case race.ANIMAL:
-                    break;
-                case race.PLANT:
-                    break;
-                case race.HUMAN:
-                    break;
+                // 공격
+                if (!monster_attacking)
+                {
+                    StartCoroutine(MonsterAttackCoroutine(attack_delay, stun_delay));
+                }
             }
-            switch (Attack_enumType)
+            else
             {
-                case monster_attack_type.MELEE:
-                    break;
-                case monster_attack_type.MID_RANGED:
-                    break;
-                case monster_attack_type.RANGED:
-                    break;
+                // 공격 범위 밖이면 추격
+                ChasePlayer();
             }
+        }
+        else if (isChasing)
+        {
+            // 플레이어 놓쳤을 때 원래 자리로 복귀
+            StartCoroutine(ReturnToStart());
         }
     }
 
-    protected void MonsterSightRange()
+    protected bool MonsterSightRange()
     {
         coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_sight_range, layer);
 
@@ -163,25 +161,15 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            if(!monster_attacking)
+            if (Short_player != null)
             {
-                if (Short_player != null)
-                {
-                    // 방향 구하기
-                    Vector3 direction = Short_player.transform.position - transform.position;
-                    direction.Normalize();
-
-                    // 이동 (X축만 이동)
-                    transform.position += new Vector3(direction.x, 0, 0) * monster_speed * Time.deltaTime;
-
-                    // 좌우 반전 (플레이어 위치에 따라 flip)
-                    if (direction.x < 0)
-                        spriteRenderer.flipX = false; // 왼쪽 바라봄
-                    else if (direction.x > 0)
-                        spriteRenderer.flipX = true;  // 오른쪽 바라봄
-                }
+                isChasing = true;
+                return true;
             }
         }
+
+        isChasing = false;
+        return false;
     }
 
     protected bool MonsterView()
@@ -219,34 +207,152 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // 순찰 함수
+    protected IEnumerator PatrolRoutine()
+    {
+        startPos = transform.position; // 시작 위치
+
+        while (!isDead && usePatrol)
+        {
+            if (monster_detected || monster_attacking || isStunned)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (!isWaiting)
+            {
+                // 이동
+                float moveDir = movingRight ? 1f : -1f;
+                transform.Translate(Vector2.right * moveDir * patrolSpeed * Time.deltaTime);
+
+                // 끝점 체크
+                if (movingRight && transform.position.x >= startPos.x + patrolRange)
+                {
+                    movingRight = false;
+                    StartCoroutine(PatrolWait());
+                }
+                else if (!movingRight && transform.position.x <= startPos.x - patrolRange)
+                {
+                    movingRight = true;
+                    StartCoroutine(PatrolWait());
+                }
+
+                // 이미지 플립
+                spriteRenderer.flipX = movingRight;
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator PatrolWait()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(patrolWaitTime);
+        isWaiting = false;
+    }
+
+
+    // 추격 함수
+    protected void ChasePlayer()
+    {
+        if (Short_player == null) return;
+
+        Vector3 direction = Short_player.transform.position - transform.position;
+        direction.Normalize();
+
+        transform.position += new Vector3(direction.x, 0, 0) * monster_speed * Time.deltaTime;
+
+        // 좌우 반전
+        spriteRenderer.flipX = direction.x > 0; // 오른쪽이면 true, 왼쪽이면 false
+
+    }
+
+    // 복귀 함수
+    protected IEnumerator ReturnToStart()
+    {
+        if (isReturning) yield break; // 중복 방지
+        isReturning = true;
+
+        while (Vector3.Distance(transform.position, startPos) > 0.1f)
+        {
+            Vector3 dir = (startPos - transform.position).normalized;
+            transform.position += dir * monster_speed * Time.deltaTime;
+
+            // 좌우 반전
+            if (dir.x < 0)
+                spriteRenderer.flipX = false;
+            else if (dir.x > 0)
+                spriteRenderer.flipX = true;
+
+            yield return null;
+        }
+
+        transform.position = startPos;
+        isChasing = false;
+        isReturning = false;
+
+        // 다시 순찰 재개
+        if (usePatrol && !isDead)
+            StartCoroutine(PatrolRoutine());
+    }
+
 
     // 공격
     protected IEnumerator MonsterAttackCoroutine(float AttackDelay, float StunDelay)
     {
         monster_attacking = true;
+        stopAction = true;
+
+        // 공격 중 이동 정지
+        Vector3 originalPos = transform.position;
+
         switch (Id_enumType)
         {
             case monster_id.STRAYDOG:
                 if (Random.value < 0.3f && !isStunned)
                 {
-                    StartCoroutine(DogSpecialAttack(StunDelay));
+                    yield return StartCoroutine(DogSpecialAttack(StunDelay));
                 }
                 else
                 {
                     Attack();
                 }
                 break;
+
             case monster_id.CAT:
                 Attack();
                 break;
         }
+
+        // 공격 후 잠깐 대기
         yield return new WaitForSeconds(AttackDelay);
         monster_attacking = false;
+        stopAction = false;
+
+    }
+
+    protected bool MonsterInAttackRange()
+    {
+        coll = Physics2D.OverlapCircleAll((Vector2)transform.position, monster_attack_range, layer);
+
+        if (coll.Length > 0)
+        {
+            foreach (Collider2D col in coll)
+            {
+                if (col == null) continue;
+                Short_player = col;
+                return true;
+            }
+        }
+        return false;
     }
 
     // 공격
     protected void Attack()
     {
+        PlaySE(sound_Attack);
         Debug.Log("일반공격");
         //animator.SetTrigger("Attack");
         //thePlayerStatus.DecreaseHP(attackDamage);
@@ -257,6 +363,7 @@ public class Enemy : MonoBehaviour
     protected IEnumerator DogSpecialAttack(float StunDelay)
     {
         Debug.Log("10% 확률로 실행!");
+        PlaySE(sound_Attack);
         gameManager.isGroggy = true;
         isStunned = true;
         // 0.5배 공격 3번 실행
@@ -281,8 +388,6 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, monster_sight_range);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, monster_attack_range);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, monster_chase_ranges);
     }
     // 비공격 스크립트
 
@@ -311,16 +416,19 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("Dead");
     }
 
-    protected virtual void ReSet()
-    {
-        //isWalking = false;
-        //animator.SetBool("Running", isRunning);
-    }
-
     protected void RandomSound()
     {
-        int _random = Random.Range(0, 3); // 일상 사운드 3개.
-        PlaySE(sound_Normal[_random]);
+        switch (Id_enumType)
+        {
+            case monster_id.STRAYDOG:
+                int _random = Random.Range(0, 3); // 일상 사운드 2개.
+                PlaySE(sound_Normal[_random]);
+                break;
+            case monster_id.CAT:
+                int random = Random.Range(0, 2); // 일상 사운드 2개.
+                PlaySE(sound_Normal[random]);
+                break;
+        }
     }
 
     protected void PlaySE(AudioClip _clip)

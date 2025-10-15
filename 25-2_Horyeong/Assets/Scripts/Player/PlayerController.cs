@@ -6,7 +6,7 @@ enum PLAYERSTATE
     IDLE, WALK, RUN, 
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Player
 {
     private PLAYERSTATE playerstate;
     private Rigidbody2D rb;
@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;      // 현재 바닥에 닿아있는지 여부
     public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
 
+    [Header("무기")]
 
+    [Header("Managers")]
     public Gamemanager gameManager;
 
     private void Awake()
@@ -38,8 +40,10 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         if (isMoving == false && context.started)
+        {
+            animator.SetBool("isWalkEnd", false);
             animator.SetTrigger("isWalkStart");
-
+        }
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -52,6 +56,32 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 Debug.Log("점프!");
             }
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            animator.SetBool("isAttack", true);
+        }
+    }
+
+    public void OnSwap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (PN == PLAYERNAME.YUSEONG)
+           {
+                PN = PLAYERNAME.SEOLHAN;
+           }
+
+           else
+           {
+                PN = PLAYERNAME.YUSEONG;
+           }
+
+            Debug.Log("캐릭터:" + PN);
         }
     }
 
@@ -97,7 +127,7 @@ public class PlayerController : MonoBehaviour
                 isMoving = false;
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 animator.SetFloat("isWalk", 0);
-                animator.SetTrigger("isWalkEnd");
+                animator.SetBool("isWalkEnd", true);
             }
         }
 
@@ -107,6 +137,4 @@ public class PlayerController : MonoBehaviour
         // 바닥 체크
         CheckGround();
     }
-
-
 }

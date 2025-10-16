@@ -428,6 +428,9 @@ public class Enemy : MonoBehaviour
                 int random = Random.Range(0, 2); // 일상 사운드 2개.
                 PlaySE(sound_Normal[random]);
                 break;
+            case monster_id.RAT:
+                PlaySE(sound_Normal[0]);
+                break;
         }
     }
 

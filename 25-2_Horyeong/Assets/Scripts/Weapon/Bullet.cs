@@ -23,10 +23,24 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = direction * speed;
     }
 
-    void Update()
+    private void Update()
     {
         timeElapsed += Time.deltaTime;
         if (timeElapsed >= lifetime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy Hit by Bullet");
+            Destroy(gameObject);
+        }
+
+        if (collision.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }

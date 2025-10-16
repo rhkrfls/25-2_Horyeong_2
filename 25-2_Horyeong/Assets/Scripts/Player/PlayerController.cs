@@ -47,7 +47,7 @@ public class PlayerController : Player
         if (isMoving == false && context.started)
         {
             animator.SetBool("isWalkEnd", false);
-            animator.SetTrigger("isWalkStart");
+            animator.SetBool("isWalkStart", true);
         }
         moveInput = context.ReadValue<Vector2>();
     }
@@ -136,8 +136,19 @@ public class PlayerController : Player
                 isMoving = false;
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 animator.SetFloat("isWalk", 0);
+                animator.SetBool("isWalkStart", false);
                 animator.SetBool("isWalkEnd", true);
             }
+        }
+
+        if (!isGrounded && rb.linearVelocity.y < -0.1f)
+        {
+            animator.SetBool("isJumpEnd", true);
+        }
+        // ¹Ù´Ú¿¡ ´ê¾Ò´Ù¸é IsFallingÀ» false·Î ¼³Á¤ (ÂøÁö ¿Ï·á)
+        else if (isGrounded)
+        {
+            animator.SetBool("isJumpEnd", false);
         }
 
         // ÁÂ¿ì¹ÝÀü

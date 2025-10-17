@@ -61,7 +61,6 @@ public class PlayerController : Player
             {
                 animator.SetTrigger("isJump");
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                Debug.Log("มกวม!");
             }
         }
     }

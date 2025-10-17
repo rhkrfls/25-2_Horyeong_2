@@ -16,13 +16,13 @@ GameObject:
   - component: {fileID: 5401320273104453741}
   - component: {fileID: 2806816012451317934}
   - component: {fileID: 3197033486302452298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3729055125722002002
 Transform:
   m_ObjectHideFlags: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   Attack_enumType: 0
   Id_enumType: 0
   Race_enumType: 0
+  playerStatus: {fileID: 0}
   layer:
     serializedVersion: 2
     m_Bits: 64
@@ -379,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2280985315994054139}
   - component: {fileID: 7525997080108850698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '!_Image'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

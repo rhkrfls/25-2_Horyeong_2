@@ -31,6 +31,7 @@ public class Cat : Enemy
         monster_maxHp = catHp;
 
         monster_damage = catDamage;
+        attack_delay = catAttackDelay;
 
         monster_speed = catSpeed;
 
@@ -54,6 +55,7 @@ public class Cat : Enemy
         monster_maxHp = catHp;
 
         monster_damage = catDamage;
+        attack_delay = catAttackDelay;
 
         monster_speed = catSpeed;
 

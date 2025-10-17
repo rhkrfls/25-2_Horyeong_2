@@ -35,8 +35,7 @@ public class RAT : Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ Áã¶û ´êÀ½");
-            // player.TakeDamage(contactDamage);
+            playerStatus.TakeDamage(5);
             PlaySE(sound_Attack);
         }
     }

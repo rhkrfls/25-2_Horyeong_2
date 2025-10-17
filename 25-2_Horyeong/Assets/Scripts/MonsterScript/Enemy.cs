@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     // Monster_Attack
     protected int monster_damage;           // 공격 데미지
 
+    public PlayerStatus playerStatus;
+
 
     [Header("# Monster_LayerMask")]
     [SerializeField]
@@ -330,7 +332,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(AttackDelay);
         monster_attacking = false;
         stopAction = false;
-
     }
 
     protected bool MonsterInAttackRange()
@@ -355,7 +356,7 @@ public class Enemy : MonoBehaviour
         PlaySE(sound_Attack);
         Debug.Log("일반공격");
         //animator.SetTrigger("Attack");
-        //thePlayerStatus.DecreaseHP(attackDamage);
+        playerStatus.TakeDamage(monster_damage);
         //GameManager.damage = true;
     }
 
@@ -370,6 +371,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             float damage = monster_damage * 0.5f;
+            playerStatus.TakeDamage(monster_damage);
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
             yield return new WaitForSeconds(StunDelay);
             // player.TakeDamage(damage);

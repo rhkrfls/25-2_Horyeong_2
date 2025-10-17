@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 6302980127776054515}
   - component: {fileID: 3769575643532147423}
   - component: {fileID: 8079556062197404701}
-  m_Layer: 0
+  - component: {fileID: 8107204556570680325}
+  m_Layer: 8
   m_Name: CAT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1066669214173863157
 Transform:
   m_ObjectHideFlags: 0
@@ -132,13 +133,16 @@ MonoBehaviour:
   Attack_enumType: 0
   Id_enumType: 1
   Race_enumType: 1
+  playerStatus: {fileID: 0}
   layer:
     serializedVersion: 2
     m_Bits: 64
-  sound_Normal: []
+  sound_Normal:
+  - {fileID: 8300000, guid: 9f7e27ca25da338479a3140e244a49b2, type: 3}
+  - {fileID: 8300000, guid: efae45d7add88034baba6ca2a9260f7f, type: 3}
   sound_Hurt: {fileID: 0}
   sound_Dead: {fileID: 0}
-  sound_Attack: {fileID: 0}
+  sound_Attack: {fileID: 8300000, guid: bd86a380111dad84fb4b80683835e9e8, type: 3}
   monster_attacking: 0
   gameManager: {fileID: 0}
   coll: []
@@ -153,8 +157,8 @@ MonoBehaviour:
   catSpeed: 2.5
   catSightRange: 6
   catAttackRange: 2
-  catDamage: 5
-  catAttackDelay: 1
+  catDamage: 7
+  catAttackDelay: 3
   catPatrolRange: 3
   catPatrolSpeed: 0.8
 --- !u!61 &3769575643532147423
@@ -230,6 +234,103 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!82 &8107204556570680325
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088551546442088216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6020293916830420359
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6198812650175704098}
   - component: {fileID: 746494922671067796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '!_Image'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

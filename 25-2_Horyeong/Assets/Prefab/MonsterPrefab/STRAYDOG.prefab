@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4798705583969854041}
   - component: {fileID: 6557298700400957844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '!_Image'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,13 +104,14 @@ GameObject:
   - component: {fileID: 5283915471768184289}
   - component: {fileID: 3698560504991185527}
   - component: {fileID: -3826732767122370757}
-  m_Layer: 0
+  - component: {fileID: 115195544689133121}
+  m_Layer: 8
   m_Name: STRAYDOG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7460117321537818287
 Transform:
   m_ObjectHideFlags: 0
@@ -295,13 +296,17 @@ MonoBehaviour:
   Attack_enumType: 0
   Id_enumType: 2
   Race_enumType: 1
+  playerStatus: {fileID: 0}
   layer:
     serializedVersion: 2
     m_Bits: 64
-  sound_Normal: []
-  sound_Hurt: {fileID: 0}
-  sound_Dead: {fileID: 0}
-  sound_Attack: {fileID: 0}
+  sound_Normal:
+  - {fileID: 8300000, guid: 23a6fcd70c13eee4e9846c9d51eb9225, type: 3}
+  - {fileID: 8300000, guid: c8b1a3fa745937c4bad00300fc675c5e, type: 3}
+  - {fileID: 8300000, guid: 3dea3e9a5035a9649a6d44eba83a62e6, type: 3}
+  sound_Hurt: {fileID: 8300000, guid: c8b1a3fa745937c4bad00300fc675c5e, type: 3}
+  sound_Dead: {fileID: 8300000, guid: c8b1a3fa745937c4bad00300fc675c5e, type: 3}
+  sound_Attack: {fileID: 8300000, guid: bd86a380111dad84fb4b80683835e9e8, type: 3}
   monster_attacking: 0
   gameManager: {fileID: 0}
   coll: []
@@ -316,8 +321,105 @@ MonoBehaviour:
   dogSpeed: 3
   dogSightRange: 5
   dogAttackRange: 2.5
-  dogDamage: 0
-  dogAttackDelay: 2
+  dogDamage: 10
+  dogAttackDelay: 3
   dogStunDelay: 0.3
   dogPatrolRange: 5
   dogPatrolSpeed: 1
+--- !u!82 &115195544689133121
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370477741919410052}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

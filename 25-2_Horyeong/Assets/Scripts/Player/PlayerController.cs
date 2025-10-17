@@ -42,6 +42,7 @@ public class PlayerController : Player
         yuseongWeapon = GetComponentInChildren<Gun>();
     }
 
+
     public void OnMove(InputAction.CallbackContext context)
     {
         if (isMoving == false && context.started)
@@ -138,7 +139,7 @@ public class PlayerController : Player
                 animator.SetFloat("isWalk", 0);
                 animator.SetBool("isWalkStart", false);
                 animator.SetBool("isWalkEnd", true);
-            }
+            }   
         }
 
         if (!isGrounded && rb.linearVelocity.y < -0.1f)

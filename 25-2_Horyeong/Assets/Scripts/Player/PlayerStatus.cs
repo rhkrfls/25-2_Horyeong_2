@@ -13,6 +13,7 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
+        Debug.Log($"현재 체력 : {currentHp}");
 
         if (currentHp <= 0)
         {

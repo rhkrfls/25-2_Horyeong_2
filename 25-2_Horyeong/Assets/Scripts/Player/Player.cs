@@ -1,9 +1,21 @@
 using UnityEngine;
 
+public enum PLAYERNAME
+{
+    YUSEONG, SEOLHAN
+}
+
 public class Player : MonoBehaviour
 {
-    enum PLAYERNAME
+    public PLAYERNAME PN;
+
+    private void Awake()
     {
-        YUSEONG, SEOLHAN
+        PN = PLAYERNAME.YUSEONG;
+    }
+
+    public void SwapPlayer()
+    {
+        
     }
 }

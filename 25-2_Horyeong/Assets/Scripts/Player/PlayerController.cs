@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-enum PLAYERSTATE
+public enum PLAYERSTATE
 {
     IDLE, WALK, RUN, 
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Player
 {
-    private PLAYERSTATE playerstate;
-    private Rigidbody2D rb;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private Vector2 moveInput;
+    public PLAYERSTATE playerstate;
+    public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+    public Vector2 moveInput;
 
     [Header("이동")]
     public float moveSpeed = 5f;
@@ -24,7 +24,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;      // 현재 바닥에 닿아있는지 여부
     public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
 
+    [Header("무기")]
+    public Weapon currentWeapon;
+    public Gun yuseongWeapon;
+    public bool isAttacking = false;
 
+    [Header("Managers")]
     public Gamemanager gameManager;
 
     private void Awake()
@@ -33,13 +38,17 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
+
+        yuseongWeapon = GetComponentInChildren<Gun>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         if (isMoving == false && context.started)
-            animator.SetTrigger("isWalkStart");
-
+        {
+            animator.SetBool("isWalkEnd", false);
+            animator.SetBool("isWalkStart", true);
+        }
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -49,9 +58,37 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
+                animator.SetTrigger("isJump");
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 Debug.Log("점프!");
             }
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAttacking = true;
+            animator.SetTrigger("isAttack");
+        }
+    }
+
+    public void OnSwap(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (PN == PLAYERNAME.YUSEONG)
+           {
+                PN = PLAYERNAME.SEOLHAN;
+           }
+
+           else
+           {
+                PN = PLAYERNAME.YUSEONG;
+           }
+
+            Debug.Log("캐릭터:" + PN);
         }
     }
 
@@ -79,7 +116,7 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!gameManager.isGroggy)
         {
@@ -89,7 +126,9 @@ public class PlayerController : MonoBehaviour
                 isMoving = true;
                 rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
                 float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
-                animator.SetFloat("isWalk", horizontalVelocity);
+
+                if (isGrounded)
+                    animator.SetFloat("isWalk", horizontalVelocity);
             }
 
             else
@@ -97,8 +136,19 @@ public class PlayerController : MonoBehaviour
                 isMoving = false;
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 animator.SetFloat("isWalk", 0);
-                animator.SetTrigger("isWalkEnd");
+                animator.SetBool("isWalkStart", false);
+                animator.SetBool("isWalkEnd", true);
             }
+        }
+
+        if (!isGrounded && rb.linearVelocity.y < -0.1f)
+        {
+            animator.SetBool("isJumpEnd", true);
+        }
+        // 바닥에 닿았다면 IsFalling을 false로 설정 (착지 완료)
+        else if (isGrounded)
+        {
+            animator.SetBool("isJumpEnd", false);
         }
 
         // 좌우반전
@@ -107,6 +157,4 @@ public class PlayerController : MonoBehaviour
         // 바닥 체크
         CheckGround();
     }
-
-
 }

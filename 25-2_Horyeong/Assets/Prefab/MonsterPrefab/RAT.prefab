@@ -153,7 +153,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   boxCol: {fileID: 0}
   theAudio: {fileID: 2806816012451317934}
-  contactDamage: 3
+  contactDamage: 10
 --- !u!61 &5266221644705724261
 BoxCollider2D:
   m_ObjectHideFlags: 0

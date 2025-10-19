@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 9931f2ac83e17e849b22dd48e647880c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6574371777538043941
+    second: Rat_Ani_All_0
+  - first:
+      213: -2073535134396319464
+    second: Rat_Ani_All_1
+  - first:
+      213: -5303007195105605594
+    second: Rat_Ani_All_2
+  - first:
+      213: 2829097587297858569
+    second: Rat_Ani_All_3
+  - first:
+      213: 4808078866834278039
+    second: Rat_Ani_All_4
+  - first:
+      213: 7994020452792167071
+    second: Rat_Ani_All_5
+  - first:
+      213: 1711058741789536742
+    second: Rat_Ani_All_6
+  - first:
+      213: 8529284593687058267
+    second: Rat_Ani_All_7
+  - first:
+      213: 7292077680035115315
+    second: Rat_Ani_All_8
+  - first:
+      213: -8320877192540883835
+    second: Rat_Ani_All_9
+  - first:
+      213: -3722955984965895866
+    second: Rat_Ani_All_10
+  - first:
+      213: 2577288134649538921
+    second: Rat_Ani_All_11
+  - first:
+      213: -374839213776832105
+    second: Rat_Ani_All_12
+  - first:
+      213: -646648722653244878
+    second: Rat_Ani_All_13
+  - first:
+      213: 4752157104538736782
+    second: Rat_Ani_All_14
+  - first:
+      213: -2478326550005190655
+    second: Rat_Ani_All_15
+  - first:
+      213: -4974777947457089108
+    second: Rat_Ani_All_16
+  - first:
+      213: -2883108579159080028
+    second: Rat_Ani_All_17
+  - first:
+      213: -7549672817998416795
+    second: Rat_Ani_All_18
+  - first:
+      213: -8246287126280661131
+    second: Rat_Ani_All_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rat_Ani_All_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 11199
+        width: 3362
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdfcd7a63b323c4a0800000000000000
+      internalID: -6574371777538043941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_1
+      rect:
+        serializedVersion: 2
+        x: 3423
+        y: 11199
+        width: 6722
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819f30508c25933e0800000000000000
+      internalID: -2073535134396319464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9599
+        width: 3361
+        height: 1506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628c3667d0fe766b0800000000000000
+      internalID: -5303007195105605594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_3
+      rect:
+        serializedVersion: 2
+        x: 3423
+        y: 9599
+        width: 3362
+        height: 1506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 904bdc53449f24720800000000000000
+      internalID: 2829097587297858569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_4
+      rect:
+        serializedVersion: 2
+        x: 6815
+        y: 9599
+        width: 3361
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79648bd414ab9b240800000000000000
+      internalID: 4808078866834278039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7999
+        width: 3361
+        height: 1506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a62e76f3770fe60800000000000000
+      internalID: 7994020452792167071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_6
+      rect:
+        serializedVersion: 2
+        x: 3391
+        y: 7999
+        width: 3362
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1313e2cd6eeb710800000000000000
+      internalID: 1711058741789536742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_7
+      rect:
+        serializedVersion: 2
+        x: 6815
+        y: 7999
+        width: 3361
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57ddead52b1e5670800000000000000
+      internalID: 8529284593687058267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_8
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 6399
+        width: 3362
+        height: 1506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3313c01d30aa23560800000000000000
+      internalID: 7292077680035115315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_9
+      rect:
+        serializedVersion: 2
+        x: 3423
+        y: 6399
+        width: 3362
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58473fe774e468c80800000000000000
+      internalID: -8320877192540883835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_10
+      rect:
+        serializedVersion: 2
+        x: 6783
+        y: 6399
+        width: 3393
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64971b9b147655cc0800000000000000
+      internalID: -3722955984965895866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4799
+        width: 3393
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9696d9547ed54c320800000000000000
+      internalID: 2577288134649538921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_12
+      rect:
+        serializedVersion: 2
+        x: 3391
+        y: 4799
+        width: 3362
+        height: 1538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799f1f698bd4ccaf0800000000000000
+      internalID: -374839213776832105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_13
+      rect:
+        serializedVersion: 2
+        x: 6783
+        y: 4799
+        width: 3362
+        height: 1506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2321bcfa964a607f0800000000000000
+      internalID: -646648722653244878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3199
+        width: 3361
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8851e465bd03f140800000000000000
+      internalID: 4752157104538736782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_15
+      rect:
+        serializedVersion: 2
+        x: 3391
+        y: 3199
+        width: 3394
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100758d22273b9dd0800000000000000
+      internalID: -2478326550005190655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_16
+      rect:
+        serializedVersion: 2
+        x: 3487
+        y: 1599
+        width: 6626
+        height: 1602
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca19f5570d906fab0800000000000000
+      internalID: -4974777947457089108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_17
+      rect:
+        serializedVersion: 2
+        x: 6783
+        y: 3199
+        width: 3393
+        height: 1474
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a3875ac5042df7d0800000000000000
+      internalID: -2883108579159080028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 3297
+        height: 1601
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56438c8629c2a3790800000000000000
+      internalID: -7549672817998416795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rat_Ani_All_19
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1599
+        width: 3330
+        height: 1570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5771a22ac8d4f8d80800000000000000
+      internalID: -8246287126280661131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rat_Ani_All_0: -6574371777538043941
+      Rat_Ani_All_1: -2073535134396319464
+      Rat_Ani_All_10: -3722955984965895866
+      Rat_Ani_All_11: 2577288134649538921
+      Rat_Ani_All_12: -374839213776832105
+      Rat_Ani_All_13: -646648722653244878
+      Rat_Ani_All_14: 4752157104538736782
+      Rat_Ani_All_15: -2478326550005190655
+      Rat_Ani_All_16: -4974777947457089108
+      Rat_Ani_All_17: -2883108579159080028
+      Rat_Ani_All_18: -7549672817998416795
+      Rat_Ani_All_19: -8246287126280661131
+      Rat_Ani_All_2: -5303007195105605594
+      Rat_Ani_All_3: 2829097587297858569
+      Rat_Ani_All_4: 4808078866834278039
+      Rat_Ani_All_5: 7994020452792167071
+      Rat_Ani_All_6: 1711058741789536742
+      Rat_Ani_All_7: 8529284593687058267
+      Rat_Ani_All_8: 7292077680035115315
+      Rat_Ani_All_9: -8320877192540883835
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

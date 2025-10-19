@@ -124,6 +124,12 @@ public class Enemy : MonoBehaviour
             // 공격 범위 안이면 추격 중지, 제자리에서 공격
             if (inAttackRange)
             {
+                if (isChasing)
+                {
+                    isChasing = false;
+                    SetAnimationState(true, false, false); // run → idle 전환
+                }
+
                 // 공격
                 if (!monster_attacking)
                 {
@@ -133,6 +139,8 @@ public class Enemy : MonoBehaviour
             else
             {
                 // 공격 범위 밖이면 추격
+                isChasing = true;
+                SetAnimationState(false, false, true); // Idle에서 run으로
                 ChasePlayer();
             }
         }
@@ -224,6 +232,8 @@ public class Enemy : MonoBehaviour
 
             if (!isWaiting)
             {
+                SetAnimationState(false, true, false);
+
                 // 이동
                 float moveDir = movingRight ? 1f : -1f;
                 transform.Translate(Vector2.right * moveDir * patrolSpeed * Time.deltaTime);
@@ -243,6 +253,11 @@ public class Enemy : MonoBehaviour
                 // 이미지 플립
                 spriteRenderer.flipX = movingRight;
             }
+            else
+            {
+                // 대기 중에는 Idle 애니메이션
+                SetAnimationState(true, false, false);
+            }
 
             yield return null;
         }
@@ -261,6 +276,8 @@ public class Enemy : MonoBehaviour
     {
         if (Short_player == null) return;
 
+        SetAnimationState(false, false, true);
+
         Vector3 direction = Short_player.transform.position - transform.position;
         direction.Normalize();
 
@@ -276,6 +293,8 @@ public class Enemy : MonoBehaviour
     {
         if (isReturning) yield break; // 중복 방지
         isReturning = true;
+
+        SetAnimationState(false, true, false);
 
         while (Vector3.Distance(transform.position, startPos) > 0.1f)
         {
@@ -296,6 +315,7 @@ public class Enemy : MonoBehaviour
         isReturning = false;
 
         // 다시 순찰 재개
+        SetAnimationState(true, false, false);
         if (usePatrol && !isDead)
             StartCoroutine(PatrolRoutine());
     }
@@ -355,7 +375,7 @@ public class Enemy : MonoBehaviour
     {
         PlaySE(sound_Attack);
         Debug.Log("일반공격");
-        //animator.SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         playerStatus.TakeDamage(monster_damage);
         //GameManager.damage = true;
     }
@@ -410,12 +430,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected void SetAnimationState(bool idle, bool walk, bool run)
+    {
+        animator.SetBool("isIdle", idle);
+        animator.SetBool("isWalk", walk);
+        animator.SetBool("isRun", run);
+    }
+
     protected void Dead()
     {
+        animator.SetTrigger("Dead");
         PlaySE(sound_Dead);
         monster_attacking = false;
         isDead = true;
-        animator.SetTrigger("Dead");
     }
 
     protected void RandomSound()

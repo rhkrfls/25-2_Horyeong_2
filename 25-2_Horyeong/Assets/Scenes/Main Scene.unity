@@ -1076,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: STRAYDOG
       objectReference: {fileID: 0}
+    - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2

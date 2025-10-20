@@ -28,6 +28,7 @@ public class PlayerController : Player
     public Weapon currentWeapon;
     public Gun yuseongWeapon;
     public bool isAttacking = false;
+    public void SetisAttacking() { Debug.Log($"공격 상태: {isAttacking}"); this.isAttacking = false; }
 
     [Header("Managers")]
     public Gamemanager gameManager;
@@ -67,11 +68,13 @@ public class PlayerController : Player
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isAttacking)
         {
             isAttacking = true;
             animator.SetTrigger("isAttack");
         }
+
+        //SetisAttackingFalse();
     }
 
     public void OnSwap(InputAction.CallbackContext context)

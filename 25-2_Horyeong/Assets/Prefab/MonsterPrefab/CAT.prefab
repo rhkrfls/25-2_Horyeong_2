@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6198812650175704098}
@@ -154,9 +154,9 @@ MonoBehaviour:
   boxCol: {fileID: 0}
   theAudio: {fileID: 0}
   catHp: 10
-  catSpeed: 2.5
+  catSpeed: 3.5
   catSightRange: 6
-  catAttackRange: 0.75
+  catAttackRange: 1.2
   catDamage: 7
   catAttackDelay: 3
   catPatrolRange: 3
@@ -195,7 +195,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -205,7 +205,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 29.78, y: 26.89782}
+  m_Size: {x: 29.78, y: 25}
   m_EdgeRadius: 0
 --- !u!50 &8079556062197404701
 Rigidbody2D:

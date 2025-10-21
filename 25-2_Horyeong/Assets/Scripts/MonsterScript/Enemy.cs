@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         theAudio = GetComponent<AudioSource>();
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -112,13 +113,17 @@ public class Enemy : MonoBehaviour
         if (playerStatus == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-
+            GameObject short_player = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
             {
                 playerStatus = playerObj.GetComponent<PlayerStatus>();
-                Short_player = playerObj.GetComponent<CapsuleCollider2D>();
                 if (playerStatus == null)
                     Debug.LogWarning("Player 오브젝트에 PlayerStatus 컴포넌트가 없습니다!");
+            }
+            if (Short_player != null)
+            {
+                GameObject player = GameObject.Find("Player");
+                Short_player = player.GetComponent<CapsuleCollider2D>();
             }
             else
             {
@@ -129,9 +134,7 @@ public class Enemy : MonoBehaviour
         // GameManager 자동 연결
         if (gameManager == null)
         {
-            GameObject gamemanager = GameObject.FindGameObjectWithTag("GameManager");
-
-            gameManager = gamemanager.GetComponent<Gamemanager>();
+            gameManager = GetComponent<Gamemanager>();
             if (gameManager == null)
                 Debug.LogWarning("씬에서 Gamemanager를 찾을 수 없습니다!");
         }

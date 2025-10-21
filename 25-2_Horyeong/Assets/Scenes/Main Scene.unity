@@ -1213,12 +1213,18 @@ PrefabInstance:
       value: STRAYDOG
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
+=======
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2
@@ -1921,7 +1927,7 @@ GameObject:
   - component: {fileID: 895566684}
   m_Layer: 0
   m_Name: GameManger
-  m_TagString: GameManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2354,6 +2360,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049c73244d8bdfc4bb066184a7284cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!1001 &1231315043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_Name
+      value: STRAYDOG (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.58742
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.81293
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
 --- !u!1 &1300438811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,7 +3791,10 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
 --- !u!1 &1936720637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
@@ -3780,6 +3846,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 33.5, y: 15}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &1940520859
 GameObject:
@@ -4011,6 +4078,8 @@ SpriteRenderer:
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
 =======
 >>>>>>> parent of ba15c0f (영상 촬영 세팅)
+=======
+>>>>>>> parent of 845b571 (anim)
 --- !u!1001 &2098114616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4128,6 +4197,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 891128332054553571, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      propertyPath: ratHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 891128332054553571, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 895566684}
@@ -4144,12 +4217,19 @@ PrefabInstance:
       value: RAT
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
+=======
+    - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 3729055125722002002, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.25
@@ -4193,7 +4273,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936720646}
   m_SourcePrefab: {fileID: 100100000, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
 --- !u!1001 &4821385918475784594
 PrefabInstance:
@@ -4250,16 +4333,22 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 3088551546442088216, guid: 27b13eb95d740eb449cf960332878928, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
 =======
 >>>>>>> parent of 50e65df (anin)
 =======
 >>>>>>> parent of 50e65df (anin)
+=======
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 6302980127776054515, guid: 27b13eb95d740eb449cf960332878928, type: 3}
       propertyPath: theAudio
       value: 
@@ -4299,3 +4388,4 @@ SceneRoots:
   - {fileID: 1895374671}
   - {fileID: 430751486}
   - {fileID: 1613995031}
+  - {fileID: 1231315043}

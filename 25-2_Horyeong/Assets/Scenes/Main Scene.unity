@@ -1212,6 +1212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: STRAYDOG
       objectReference: {fileID: 0}
+    - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2
@@ -3720,6 +3724,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1936720637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+  m_PrefabInstance: {fileID: 3097137500435790393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1936720646
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936720637}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 33.62, y: 15.381512}
+    newSize: {x: 12, y: 9.71}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 33.5, y: 15}
+  m_EdgeRadius: 0
 --- !u!1001 &2098114616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3744,6 +3799,10 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 1218067291}
+    - target: {fileID: 2128215772134195800, guid: 725f06488c9519f44b55d42d044b1314, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624107374364954578, guid: 725f06488c9519f44b55d42d044b1314, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.13
@@ -3833,6 +3892,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 891128332054553571, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      propertyPath: ratHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 891128332054553571, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 895566684}
@@ -3847,6 +3910,10 @@ PrefabInstance:
     - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_Name
       value: RAT
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3729055125722002002, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3891,7 +3958,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936720646}
   m_SourcePrefab: {fileID: 100100000, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
 --- !u!1001 &4821385918475784594
 PrefabInstance:
@@ -3978,8 +4048,8 @@ SceneRoots:
   - {fileID: 101609209}
   - {fileID: 2098114616}
   - {fileID: 321235897}
-  - {fileID: 4821385918475784594}
   - {fileID: 3097137500435790393}
+  - {fileID: 4821385918475784594}
   - {fileID: 1630713853}
   - {fileID: 1895374671}
   - {fileID: 430751486}

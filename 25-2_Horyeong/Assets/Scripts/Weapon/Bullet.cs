@@ -8,15 +8,18 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     private float timeElapsed;
 
+    public int damage;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     // 총알을 재활용할 때 호출되는 초기화 함수
-    public void Launch(Vector2 shootDirection)
+    public void Launch(Vector2 shootDirection, int bulletDamage)
     {
         direction = shootDirection.normalized; // 방향 벡터 정규화
+        damage = bulletDamage;
         timeElapsed = 0f;
         gameObject.SetActive(true);
         // Rigidbody를 이용하여 총알 발사

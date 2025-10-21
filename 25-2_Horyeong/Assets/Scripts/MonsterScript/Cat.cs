@@ -29,6 +29,7 @@ public class Cat : Enemy
 
         // 고양이 세팅 초기화
         monster_maxHp = catHp;
+        monster_curHp = monster_maxHp;
 
         monster_damage = catDamage;
         attack_delay = catAttackDelay;
@@ -50,26 +51,6 @@ public class Cat : Enemy
     protected override void Update()
     {
         base.Update();
-
-        // 고양이 세팅 초기화
-        monster_maxHp = catHp;
-
-        monster_damage = catDamage;
-        attack_delay = catAttackDelay;
-
-        monster_speed = catSpeed;
-
-        stun_delay = 0;
-
-        patrolSpeed = catPatrolSpeed;
-        patrolRange = catPatrolRange;
-
-        monster_sight_range = catSightRange;
-        monster_attack_range = catAttackRange;
-
-        Id_enumType = monster_id.CAT;
-        Attack_enumType = monster_attack_type.MELEE;
-        Race_enumType = race.ANIMAL;
 
         MonsterSightRange();
         if (MonsterView() && !monster_attacking)

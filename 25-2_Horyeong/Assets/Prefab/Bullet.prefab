@@ -172,3 +172,4 @@ MonoBehaviour:
   speed: 10
   lifetime: 2
   direction: {x: 0, y: 0}
+  damage: 10

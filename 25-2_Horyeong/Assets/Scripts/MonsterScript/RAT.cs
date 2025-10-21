@@ -5,11 +5,17 @@ using Unity.VisualScripting;
 
 public class RAT : Enemy
 {
+    [Header("# Rat Settings")]
+    [SerializeField] private int ratHp;                // 체력
+
     [SerializeField] private int contactDamage = 3; // 닿았을 때 입히는 피해량
 
     protected override void Start()
     {
         base.Start();
+
+        monster_maxHp = ratHp;
+        monster_curHp = monster_maxHp;
 
         Id_enumType = monster_id.RAT;
         Attack_enumType = monster_attack_type.MELEE;
@@ -37,6 +43,17 @@ public class RAT : Enemy
         {
             playerStatus.TakeDamage(5);
             PlaySE(sound_Attack);
+        }
+        if (collision.CompareTag("Bullet"))
+        {
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                Damage(bullet.damage);
+            }
+
+            // 총알 파괴
+            Destroy(collision.gameObject);
         }
     }
 

@@ -32,6 +32,7 @@ public class Dog : Enemy
 
         // 개 세팅 초기화
         monster_maxHp = dogHp;
+        monster_curHp = monster_maxHp;
 
         attack_delay = dogAttackDelay;
         stun_delay = dogStunDelay;
@@ -54,24 +55,6 @@ public class Dog : Enemy
     {
         base.Update();
 
-        // 개 세팅 초기화
-        monster_maxHp = dogHp;
-
-        monster_damage = dogDamage;
-
-        attack_delay = dogAttackDelay;
-        stun_delay = dogStunDelay;
-
-        monster_speed = dogSpeed;
-        patrolSpeed = dogPatrolSpeed;
-        patrolRange = dogPatrolRange;
-
-        monster_sight_range = dogSightRange;
-        monster_attack_range = dogAttackRange;
-
-        Id_enumType = monster_id.STRAYDOG;
-        Attack_enumType = monster_attack_type.MELEE;
-        Race_enumType = race.ANIMAL;
 
         MonsterSightRange();
         if (MonsterView() && !monster_attacking)

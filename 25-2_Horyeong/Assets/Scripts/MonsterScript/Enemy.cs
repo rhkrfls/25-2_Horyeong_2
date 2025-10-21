@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     // Monster_Hp
     protected int monster_maxHp = 1;
-    protected int monster_hp = 1;
+    protected int monster_curHp = 1;
 
     // Monster_Range
     protected float monster_sight_range = 0f;
@@ -150,6 +150,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(ReturnToStart());
         }
     }
+
 
     protected bool MonsterSightRange()
     {
@@ -377,7 +378,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("일반공격");
         animator.SetTrigger("Attack");
         playerStatus.TakeDamage(monster_damage);
-        //GameManager.damage = true;
     }
 
     // 스턴
@@ -394,7 +394,6 @@ public class Enemy : MonoBehaviour
             playerStatus.TakeDamage(monster_damage);
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
             yield return new WaitForSeconds(StunDelay);
-            // player.TakeDamage(damage);
         }
         isStunned = false;
     }
@@ -411,22 +410,40 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, monster_attack_range);
     }
-    // 비공격 스크립트
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                Damage(bullet.damage);
+            }
+
+            // 총알 파괴
+            Destroy(collision.gameObject);
+        }
+    }
+
+    // 비공격 스크립트
     protected virtual void Damage(int _dmg)
     {
         if (!isDead)
         {
-            monster_hp -= _dmg;
+            Debug.Log($"몬스터 HP : {monster_curHp}");
+            monster_curHp -= _dmg;
+            Debug.Log($"총알 데미지 : {_dmg}");
+            Debug.Log($"몬스터 HP : {monster_curHp}");
 
-            if (monster_hp <= 0)
+            if (monster_curHp <= 0)
             {
                 Dead();
                 return;
             }
 
             PlaySE(sound_Hurt);
-            //animator.SetTrigger("Hit");
+            animator.SetTrigger("Hit");
         }
     }
 

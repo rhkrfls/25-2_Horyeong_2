@@ -28,6 +28,9 @@ public class PlayerController : Player
     public Weapon currentWeapon;
     public Gun yuseongWeapon;
     public bool isAttacking = false;
+    public void SetisAttacking() { Debug.Log($"공격 상태: {isAttacking}"); this.isAttacking = false; }
+
+    private Map_Interaction currentInteractable;
 
     [Header("Managers")]
     public Gamemanager gameManager;
@@ -61,17 +64,32 @@ public class PlayerController : Player
             {
                 animator.SetTrigger("isJump");
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                Debug.Log("점프!");
             }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isAttacking)
         {
             isAttacking = true;
             animator.SetTrigger("isAttack");
+        }
+
+        //SetisAttackingFalse();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            // 현재 상호작용 가능한 오브젝트가 있고,
+            // (Interactable 스크립트 내부에서 isPlayerInRange를 다시 확인)
+            if (currentInteractable != null)
+            {
+                currentInteractable.Interact();
+                currentInteractable.SetIsIntrecting(true);
+            }
         }
     }
 
@@ -115,6 +133,11 @@ public class PlayerController : Player
             0.1f,               // 캐스팅 거리 (아주 짧게)
             groundLayer         // 바닥 레이어 마스크
         );
+    }
+
+    public void SetCurrentInteractable(Map_Interaction interactable)
+    {
+        currentInteractable = interactable;
     }
 
     private void FixedUpdate()

@@ -7,7 +7,6 @@ TagManager:
   - Weapon
   - Bullet
   - Wall
-  - GameManager
   layers:
   - Default
   - TransparentFX

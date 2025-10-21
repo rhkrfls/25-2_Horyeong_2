@@ -1214,7 +1214,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
 =======
 >>>>>>> parent of 845b571 (anim)
     - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
@@ -1222,7 +1225,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
+=======
+>>>>>>> parent of 845b571 (anim)
 =======
 >>>>>>> parent of 845b571 (anim)
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
@@ -3792,7 +3798,10 @@ RectTransform:
   m_Pivot: {x: 0, y: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
 =======
 >>>>>>> parent of 845b571 (anim)
 --- !u!1 &1936720637 stripped
@@ -3846,6 +3855,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 33.5, y: 15}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &1940520859
@@ -4080,6 +4090,8 @@ SpriteRenderer:
 >>>>>>> parent of ba15c0f (영상 촬영 세팅)
 =======
 >>>>>>> parent of 845b571 (anim)
+=======
+>>>>>>> parent of 845b571 (anim)
 --- !u!1001 &2098114616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4218,6 +4230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_IsActive
@@ -4225,10 +4238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
     - target: {fileID: 1161672218082105301, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> parent of 845b571 (anim)
+=======
 >>>>>>> parent of 845b571 (anim)
     - target: {fileID: 3729055125722002002, guid: 2af8e44e5ac82a4499027a3e211db653, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4334,7 +4352,10 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 845b571 (anim)
 =======
 >>>>>>> parent of 845b571 (anim)
     - target: {fileID: 3088551546442088216, guid: 27b13eb95d740eb449cf960332878928, type: 3}
@@ -4342,11 +4363,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> ba15c0fe1b36139e94f03305fbeebf5b023d8fa2
 =======
 >>>>>>> parent of 50e65df (anin)
 =======
 >>>>>>> parent of 50e65df (anin)
+=======
+>>>>>>> parent of 845b571 (anim)
 =======
 >>>>>>> parent of 845b571 (anim)
     - target: {fileID: 6302980127776054515, guid: 27b13eb95d740eb449cf960332878928, type: 3}

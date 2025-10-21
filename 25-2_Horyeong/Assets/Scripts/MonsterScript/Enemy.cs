@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
@@ -107,6 +108,35 @@ public class Enemy : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (playerStatus == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            GameObject short_player = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerStatus = playerObj.GetComponent<PlayerStatus>();
+                if (playerStatus == null)
+                    Debug.LogWarning("Player 오브젝트에 PlayerStatus 컴포넌트가 없습니다!");
+            }
+            if (Short_player != null)
+            {
+                GameObject player = GameObject.Find("Player");
+                Short_player = player.GetComponent<CapsuleCollider2D>();
+            }
+            else
+            {
+                Debug.LogWarning("'Player' 태그가 지정된 오브젝트를 찾을 수 없습니다!");
+            }
+        }
+
+        // GameManager 자동 연결
+        if (gameManager == null)
+        {
+            gameManager = GetComponent<Gamemanager>();
+            if (gameManager == null)
+                Debug.LogWarning("씬에서 Gamemanager를 찾을 수 없습니다!");
+        }
 
         startPos = transform.position;
         StartCoroutine(PatrolRoutine());
@@ -458,6 +488,7 @@ public class Enemy : MonoBehaviour
     {
         animator.SetTrigger("Dead");
         PlaySE(sound_Dead);
+        Destroy(this.gameObject);
         monster_attacking = false;
         isDead = true;
     }

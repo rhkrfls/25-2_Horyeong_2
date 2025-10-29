@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public enum PLAYERSTATE
 {
@@ -15,8 +16,9 @@ public class PlayerController : Player
     public Vector2 moveInput;
 
     [Header("이동")]
-    public float moveSpeed = 5f;
     public bool isMoving = false;
+    public float maxMoveSpeed = 7f;         // 이전에 사용하던 moveSpeed 대신 최대 속도로 사용
+    public float accelerationRate = 10f;
 
     [Header("점프")]
     public float jumpForce = 8f;        // 점프 시 가할 힘의 크기
@@ -29,6 +31,13 @@ public class PlayerController : Player
     public Gun yuseongWeapon;
     public bool isAttacking = false;
     public void SetisAttacking() { Debug.Log($"공격 상태: {isAttacking}"); this.isAttacking = false; }
+
+    [Header("Knockback Settings")]
+    public float knockbackPower = 5f;   // 넉백의 강도 (수정 가능)
+    public float knockbackDuration = 0.3f; // 넉백이 지속되는 시간 (초)
+
+    // 플레이어 상태 플래그 (이동 및 공격 차단용)
+    public bool isKnockedBack = false;
 
     private Map_Interaction currentInteractable;
 
@@ -48,7 +57,7 @@ public class PlayerController : Player
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (isMoving == false && context.started)
+        if (isMoving == false && context.started && !isKnockedBack)
         {
             animator.SetBool("isWalkEnd", false);
             animator.SetBool("isWalkStart", true);
@@ -58,7 +67,7 @@ public class PlayerController : Player
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isKnockedBack)
         {
             if (isGrounded)
             {
@@ -70,7 +79,7 @@ public class PlayerController : Player
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !isAttacking)
+        if (context.started && !isAttacking && !isKnockedBack)
         {
             isAttacking = true;
             animator.SetTrigger("isAttack");
@@ -81,7 +90,7 @@ public class PlayerController : Player
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isKnockedBack)
         {
             // 현재 상호작용 가능한 오브젝트가 있고,
             // (Interactable 스크립트 내부에서 isPlayerInRange를 다시 확인)
@@ -108,6 +117,47 @@ public class PlayerController : Player
            }
 
             Debug.Log("캐릭터:" + PN);
+        }
+    }
+
+    public void ApplyKnockback(Transform attacker)
+    {
+        // 이미 넉백 중이거나 무적 상태라면 무시
+        if (isKnockedBack) return;
+
+        // 넉백 코루틴 시작
+        StartCoroutine(KnockbackRoutine(attacker));
+    }
+
+    IEnumerator KnockbackRoutine(Transform attacker)
+    {
+        isKnockedBack = true;
+
+        // 1. 넉백 방향 계산
+        // 몬스터의 위치와 플레이어의 위치를 비교하여 밀려날 방향을 결정
+        Vector2 knockbackDirection;
+
+        // 몬스터가 플레이어의 왼쪽에 있으면 오른쪽(1), 오른쪽에 있으면 왼쪽(-1)으로 밀려남
+        float directionX = (transform.position.x > attacker.position.x) ? 1f : -1f;
+
+        // 2. Rigidbody에 순간적인 힘 적용 (Impulse)
+        // Y축으로 약간 띄우는 힘을 추가하여 시각적인 효과를 높임
+        knockbackDirection = new Vector2(directionX, 0.5f).normalized; // 대각선 위로 힘을 주기 위해 Y값 추가
+
+        // 기존 속도를 초기화하고 넉백 힘을 가함
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(knockbackDirection * knockbackPower, ForceMode2D.Impulse);
+
+        // 3. 넉백 지속 시간 동안 대기
+        yield return new WaitForSeconds(knockbackDuration);
+
+        // 4. 넉백 상태 해제
+        isKnockedBack = false;
+
+        // 넉백이 끝난 후 Rigidbody 속도 정리 (만약 넉백 중 벽에 부딪히지 않았다면 속도가 남아있을 수 있음)
+        if (rb.linearVelocity.y < 0.1f) // 점프 중이 아니라면
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }
 
@@ -142,13 +192,26 @@ public class PlayerController : Player
 
     private void FixedUpdate()
     {
-        if (!gameManager.isGroggy)
+        if (isKnockedBack) return;
+
+        if (!gameManager.isGroggy && !isAttacking)
         {
             // 이동
             if (moveInput.x != 0)
             {
                 isMoving = true;
-                rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+
+                // 1. 목표 속도 계산
+                float targetSpeedX = moveInput.x * maxMoveSpeed;
+
+                float newVelocityX = Mathf.Lerp(
+                    rb.linearVelocity.x,                // 현재 X 속도
+                    targetSpeedX,                       // 목표 X 속도
+                    Time.deltaTime * accelerationRate   // 가속 비율 (deltaTime을 곱해 프레임에 독립적으로 만듦)
+                );
+
+                rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
+
                 float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
 
                 if (isGrounded)
@@ -158,11 +221,27 @@ public class PlayerController : Player
             else
             {
                 isMoving = false;
-                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+                float targetSpeedX = 0f;
+
+                float newVelocityX = Mathf.Lerp(
+                    rb.linearVelocity.x,
+                    targetSpeedX,
+                    Time.deltaTime * accelerationRate * 2f
+                );
+
+                rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
                 animator.SetFloat("isWalk", 0);
                 animator.SetBool("isWalkStart", false);
                 animator.SetBool("isWalkEnd", true);
             }   
+        }
+
+        else
+        {
+            isMoving = false;
+
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
 
         if (!isGrounded && rb.linearVelocity.y < -0.1f)

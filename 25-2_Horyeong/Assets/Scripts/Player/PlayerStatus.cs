@@ -2,16 +2,21 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    PlayerController playerController;
     public int maxHp = 100;
     public int currentHp;
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         currentHp = maxHp;
     }
 
     public void TakeDamage(int damage)
     {
+        if (playerController.isKnockedBack) return;
+        playerController.ApplyKnockback(playerController.transform);
+
         currentHp -= damage;
         Debug.Log($"현재 체력 : {currentHp}");
 

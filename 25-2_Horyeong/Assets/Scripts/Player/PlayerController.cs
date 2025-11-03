@@ -133,6 +133,7 @@ public class PlayerController : Player
     {
         isKnockedBack = true;
 
+        spriteRenderer.color = Color.pink; // 넉백 시작 시 색상 변경 (예: 빨간색)
         // 1. 넉백 방향 계산
         // 몬스터의 위치와 플레이어의 위치를 비교하여 밀려날 방향을 결정
         Vector2 knockbackDirection;
@@ -153,6 +154,8 @@ public class PlayerController : Player
 
         // 4. 넉백 상태 해제
         isKnockedBack = false;
+
+        spriteRenderer.color = Color.white; // 넉백이 끝난 후 원래 색상으로 복원
 
         // 넉백이 끝난 후 Rigidbody 속도 정리 (만약 넉백 중 벽에 부딪히지 않았다면 속도가 남아있을 수 있음)
         if (rb.linearVelocity.y < 0.1f) // 점프 중이 아니라면

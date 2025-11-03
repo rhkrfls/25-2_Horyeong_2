@@ -17,6 +17,8 @@ public class PlayerStatus : MonoBehaviour
         if (playerController.isKnockedBack) return;
         playerController.ApplyKnockback(playerController.transform);
 
+        playerController.animator.SetTrigger("isHit");
+
         currentHp -= damage;
         Debug.Log($"현재 체력 : {currentHp}");
 
@@ -39,6 +41,8 @@ public class PlayerStatus : MonoBehaviour
 
     public void Die()
     {
+        playerController.animator.SetTrigger("isDeath");
+
         Debug.Log("Player Died");
         // Implement death logic here (e.g., respawn, game over screen)
     }

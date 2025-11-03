@@ -2539,13 +2539,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1942547776319672196, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_Size.x
+      value: 54.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942547776319672196, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
+      propertyPath: m_Size.y
+      value: 29.149162
+      objectReference: {fileID: 0}
     - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_Name
       value: STRAYDOG (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7370477741919410052, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7460117321537818287, guid: a4ad2af1759630f468c8cce120fe0b85, type: 3}
       propertyPath: m_LocalPosition.x

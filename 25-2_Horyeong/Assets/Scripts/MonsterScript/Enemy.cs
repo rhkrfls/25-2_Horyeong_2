@@ -413,6 +413,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("10% 확률로 실행!");
         PlaySE(sound_Attack);
+        animator.SetTrigger("Skill");
         gameManager.isGroggy = true;
         isStunned = true;
         // 0.5배 공격 3번 실행

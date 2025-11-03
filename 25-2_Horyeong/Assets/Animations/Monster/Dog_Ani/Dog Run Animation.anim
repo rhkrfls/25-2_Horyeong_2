@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dog Run Animation
+  serializedVersion: 7
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: -5953084765473243642, guid: 41a3cfa2ceaa77f488dca8bc3adf4b93, type: 3}
+    - time: 0.083333336
+      value: {fileID: 3134913285130573429, guid: de2e3f0ed61bf664fb61d4c95719f924, type: 3}
+    - time: 0.16666667
+      value: {fileID: 2775889626272931614, guid: 09cd880893ddc394cb20dc7255908f50, type: 3}
+    - time: 0.25
+      value: {fileID: -1623394086252426486, guid: f25e4dda91ad000409710fc9c15bf4c8, type: 3}
+    - time: 0.33333334
+      value: {fileID: 273456321799237478, guid: c17d42a9dbe658c48959fe5e7cd5c6cc, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  m_SampleRate: 12
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -5953084765473243642, guid: 41a3cfa2ceaa77f488dca8bc3adf4b93, type: 3}
+    - {fileID: 3134913285130573429, guid: de2e3f0ed61bf664fb61d4c95719f924, type: 3}
+    - {fileID: 2775889626272931614, guid: 09cd880893ddc394cb20dc7255908f50, type: 3}
+    - {fileID: -1623394086252426486, guid: f25e4dda91ad000409710fc9c15bf4c8, type: 3}
+    - {fileID: 273456321799237478, guid: c17d42a9dbe658c48959fe5e7cd5c6cc, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 0.4166667
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 1
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events: []

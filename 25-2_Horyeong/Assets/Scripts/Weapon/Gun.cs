@@ -22,8 +22,6 @@ public class Gun : Weapon
 
     public void Attack()
     {
-        if (player.PN != PLAYERNAME.YUSEONG) return;
-
         Debug.Log("Gun Attack!");   
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bullet = bulletGO.GetComponent<Bullet>();

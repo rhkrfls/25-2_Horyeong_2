@@ -2,14 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public enum PLAYERSTATE
-{
-    IDLE, WALK, RUN, 
-}
 
-public class PlayerController : Player
+public class PlayerController : MonoBehaviour
 {
-    public PLAYERSTATE playerstate;
+    private CharacterData currentData;
     public Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
@@ -17,14 +13,12 @@ public class PlayerController : Player
 
     [Header("이동")]
     public bool isMoving = false;
-    public float maxMoveSpeed = 7f;         // 이전에 사용하던 moveSpeed 대신 최대 속도로 사용
-    public float accelerationRate = 10f;
+
 
     [Header("점프")]
-    public float jumpForce = 8f;        // 점프 시 가할 힘의 크기
-    public LayerMask groundLayer;       // 바닥으로 인식할 레이어
-    public bool isGrounded = true;      // 현재 바닥에 닿아있는지 여부
-    public BoxCollider2D coll;          // 바닥 체크를 위해 Collider2D 추가
+    public LayerMask groundLayer;       
+    public bool isGrounded = true;      
+    public BoxCollider2D coll;          
 
     [Header("무기")]
     public Weapon currentWeapon;
@@ -43,6 +37,7 @@ public class PlayerController : Player
 
     [Header("Managers")]
     public Gamemanager gameManager;
+    public Player      swapManager;
 
     private void Awake()
     {
@@ -72,7 +67,7 @@ public class PlayerController : Player
             if (isGrounded)
             {
                 animator.SetTrigger("isJump");
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * currentData.jumpForce, ForceMode2D.Impulse);
             }
         }
     }
@@ -84,8 +79,6 @@ public class PlayerController : Player
             isAttacking = true;
             animator.SetTrigger("isAttack");
         }
-
-        //SetisAttackingFalse();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -106,26 +99,31 @@ public class PlayerController : Player
     {
         if (context.started)
         {
-            if (PN == PLAYERNAME.YUSEONG)
-           {
-                PN = PLAYERNAME.SEOLHAN;
-           }
-
-           else
-           {
-                PN = PLAYERNAME.YUSEONG;
-           }
-
-            Debug.Log("캐릭터:" + PN);
+            
+            swapManager.SwapCharacter();
+            Debug.Log("캐릭터 변경");
         }
+    }
+
+    public void LoadCharacter(CharacterData newData)
+    {
+        if (newData == null) return;
+
+        currentData = newData;
+
+        // 1. 애니메이터 컨트롤러 교체 (캐릭터 외형/애니메이션 변경)
+        animator.runtimeAnimatorController = currentData.animatorController;
+
+        // 2. 필요하다면 Rigidbody의 질량 등 물리 수치도 변경 가능
+        // rb.mass = currentStats.mass;
+
+        Debug.Log($"캐릭터가 스왑되었습니다. 새 이동 속도: {currentData.maxMoveSpeed}");
     }
 
     public void ApplyKnockback(Transform attacker)
     {
-        // 이미 넉백 중이거나 무적 상태라면 무시
         if (isKnockedBack) return;
 
-        // 넉백 코루틴 시작
         StartCoroutine(KnockbackRoutine(attacker));
     }
 
@@ -133,31 +131,23 @@ public class PlayerController : Player
     {
         isKnockedBack = true;
 
-        spriteRenderer.color = Color.pink; // 넉백 시작 시 색상 변경 (예: 빨간색)
-        // 1. 넉백 방향 계산
-        // 몬스터의 위치와 플레이어의 위치를 비교하여 밀려날 방향을 결정
+        spriteRenderer.color = Color.pink;
+
         Vector2 knockbackDirection;
 
-        // 몬스터가 플레이어의 왼쪽에 있으면 오른쪽(1), 오른쪽에 있으면 왼쪽(-1)으로 밀려남
         float directionX = (transform.position.x > attacker.position.x) ? 1f : -1f;
 
-        // 2. Rigidbody에 순간적인 힘 적용 (Impulse)
-        // Y축으로 약간 띄우는 힘을 추가하여 시각적인 효과를 높임
-        knockbackDirection = new Vector2(directionX, 0.5f).normalized; // 대각선 위로 힘을 주기 위해 Y값 추가
+        knockbackDirection = new Vector2(directionX, 0.5f).normalized;
 
-        // 기존 속도를 초기화하고 넉백 힘을 가함
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockbackDirection * knockbackPower, ForceMode2D.Impulse);
 
-        // 3. 넉백 지속 시간 동안 대기
         yield return new WaitForSeconds(knockbackDuration);
 
-        // 4. 넉백 상태 해제
         isKnockedBack = false;
 
         spriteRenderer.color = Color.white; // 넉백이 끝난 후 원래 색상으로 복원
 
-        // 넉백이 끝난 후 Rigidbody 속도 정리 (만약 넉백 중 벽에 부딪히지 않았다면 속도가 남아있을 수 있음)
         if (rb.linearVelocity.y < 0.1f) // 점프 중이 아니라면
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
@@ -205,12 +195,12 @@ public class PlayerController : Player
                 isMoving = true;
 
                 // 1. 목표 속도 계산
-                float targetSpeedX = moveInput.x * maxMoveSpeed;
+                float targetSpeedX = moveInput.x * currentData.maxMoveSpeed;
 
                 float newVelocityX = Mathf.Lerp(
                     rb.linearVelocity.x,                // 현재 X 속도
                     targetSpeedX,                       // 목표 X 속도
-                    Time.deltaTime * accelerationRate   // 가속 비율 (deltaTime을 곱해 프레임에 독립적으로 만듦)
+                    Time.deltaTime * currentData.accelerationRate   // 가속 비율 (deltaTime을 곱해 프레임에 독립적으로 만듦)
                 );
 
                 rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
@@ -230,7 +220,7 @@ public class PlayerController : Player
                 float newVelocityX = Mathf.Lerp(
                     rb.linearVelocity.x,
                     targetSpeedX,
-                    Time.deltaTime * accelerationRate * 2f
+                    Time.deltaTime * currentData.accelerationRate * 2f
                 );
 
                 rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);

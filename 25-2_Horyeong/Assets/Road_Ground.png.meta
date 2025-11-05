@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 8b78ef6ae4ebada4ba4b9bb121036db4
+guid: 6080bd29fa8563a4f8de04d69539f9f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5115118428217726914
-    second: yuseong_n_idle_right_0
-  - first:
-      213: 4368182417834267464
-    second: yuseong_n_idle_right_1
-  - first:
-      213: -9037540275181826744
-    second: yuseong_n_idle_right_2
+      213: -4854984171692568574
+    second: Road_Ground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,84 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: yuseong_n_idle_right_0
+      name: Road_Ground_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 2
-        width: 134
-        height: 275
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 1000
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e38270ef3e27309b0800000000000000
-      internalID: -5115118428217726914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: yuseong_n_idle_right_1
-      rect:
-        serializedVersion: 2
-        x: 206
-        y: 2
-        width: 134
-        height: 269
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8435e11f3c6ee9c30800000000000000
-      internalID: 4368182417834267464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: yuseong_n_idle_right_2
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 2
-        width: 134
-        height: 269
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 84d408ea005349280800000000000000
-      internalID: -9037540275181826744
+      spriteID: 200de106e91af9cb0800000000000000
+      internalID: -4854984171692568574
       vertices: []
       indices: 
       edges: []
@@ -188,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6dc2d864dc3496a43af6f8d52a6c80ac
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      yuseong_n_idle_right_0: -5115118428217726914
-      yuseong_n_idle_right_1: 4368182417834267464
-      yuseong_n_idle_right_2: -9037540275181826744
+      Road_Ground_0: -4854984171692568574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

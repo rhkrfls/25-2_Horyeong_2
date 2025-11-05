@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: YuseongData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   animatorController: {fileID: 9100000, guid: 462df9da95fc8cd40b9d778ead8ced86, type: 2}
-  maxMoveSpeed: 8
-  accelerationRate: 10
-  jumpForce: 9
+  currentPlayerCharachter: 0
+  maxMoveSpeed: 6.5
+  accelerationRate: 8
+  jumpForce: 8.5
   mass: 1
   gravityScale: 2.5

@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterData currentData;
+    public CharacterData currentData;
     public Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;

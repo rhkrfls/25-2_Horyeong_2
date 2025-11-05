@@ -5,6 +5,8 @@ public class CharacterData : ScriptableObject
 {
     public RuntimeAnimatorController animatorController;
 
+    public PLAYERNAME currentPlayerCharachter;
+
     public float maxMoveSpeed = 7f;
     public float accelerationRate = 10f;
     public float jumpForce = 8f;

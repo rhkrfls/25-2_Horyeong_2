@@ -6,7 +6,7 @@ public class Map_test : MonoBehaviour
 
     private void Start()
     {
-        PlayerStatus = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerStatus>();
+        PlayerStatus = FindObjectOfType<PlayerStatus>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

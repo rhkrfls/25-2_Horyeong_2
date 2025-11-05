@@ -9,12 +9,15 @@ public class Gamemanager : MonoBehaviour
     public bool isGroggy = false;
     public bool shouldEvaluate = true;
 
+    public static Gamemanager Instance = null;
 
-    void Start()
+    public void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
-
 
     void Update()
     {

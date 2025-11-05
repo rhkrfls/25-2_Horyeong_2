@@ -7,6 +7,7 @@ public class Gun : Weapon
     
     private void Awake()
     {
+        player = GetComponentInParent<PlayerController>();
         weaponType = WEAPONTYPE.GUN;
         damage = 5;
         skillDamage = 5;
@@ -22,6 +23,7 @@ public class Gun : Weapon
 
     public void Attack()
     {
+        if (player.currentData.currentPlayerCharachter != PLAYERNAME.YUSEONG) return;
         Debug.Log("Gun Attack!");   
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bullet = bulletGO.GetComponent<Bullet>();

@@ -24,6 +24,8 @@ AnimationClip:
       value: {fileID: -543018009567416515, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
     - time: 0.16666667
       value: {fileID: -9206915399898140201, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
+    - time: 0.25
+      value: {fileID: -9206915399898140201, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,12 +50,13 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: -543018009567416515, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
     - {fileID: -9206915399898140201, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
+    - {fileID: -9206915399898140201, guid: 09fc3b8fbe96a054b936ab08a9bfc34f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.20833334
+    m_StopTime: 0.29166666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -72,4 +75,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.25
+    functionName: callBackGameStop
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 73f2f0789e7718c48a39ef6296ed2579, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

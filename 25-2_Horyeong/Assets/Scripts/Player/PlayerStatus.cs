@@ -17,10 +17,10 @@ public class PlayerStatus : MonoBehaviour
         currentHp = maxHp;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Transform position)
     {
         if (playerController.isKnockedBack) return;
-        playerController.ApplyKnockback(playerController.transform);
+        playerController.ApplyKnockback(position);
         playerController.animator.SetTrigger("isHit");
 
         currentHp -= damage;
@@ -37,12 +37,17 @@ public class PlayerStatus : MonoBehaviour
 
     public void Heal(int amount)
     {
-        currentHp += amount;
-
-        if (currentHp > maxHp)
+        if (currentHp + amount > maxHp)
         {
             currentHp = maxHp;
         }
+
+        else
+        {
+            currentHp += amount;
+        }
+
+        OnHealthChanged?.Invoke(currentHp, maxHp);
     }
 
     public void Die()
@@ -50,6 +55,5 @@ public class PlayerStatus : MonoBehaviour
         playerController.animator.SetTrigger("isDeath");
 
         Debug.Log("Player Died");
-        // Implement death logic here (e.g., respawn, game over screen)
     }
 }

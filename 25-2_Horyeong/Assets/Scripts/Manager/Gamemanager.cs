@@ -6,9 +6,12 @@ public class Gamemanager : MonoBehaviour
     [SerializeField]
     private float GroogyCount = 1f;
 
+    public Transform playerStartTransform;
     public bool isGroggy = false;
     public bool shouldEvaluate = true;
+    public bool isGameOver = false;
 
+    public GameOverUI gameOverPanel;
     public static Gamemanager Instance = null;
 
     public void Awake()
@@ -34,5 +37,26 @@ public class Gamemanager : MonoBehaviour
         Debug.Log("그로기 풀림!");
         isGroggy = false;
         shouldEvaluate = true;
+    }
+
+    public void SetGameStop()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        
+        gameOverPanel.ShowGameOver();
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        isGameOver = false;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

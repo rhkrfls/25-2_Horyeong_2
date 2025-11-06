@@ -13,7 +13,7 @@ public class Map_test : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerStatus.TakeDamage(5);
+            PlayerStatus.TakeDamage(5, this.transform);
         }
     }
 }

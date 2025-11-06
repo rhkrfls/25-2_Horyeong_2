@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     // 플레이어 상태 플래그 (이동 및 공격 차단용)
     public bool isKnockedBack = false;
 
-    private Map_Interaction currentInteractable;
+    public Map_Interaction currentInteractable;
 
     [Header("Managers")]
     public Gamemanager gameManager;
@@ -49,6 +49,21 @@ public class PlayerController : MonoBehaviour
         yuseongWeapon = GetComponentInChildren<Gun>();
     }
 
+    public void ResetPlayer()
+    {
+        if (currentData.currentPlayerCharachter.ToString() != DataManager.Instance.gameData.activeCharacterName)
+        {
+            swapManager.SwapCharacter();
+        }
+
+        transform.position = new Vector3(
+            DataManager.Instance.gameData.playerPositionX,
+            DataManager.Instance.gameData.playerPositionY,
+            transform.position.z
+        );
+
+        animator.SetBool("isDeath", false);
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -89,7 +104,7 @@ public class PlayerController : MonoBehaviour
             // (Interactable 스크립트 내부에서 isPlayerInRange를 다시 확인)
             if (currentInteractable != null)
             {
-                currentInteractable.Interact();
+                currentInteractable.Interact(this);
                 currentInteractable.SetIsIntrecting(true);
             }
         }
@@ -120,6 +135,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"캐릭터가 스왑되었습니다. 새 이동 속도: {currentData.maxMoveSpeed}");
     }
 
+    public void callBackGameStop()
+    {
+        gameManager.SetGameStop();
+    }
+
     public void ApplyKnockback(Transform attacker)
     {
         if (isKnockedBack) return;
@@ -134,9 +154,12 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.color = Color.pink;
 
         Vector2 knockbackDirection;
+        Debug.Log($"this: {transform.position.x}");
+
+        Debug.Log($"attacker: {attacker.position.x}");
 
         float directionX = (transform.position.x > attacker.position.x) ? 1f : -1f;
-
+        Debug.Log($"Knockback Direction X: {directionX}");
         knockbackDirection = new Vector2(directionX, 0.5f).normalized;
 
         rb.linearVelocity = Vector2.zero;

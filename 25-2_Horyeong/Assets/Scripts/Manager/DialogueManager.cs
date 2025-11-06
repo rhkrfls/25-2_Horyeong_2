@@ -4,14 +4,13 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    // Inspector에서 연결할 UI 컴포넌트
+    [Header("스토리")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
 
     // Inspector에서 연결할 대화 데이터
     public Dialogue currentDialogue;
-
     private int currentLineIndex = 0;
 
     void Start()

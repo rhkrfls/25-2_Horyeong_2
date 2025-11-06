@@ -11,7 +11,7 @@ public class Map_Interaction : MonoBehaviour
 
     private void Start()
     {
-        dm = FindObjectOfType<DialogueManager>();
+        dm = FindAnyObjectByType<DialogueManager>();
         interactionData.interactionPrompt.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         interactionData.interactionPrompt.SetActive(false);
 
@@ -68,7 +68,7 @@ public class Map_Interaction : MonoBehaviour
         // Save Point 상호작용 로직 추가
         Debug.Log("Save Point에 상호작용했습니다.");
 
-        PlayerStatus playerStatus = FindObjectOfType<PlayerStatus>();
+        PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
         playerStatus.Heal(playerStatus.GetmaxHp());
 
         DataManager.Instance.UpdateAndSavePlayerPosition(player);

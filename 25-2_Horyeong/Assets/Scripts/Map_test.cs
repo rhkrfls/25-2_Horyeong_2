@@ -6,7 +6,7 @@ public class Map_test : MonoBehaviour
 
     private void Start()
     {
-        PlayerStatus = FindObjectOfType<PlayerStatus>();
+        PlayerStatus = FindAnyObjectByType<PlayerStatus>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

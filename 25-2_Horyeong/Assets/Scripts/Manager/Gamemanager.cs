@@ -39,6 +39,17 @@ public class Gamemanager : MonoBehaviour
         shouldEvaluate = true;
     }
 
+    public void LoadGame()
+    {
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        player.ResetPlayer();
+
+        PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
+        playerStatus.Heal(playerStatus.GetmaxHp());
+
+        ResumeGame();
+    }
+
     public void SetGameStop()
     {
         if (isGameOver) return;

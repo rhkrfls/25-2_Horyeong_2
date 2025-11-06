@@ -129,8 +129,8 @@ public class PlayerController : MonoBehaviour
         // 1. 애니메이터 컨트롤러 교체 (캐릭터 외형/애니메이션 변경)
         animator.runtimeAnimatorController = currentData.animatorController;
 
-        // 2. 필요하다면 Rigidbody의 질량 등 물리 수치도 변경 가능
-        // rb.mass = currentStats.mass;
+        rb.mass = currentData.mass;
+        rb.mass = currentData.gravityScale;
 
         Debug.Log($"캐릭터가 스왑되었습니다. 새 이동 속도: {currentData.maxMoveSpeed}");
     }

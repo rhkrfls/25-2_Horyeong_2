@@ -11,7 +11,7 @@ public class HealthBarUI : MonoBehaviour
     void Start()
     {
         // 1. HealthManager 인스턴스 찾기 (씬에 하나만 있다고 가정)
-        healthManager = FindObjectOfType<PlayerStatus>();
+        healthManager = FindAnyObjectByType<PlayerStatus>();
 
         if (healthManager != null)
         {

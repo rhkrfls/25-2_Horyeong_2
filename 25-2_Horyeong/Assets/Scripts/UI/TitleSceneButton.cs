@@ -10,7 +10,8 @@ public class TitleSceneButton : MonoBehaviour
     public void OnLoadGameButtonPressed()
     {
         Debug.Log("Load Game button pressed");
-        //SceneController.instance.LoadScene("LoadGameScene");
+        SceneController.instance.LoadScene(DataManager.Instance.gameData.lastSceneName);
+        //Gamemanager.Instance.LoadGame();
     }
 
     public void OnOptionButtonPressed()

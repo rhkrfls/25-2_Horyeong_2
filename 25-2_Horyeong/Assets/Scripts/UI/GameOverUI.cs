@@ -23,14 +23,7 @@ public class GameOverUI : MonoBehaviour
     {
         Debug.Log("Load Game button pressed");
         DataManager.Instance.LoadData();
-
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.ResetPlayer();
-
-        Gamemanager.Instance.ResumeGame();
-
-        PlayerStatus playerStatus = FindObjectOfType<PlayerStatus>();
-        playerStatus.Heal(playerStatus.GetmaxHp());
+        Gamemanager.Instance.LoadGame();
 
         HideGameOver();
         //SceneController.instance.LoadScene("LoadGameScene");

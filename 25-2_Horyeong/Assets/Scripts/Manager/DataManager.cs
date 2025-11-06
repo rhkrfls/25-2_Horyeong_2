@@ -18,8 +18,6 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             dataPath = Path.Combine(Application.persistentDataPath, saveFileName);
-
-            LoadData();
         }
         else
         {
@@ -58,6 +56,7 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("[Load] 게임 데이터 로드 성공.");
 
+
             }
             catch (System.Exception e)
             {
@@ -74,18 +73,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // ----------------------------------------------------
-    // 데이터를 업데이트하고 저장하는 예시 함수
-    // ----------------------------------------------------
+
     public void UpdateAndSavePlayerPosition(PlayerController player)
     {
-        PlayerStatus playerHP = FindObjectOfType<PlayerStatus>();
+        PlayerStatus playerHP = FindAnyObjectByType<PlayerStatus>();
 
         gameData.currentHealth = playerHP.GetmaxHp();
         gameData.activeCharacterName = player.currentData.currentPlayerCharachter.ToString();
         gameData.playerPositionX = player.transform.position.x;
         gameData.playerPositionY = player.transform.position.y;
-        //gameData.lastSceneName = "CharacterScene";
+        gameData.lastSceneName = SceneController.instance.ReadSceneName();
 
         SaveData();
     }

@@ -41,7 +41,7 @@ public class RAT : Enemy
     {
         if (collision.CompareTag("Player"))
         {
-            playerStatus.TakeDamage(5);
+            playerStatus.TakeDamage(5, this.transform);
             PlaySE(sound_Attack);
         }
         if (collision.CompareTag("Bullet"))

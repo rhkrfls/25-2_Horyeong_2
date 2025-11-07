@@ -102,6 +102,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected AudioSource theAudio;
 
+
     protected virtual void Start()
     {
         theAudio = GetComponent<AudioSource>();
@@ -112,10 +113,12 @@ public class Enemy : MonoBehaviour
         if (playerStatus == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            playerStatus = FindAnyObjectByType<PlayerStatus>();
+
             if (playerObj != null)
             {
-                playerStatus = playerObj.GetComponent<PlayerStatus>();
-                Short_player = playerObj.GetComponent<CapsuleCollider2D>();
+                playerStatus = playerStatus.GetComponent<PlayerStatus>();
+                Short_player = player.GetComponent<CapsuleCollider2D>();
 
                 if (playerStatus == null)
                     Debug.LogWarning("Player 오브젝트에 PlayerStatus 컴포넌트가 없습니다!");
@@ -405,7 +408,7 @@ public class Enemy : MonoBehaviour
         PlaySE(sound_Attack);
         Debug.Log("일반공격");
         animator.SetTrigger("Attack");
-        playerStatus.TakeDamage(monster_damage);
+        playerStatus.TakeDamage(monster_damage, this.transform);
     }
 
     // 스턴
@@ -420,7 +423,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             float damage = monster_damage * 0.5f;
-            playerStatus.TakeDamage(monster_damage);
+            playerStatus.TakeDamage(monster_damage, this.transform);
             Debug.Log($"특수 공격 {i + 1}회차: {damage}");
             yield return new WaitForSeconds(StunDelay);
         }

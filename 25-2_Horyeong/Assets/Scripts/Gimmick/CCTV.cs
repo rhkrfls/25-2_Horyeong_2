@@ -20,18 +20,7 @@ public class CCTV : MonoBehaviour
 
         if (playerStatus == null)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                playerStatus = playerObj.GetComponent<PlayerStatus>();
-
-                if (playerStatus == null)
-                    Debug.LogWarning("Player 오브젝트에 PlayerStatus 컴포넌트가 없습니다!");
-            }
-            else
-            {
-                Debug.LogWarning("'Player' 태그가 지정된 오브젝트를 찾을 수 없습니다!");
-            }
+            playerStatus = FindAnyObjectByType<PlayerStatus>();
         }
     }
 
@@ -68,7 +57,7 @@ public class CCTV : MonoBehaviour
         {
             if (playerStatus != null)
             {
-                playerStatus.TakeDamage(damage);
+                playerStatus.TakeDamage(damage, this.transform);
                 isGround = true;
             }
         }

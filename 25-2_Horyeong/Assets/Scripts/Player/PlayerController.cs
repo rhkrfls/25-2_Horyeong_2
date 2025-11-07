@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
         animator.runtimeAnimatorController = currentData.animatorController;
 
         rb.mass = currentData.mass;
-        rb.mass = currentData.gravityScale;
+        rb.gravityScale = currentData.gravityScale;
 
         Debug.Log($"캐릭터가 스왑되었습니다. 새 이동 속도: {currentData.maxMoveSpeed}");
     }

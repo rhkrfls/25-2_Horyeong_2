@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2215236236969268499}
   - component: {fileID: 5029967069614592466}
   - component: {fileID: 1069260405374358184}
+  - component: {fileID: 3464851375294210591}
   - component: {fileID: 2128215772134195800}
   - component: {fileID: 6846081256379393106}
   - component: {fileID: 6138244556182690617}
@@ -227,7 +228,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -257,9 +258,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   moveInput: {x: 0, y: 0}
-  moveSpeed: 5
   isMoving: 0
-  jumpForce: 5
+  maxMoveSpeed: 10
+  accelerationRate: 7.5
+  jumpForce: 9
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -268,7 +270,24 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   yuseongWeapon: {fileID: 0}
   isAttacking: 0
+  knockbackPower: 5
+  knockbackDuration: 0.3
+  isKnockedBack: 0
   gameManager: {fileID: 0}
+--- !u!114 &3464851375294210591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020917226258272972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccda3585886768a4f88634a88950f436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
+  maxHp: 100
+  currentHp: 0
 --- !u!114 &2128215772134195800
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,26 +2,27 @@ using UnityEngine;
 
 public class Map_Interaction : MonoBehaviour
 {
+    public InteractionData interactionData;
+
     public DialogueManager dm;
     public string dialogueCSVFileName;
 
-    public bool isTriggered = false;
-    public bool isInteracting = false;
-    public void SetIsIntrecting(bool isInteracting) { this.isInteracting = isInteracting; }
-    public GameObject interactionPrompt;
+    public void SetIsIntrecting(bool isInteracting) { this.interactionData.isInteracted = isInteracting; }
 
     private void Start()
     {
-        dm = FindObjectOfType<DialogueManager>();
-        interactionPrompt.SetActive(false);
+        dm = FindAnyObjectByType<DialogueManager>();
+        interactionData.interactionPrompt.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        interactionData.interactionPrompt.SetActive(false);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            isTriggered = true;
-            interactionPrompt.SetActive(true);
+            interactionData.isTriggered = true;
+            interactionData.interactionPrompt.SetActive(true);
 
             collision.GetComponent<PlayerController>().SetCurrentInteractable(this);
         }
@@ -31,19 +32,19 @@ public class Map_Interaction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            isTriggered = false;
-            interactionPrompt.SetActive(false);
+            interactionData.isTriggered = false;
+            interactionData.interactionPrompt.SetActive(false);
 
             collision.GetComponent<PlayerController>().SetCurrentInteractable(null);
         }
     }
 
-    public void Interact()
+    private void DialogueRead()
     {
         // 플레이어가 범위 안에 있을 때만 대화 시작
-        if (isTriggered)
+        if (interactionData.isTriggered)
         {
-            if (!isInteracting)
+            if (!interactionData.isInteracted)
             {
                 // DialogueManager의 LoadAndStartDialogue 함수 호출
                 if (dm != null)
@@ -60,5 +61,24 @@ public class Map_Interaction : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SavePoint(PlayerController player)
+    {
+        // Save Point 상호작용 로직 추가
+        Debug.Log("Save Point에 상호작용했습니다.");
+
+        PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
+        playerStatus.Heal(playerStatus.GetmaxHp());
+
+        DataManager.Instance.UpdateAndSavePlayerPosition(player);
+    }
+
+    public void Interact(PlayerController player)
+    {
+        if (interactionData.interactionType == InteractionType.Dialogue) DialogueRead();
+
+        if (interactionData.interactionType == InteractionType.SavePoint) SavePoint(player);
+
     }
 }

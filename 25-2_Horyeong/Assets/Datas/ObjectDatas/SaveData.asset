@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SaveData
   m_EditorClassIdentifier: Assembly-CSharp::InteractionData
   interactionType: 1
-  isInteracted: 0
+  isInteracted: 1
   isTriggered: 0
+  interactedCooldown: -0.00028303324

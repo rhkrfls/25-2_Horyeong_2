@@ -67,6 +67,8 @@ public class Map_Interaction : MonoBehaviour
         // Save Point 상호작용 로직 추가
         Debug.Log("Save Point에 상호작용했습니다.");
 
+        DialogueManager.Instance.LoadAndStartDialogue(dialogueCSVFileName, this.name);
+
         PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
         playerStatus.Heal(playerStatus.GetmaxHp());
 

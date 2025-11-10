@@ -166,7 +166,7 @@ public class DialogueManager : MonoBehaviour
     {
         PlayerController player = FindAnyObjectByType<PlayerController>();
 
-        talkPanel.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+        talkPanel.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3.4f, player.transform.position.z);
     }
 
     public void CheckDialogueType()

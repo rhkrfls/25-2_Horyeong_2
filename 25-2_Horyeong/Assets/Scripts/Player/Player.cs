@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     {
         // 초기 설정: A 캐릭터 활성화 및 데이터 로드
         PN = PLAYERNAME.YUSEONG;
-        seolhan.SetActive(false);
         activeController = yuseong.GetComponent<PlayerController>();
         activeController.LoadCharacter(dataYuseong);
     }

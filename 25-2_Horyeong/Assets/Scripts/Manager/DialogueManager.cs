@@ -18,13 +18,28 @@ public class DialogueManager : MonoBehaviour
     // Inspector에서 연결할 대화 데이터
     public Dialogue currentDialogue;
     public bool isTypewriting = false;
-    private int currentLineIndex = 0;
+    public int currentLineIndex = 0;
 
     public static DialogueManager Instance;
 
-    void Start()
+    private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        
+        dialoguePanel = GameObject.Find("DialoguePanel");
+        dialogueText = GameObject.Find("DialogueText").GetComponent<TextMeshProUGUI>();
+
+        talkPanel = GameObject.Find("TalkPanel");
+        talkText = GameObject.Find("TalkText").GetComponent<TextMeshProUGUI>();
+
+        selectionPanel = GameObject.Find("SelectionPanel");
+        selectionText1 = GameObject.Find("SelectionText1").GetComponent<TextMeshProUGUI>();
+        selectionText2 = GameObject.Find("SelectionText2").GetComponent<TextMeshProUGUI>();
+
         // 시작 시 대화창 비활성화
         dialoguePanel.SetActive(false);
         talkPanel.SetActive(false);

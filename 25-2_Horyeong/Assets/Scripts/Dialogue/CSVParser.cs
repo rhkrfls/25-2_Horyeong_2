@@ -38,6 +38,7 @@ public static class CSVParser
                 objectName = fields[5].Trim(), // 2¿­(ÀÎµ¦½º 1) = ObjectName
                 characterName = fields[6].Trim(),
                 text = fields[7].Trim().Replace("\"", ""), // µû¿ÈÇ¥ Á¦°Å
+                isChangeBG = fields[8].Trim().ToLower() == "true" // 8¿­ = isChangeBG (true/false)
             };
 
             dialogue.lines.Add(dialogueLine);

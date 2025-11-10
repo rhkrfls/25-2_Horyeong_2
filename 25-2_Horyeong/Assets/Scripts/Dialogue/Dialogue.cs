@@ -13,6 +13,7 @@ public class DialogueLine
     public string selectionText1; // 선택지 1 텍스트
     public string selectionText2; // 선택지 2 텍스트
     public string type;        // 대화 타입 (예: 일반 대화, 퀘스트 수락 등)
+    public bool isChangeBG;   // 배경 변경 여부
 }
 
 [System.Serializable]

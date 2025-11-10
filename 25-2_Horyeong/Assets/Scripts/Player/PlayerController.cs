@@ -176,14 +176,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Knockback Direction X: {directionX}");
         knockbackDirection = new Vector2(directionX, 0.5f).normalized;
 
-        FlipCharacter(directionX);
+        if (directionX == 1f)
+            spriteRenderer.flipX = true;
+        else
+            spriteRenderer.flipX = false;
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockbackDirection * knockbackPower, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(knockbackDuration);
-
-        isKnockedBack = false;
 
         spriteRenderer.color = Color.white; // 넉백이 끝난 후 원래 색상으로 복원
 
@@ -191,6 +192,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
+
+        isKnockedBack = false;
     }
 
     private void FlipCharacter(float horizontalVelocity)
@@ -286,7 +289,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // 좌우반전
-        FlipCharacter(rb.linearVelocityX);
+        if (!isKnockedBack)
+            FlipCharacter(rb.linearVelocityX);
         
         // 바닥 체크
         CheckGround();

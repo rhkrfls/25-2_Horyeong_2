@@ -6,6 +6,7 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.SetActive(false);
     }
 

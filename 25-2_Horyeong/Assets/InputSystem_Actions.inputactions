@@ -79,13 +79,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Next",
+                    "name": "Skip",
                     "type": "Button",
                     "id": "b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Hold(duration=500,pressPoint=0.5)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Sprint",
@@ -229,11 +229,11 @@
                 {
                     "name": "",
                     "id": "cbac6039-9c09-46a1-b5f2-4e5124ccb5ed",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "Hold(duration=1.5,pressPoint=0.5)",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Next",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -244,7 +244,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Next",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

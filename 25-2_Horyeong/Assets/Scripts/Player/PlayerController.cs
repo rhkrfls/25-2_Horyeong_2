@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 
 public class PlayerController : MonoBehaviour
@@ -36,11 +37,12 @@ public class PlayerController : MonoBehaviour
     public Map_Interaction currentInteractable;
 
     [Header("Managers")]
-    public Gamemanager gameManager;
     public Player      swapManager;
 
     private void Awake()
     {
+        swapManager = FindAnyObjectByType<Player>();
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (isMoving == false && context.started && !isKnockedBack)
+        if (!Gamemanager.Instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
         {
             animator.SetBool("isWalkEnd", false);
             animator.SetBool("isWalkStart", true);
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && !isKnockedBack)
+        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
         {
             if (isGrounded)
             {
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !isAttacking && !isKnockedBack)
+        if (!Gamemanager.Instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
         {
             isAttacking = true;
             animator.SetTrigger("isAttack");
@@ -98,21 +100,33 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started && !isKnockedBack)
+        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
         {
-            // 현재 상호작용 가능한 오브젝트가 있고,
-            // (Interactable 스크립트 내부에서 isPlayerInRange를 다시 확인)
             if (currentInteractable != null)
             {
                 currentInteractable.Interact(this);
-                currentInteractable.SetIsIntrecting(true);
+
+                if (currentInteractable.interactionData.isInteracted == false)
+                    currentInteractable.SetIsIntrecting(true);
+            }
+        }
+    }
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
+        {
+            if (currentInteractable != null)
+            {
+                Debug.Log("대화 스킵 시도");
+                DialogueManager.Instance.SkipText();
             }
         }
     }
 
+
     public void OnSwap(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!Gamemanager.Instance.GetIsGameOver())
         {
             
             swapManager.SwapCharacter();
@@ -137,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     public void callBackGameStop()
     {
-        gameManager.SetGameStop();
+        Gamemanager.Instance.SetGameStop();
     }
 
     public void ApplyKnockback(Transform attacker)
@@ -161,6 +175,8 @@ public class PlayerController : MonoBehaviour
         float directionX = (transform.position.x > attacker.position.x) ? 1f : -1f;
         Debug.Log($"Knockback Direction X: {directionX}");
         knockbackDirection = new Vector2(directionX, 0.5f).normalized;
+
+        FlipCharacter(directionX);
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockbackDirection * knockbackPower, ForceMode2D.Impulse);
@@ -208,9 +224,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockedBack) return;
-
-        if (!gameManager.isGroggy && !isAttacking)
+        if (Gamemanager.Instance.GetIsGameOver() && isKnockedBack) return;
+        if (!Gamemanager.Instance.isGroggy && !isAttacking)
         {
             // 이동
             if (moveInput.x != 0)

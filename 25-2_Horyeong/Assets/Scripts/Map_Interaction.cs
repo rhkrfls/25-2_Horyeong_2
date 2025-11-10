@@ -3,18 +3,26 @@ using UnityEngine;
 public class Map_Interaction : MonoBehaviour
 {
     public InteractionData interactionData;
+    public GameObject interactionPrompt;    //상호작용 가능 오브젝트임을 표시
 
-    public DialogueManager dm;
     public string dialogueCSVFileName;
 
     public void SetIsIntrecting(bool isInteracting) { this.interactionData.isInteracted = isInteracting; }
 
     private void Start()
     {
-        dm = FindAnyObjectByType<DialogueManager>();
-        interactionData.interactionPrompt.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
-        interactionData.interactionPrompt.SetActive(false);
+        interactionData.isInteracted = false;
+        interactionData.isTriggered = false;
+        interactionData.interactedCooldown = 0f;
+        interactionPrompt.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        interactionPrompt.SetActive(false);
 
+    }
+
+    private void Update()
+    {
+        if(interactionData.interactedCooldown > 0f)
+            interactionData.interactedCooldown -= Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,7 +30,7 @@ public class Map_Interaction : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             interactionData.isTriggered = true;
-            interactionData.interactionPrompt.SetActive(true);
+            interactionPrompt.SetActive(true);
 
             collision.GetComponent<PlayerController>().SetCurrentInteractable(this);
         }
@@ -33,7 +41,7 @@ public class Map_Interaction : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             interactionData.isTriggered = false;
-            interactionData.interactionPrompt.SetActive(false);
+            interactionPrompt.SetActive(false);
 
             collision.GetComponent<PlayerController>().SetCurrentInteractable(null);
         }
@@ -41,28 +49,19 @@ public class Map_Interaction : MonoBehaviour
 
     private void DialogueRead()
     {
-        // 플레이어가 범위 안에 있을 때만 대화 시작
         if (interactionData.isTriggered)
         {
             if (!interactionData.isInteracted)
             {
-                // DialogueManager의 LoadAndStartDialogue 함수 호출
-                if (dm != null)
-                {
-                    dm.LoadAndStartDialogue(dialogueCSVFileName);
-                }
+                DialogueManager.Instance.LoadAndStartDialogue(dialogueCSVFileName, this.name);
             }
 
             else
             {
-                if (dm != null)
-                {
-                    dm.DisplayNextLine();
-                }
+                DialogueManager.Instance.CheckDialogueType();
             }
         }
     }
-
     private void SavePoint(PlayerController player)
     {
         // Save Point 상호작용 로직 추가
@@ -76,6 +75,9 @@ public class Map_Interaction : MonoBehaviour
 
     public void Interact(PlayerController player)
     {
+        if (interactionData.interactedCooldown > 0f) return;
+        interactionData.interactedCooldown = 0.25f;
+
         if (interactionData.interactionType == InteractionType.Dialogue) DialogueRead();
 
         if (interactionData.interactionType == InteractionType.SavePoint) SavePoint(player);

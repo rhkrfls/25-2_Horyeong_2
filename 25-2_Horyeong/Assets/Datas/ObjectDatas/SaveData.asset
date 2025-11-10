@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc7d7429acd6cb44dba70154fba3354c, type: 3}
-  m_Name: TestData
+  m_Name: SaveData
   m_EditorClassIdentifier: Assembly-CSharp::InteractionData
-  interactionPrompt: {fileID: 1257031443321842773, guid: cd0ae0e3537b45148863f2d616fb03ef, type: 3}
   interactionType: 1
-  isInteracted: 1
+  isInteracted: 0
   isTriggered: 0

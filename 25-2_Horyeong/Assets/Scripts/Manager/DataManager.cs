@@ -56,7 +56,7 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("[Load] 게임 데이터 로드 성공.");
 
-
+                Gamemanager.Instance.LoadGame();
             }
             catch (System.Exception e)
             {
@@ -70,6 +70,8 @@ public class DataManager : MonoBehaviour
             // 저장된 파일이 없을 경우 새 데이터 생성
             Debug.Log("[Load] 저장 파일이 존재하지 않습니다. 새 데이터를 생성합니다.");
             gameData = new GameData();
+
+            SceneController.instance.LoadScene(SceneController.instance.ReadSceneName());
         }
     }
 

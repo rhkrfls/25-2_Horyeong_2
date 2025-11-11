@@ -7,7 +7,8 @@ public class Gun : Weapon
 
     private void Awake()
     {
-        player = GetComponentInParent<PlayerController>();
+        player = GetComponent<PlayerController>();
+
         weaponType = WEAPONTYPE.GUN;
         damage = 5;
         skillDamage = 5;

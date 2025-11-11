@@ -1,7 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleSceneButton : MonoBehaviour
 {
+    public Button loadGameButton;
+
+    private void Start()
+    {
+        loadGameButton = GameObject.Find("LoadGame").GetComponent<Button>();
+        if (DataManager.Instance.gameData == null)
+        {
+            loadGameButton.image.color = Color.gray;
+        }
+
+        else
+            loadGameButton.image.color = Color.white;
+    }
     public void OnNewGameButtonPressed()
     {
         SceneController.instance.LoadScene("IntroScene");

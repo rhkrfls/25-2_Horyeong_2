@@ -1,0 +1,33 @@
+ID	type	select	select1	select2	Object	Name	String	changeImage
+Intro_001	dialogue	FALSE				유성	어렴풋이 기억나는 세상은 온통 녹음으로 가득했다.	FALSE
+Intro_002	dialogue	FALSE				유성	"하늘을 지나는 빛의 꼬리,"	FALSE
+Intro_003	dialogue	FALSE				유성	시끄럽게 울려대는 구급차와 경찰차의 사이렌 소리와 함께 사람들의 비명 소리가 겹쳤다.	FALSE
+Intro_004	dialogue	FALSE				유성	"세상은 온통 회색으로 물들고, 그 속을 녹음이 채웠다."	TRUE
+Intro_005	dialogue	FALSE				TV	"뉴스 속보입니다. 개의 형태를 지닌 동물이 도심지에 출몰했습니다. 해당 종은 여태 발견되지 않았던 종으로 보이며, 폭력성을 보이므로 시민 여러분의 안전에 유의..."	FALSE
+Intro_006	dialogue	FALSE				TV	긴급 속보입니다. 00시의 건물 벽에서 폭발이 발생했습니다. 근처에 있던 피해자의 말로는 식물이 붉게 빛나더니 폭발을 했다고...	FALSE
+Intro_007	dialogue	FALSE				TV	치직.	FALSE
+Intro_008	dialogue	FALSE				유성	우리가 태어난 세상은 혼란스럽기 그지 없었다.	FALSE
+Intro_009	dialogue	FALSE				유성	"새롭게 발견되었다는 종들은 하나같이 난폭하고, 식물 마저도 폭발을 일으키는 시대."	FALSE
+Intro_010	dialogue	FALSE				유성	"하루를 살아가기 위한 게 아니라,"	FALSE
+Intro_011	dialogue	FALSE				유성	살아남기 위해 움직여야 하는 우리들.	FALSE
+Intro_012	dialogue	FALSE				유성	...	TRUE
+Intro_013	dialogue	FALSE				유성	"시간은 흘러, 그나마 적응해가던 이들은 또 다시 변화를 맞이했다."	FALSE
+Intro_014	dialogue	FALSE				유성	이제 우리는 그 새롭게 발견되었다는 종들이 무엇인지 안다.	FALSE
+Intro_015	dialogue	FALSE				유성	그것들은...	FALSE
+Intro_016	dialogue	FALSE				유성	지구에 존재하던 식물과 동물이 변이한 결과물.	FALSE
+Intro_017	dialogue	FALSE				유성	어떻게 알았냐고?	FALSE
+Intro_018	dialogue	FALSE				유성	그건...	FALSE
+Intro_019	dialogue	FALSE				유성	"우리 주변의 사람이, 그들과 마찬가지로 난폭하게 변화한 것을 보았으니까."	TRUE
+Intro_020	dialogue	FALSE				유성	"누군가는 어깨에서 팔 한쌍이 더 자라나 기이한 형체를 가지고,"	FALSE
+Intro_021	dialogue	FALSE				유성	"또 누군가는 변화를 짐작조차 하지 못하게, 그저 이성만을 잃고 폭력성을 내비쳤다."	FALSE
+Intro_022	dialogue	FALSE				유성	사람들은 그들을 피해 달아나기 시작했다.	FALSE
+Intro_023	dialogue	FALSE				유성	"그리고, 공포에 떨었다."	FALSE
+Intro_024	dialogue	FALSE				유성	자신도 언제 그렇게 변할지 아무도 모르는 일이었기 때문에.	FALSE
+Intro_025	dialogue	FALSE				라디오	"치, 치직... 속보…"	FALSE
+Intro_026	dialogue	FALSE				라디오	인간... 변이 ... 이성... ... 신기... 힘을 지닌 ... ...습니다.	FALSE
+Intro_027	dialogue	FALSE				유성	그러나 어떠한 절망의 상황에도 희망은 싹 트는 것일까.	TRUE
+Intro_028	dialogue	FALSE				유성	공포에 떨던 인간 중 일부는 특수한 능력을 지녔다고─ 라디오에서 말을 전했다.	FALSE
+Intro_029	dialogue	FALSE				유성	옛날 히어로 영화에나 나올 법한 인간을 초월한 힘이라나.	FALSE
+Intro_030	dialogue	FALSE				유성	"인간들은 그 힘으로 변이한 개체를 처치하거나, 도망가는 등의 살아남기 위한 싸움을 지속해왔다."	FALSE
+Intro_031	dialogue	FALSE				유성	"그렇게, 지금까지도 살아남았다."	FALSE
+Intro_032	end	FALSE					end	FALSE

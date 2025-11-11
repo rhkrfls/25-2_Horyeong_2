@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 335359518}
   - component: {fileID: 335359517}
   m_Layer: 0
-  m_Name: Square
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,6 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe3b546ce455e840afbe1d64402582e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TitleSceneButton
+  loadGameButton: {fileID: 0}
 --- !u!4 &390131901
 Transform:
   m_ObjectHideFlags: 0
@@ -939,7 +940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gamemanager
   GroogyCount: 1
-  playerStartTransform: {fileID: 0}
   isGroggy: 0
   shouldEvaluate: 1
   isGameOver: 0

@@ -16,6 +16,6 @@ MonoBehaviour:
   currentPlayerCharachter: 0
   maxMoveSpeed: 8
   accelerationRate: 10
-  jumpForce: 9
+  jumpForce: 5
   mass: 1
   gravityScale: 2.5

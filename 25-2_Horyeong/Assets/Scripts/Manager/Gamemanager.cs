@@ -6,10 +6,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float GroogyCount = 1f;
 
-    public Transform playerStartTransform;
     public bool isGroggy = false;
     public bool shouldEvaluate = true;
     public bool isGameOver = false;
+    public bool GetIsGameOver() { return isGameOver; } 
 
     public GameOverUI gameOverPanel;
     public static GameManager Instance = null;

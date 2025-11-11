@@ -29,20 +29,19 @@ public static class CSVParser
             // 2. 각 줄을 필드(칸) 단위로 분리
             string[] fields = line.Split(FieldSeparator);
 
-            // CSV 구조에 맞게 (Index, Name, Dialogue) 3개 필드가 있는지 확인
-            if (fields.Length >= 3)
+            DialogueLine dialogueLine = new DialogueLine
             {
-                DialogueLine dialogueLine = new DialogueLine
-                {
-                    // 2열(인덱스 1) = Name
-                    characterName = fields[1].Trim(),
+                type = fields[1].Trim(), // 1열(인덱스 0) = Type
+                selection = fields[2].Trim().ToLower() == "true", // 5열 = Selection (true/false)
+                selectionText1 = fields[3].Trim(), // 6열 = SelectionText1
+                selectionText2 = fields[4].Trim(),  // 7열 = SelectionText
+                objectName = fields[5].Trim(), // 2열(인덱스 1) = ObjectName
+                characterName = fields[6].Trim(),
+                text = fields[7].Trim().Replace("\"", ""), // 따옴표 제거
+                isChangeBG = fields[8].Trim().ToLower() == "true" // 8열 = isChangeBG (true/false)
+            };
 
-                    // 3열(인덱스 2) = Dialogue
-                    text = fields[2].Trim().Replace("\"", "") // 따옴표 제거
-                };
-
-                dialogue.lines.Add(dialogueLine);
-            }
+            dialogue.lines.Add(dialogueLine);
         }
 
         return dialogue;

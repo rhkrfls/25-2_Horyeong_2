@@ -6,6 +6,7 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.SetActive(false);
     }
 
@@ -23,7 +24,10 @@ public class GameOverUI : MonoBehaviour
     {
         Debug.Log("Load Game button pressed");
         DataManager.Instance.LoadData();
+<<<<<<< HEAD
         GameManager.Instance.LoadGame();
+=======
+>>>>>>> origin/Lin
 
         HideGameOver();
         //SceneController.instance.LoadScene("LoadGameScene");

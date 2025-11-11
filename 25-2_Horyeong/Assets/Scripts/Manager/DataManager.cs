@@ -56,7 +56,7 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("[Load] 게임 데이터 로드 성공.");
 
-                Gamemanager.Instance.LoadGame();
+                GameManager.Instance.LoadGame();
             }
             catch (System.Exception e)
             {

@@ -24,11 +24,7 @@ public class GameOverUI : MonoBehaviour
     {
         Debug.Log("Load Game button pressed");
         DataManager.Instance.LoadData();
-<<<<<<< HEAD
         GameManager.Instance.LoadGame();
-=======
->>>>>>> origin/Lin
-
         HideGameOver();
         //SceneController.instance.LoadScene("LoadGameScene");
     }

@@ -37,11 +37,8 @@ public class PlayerController : MonoBehaviour
     public Map_Interaction currentInteractable;
 
     [Header("Managers")]
-<<<<<<< HEAD
     public GameManager gameManager;
-=======
->>>>>>> origin/Lin
-    public Player      swapManager;
+    public Player swapManager;
 
     private void Awake()
     {
@@ -73,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
         {
             animator.SetBool("isWalkEnd", false);
             animator.SetBool("isWalkStart", true);
@@ -83,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
         {
             if (isGrounded)
             {
@@ -95,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
         {
             isAttacking = true;
             animator.SetTrigger("isAttack");
@@ -104,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
         {
             if (currentInteractable != null)
             {
@@ -117,7 +114,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver() && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
         {
             if (currentInteractable != null)
             {
@@ -130,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSwap(InputAction.CallbackContext context)
     {
-        if (!Gamemanager.Instance.GetIsGameOver())
+        if (!GameManager.Instance.GetIsGameOver())
         {
             
             swapManager.SwapCharacter();
@@ -155,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
     public void callBackGameStop()
     {
-        Gamemanager.Instance.SetGameStop();
+        GameManager.Instance.SetGameStop();
     }
 
     public void ApplyKnockback(Transform attacker)
@@ -231,8 +228,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Gamemanager.Instance.GetIsGameOver() && isKnockedBack) return;
-        if (!Gamemanager.Instance.isGroggy && !isAttacking)
+        if (GameManager.Instance.GetIsGameOver() && isKnockedBack) return;
+        if (!GameManager.Instance.isGroggy && !isAttacking)
         {
             // ¿Ãµø
             if (moveInput.x != 0)

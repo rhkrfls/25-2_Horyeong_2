@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public Map_Interaction currentInteractable;
 
     [Header("Managers")]
-    public Gamemanager gameManager;
+    public GameManager gameManager;
     public Player      swapManager;
 
     private void Awake()

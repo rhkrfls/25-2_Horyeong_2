@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
 
     protected Transform player;
     [SerializeField]
-    protected Gamemanager gameManager;
+    protected GameManager gameManager;
     [SerializeField]
     protected Collider2D[] coll;
     [SerializeField]
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
 
         if (gameManager == null)
         {
-            gameManager = gamemanager.GetComponent<Gamemanager>();
+            gameManager = gamemanager.GetComponent<GameManager>();
             if (gameManager == null)
                 Debug.LogWarning("씬에서 Gamemanager를 찾을 수 없습니다!");
         }

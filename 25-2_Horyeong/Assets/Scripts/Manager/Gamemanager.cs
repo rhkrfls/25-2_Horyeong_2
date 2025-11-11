@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private float GroogyCount = 1f;
@@ -12,7 +12,8 @@ public class Gamemanager : MonoBehaviour
     public bool isGameOver = false;
 
     public GameOverUI gameOverPanel;
-    public static Gamemanager Instance = null;
+    public static GameManager Instance = null;
+    public static bool isTelapote = false;
 
     public void Awake()
     {

@@ -111,6 +111,7 @@ public class SoundManager : MonoBehaviour
         float a = MasterSlider.value * 50;
         MasterVolume.text = Mathf.FloorToInt(a) + "%";
     }
+
     private void BGMVolumeText()
     {
         if (BgmSlider.value < 0.01)

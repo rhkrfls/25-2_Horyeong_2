@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 430ef0fd285dc904492c23c77fbb175e
+guid: a98220bc7eeb5da41aa68184e6b7edc4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6705074430866476712
-    second: ch1_Cloud_0
+      213: 5795814407860715475
+    second: shelf_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ch1_Cloud_0
+      name: shelf_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 833
+        width: 58
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8aec95c7ba53d0d50800000000000000
-      internalID: 6705074430866476712
+      spriteID: 3dff0a41f7ede6050800000000000000
+      internalID: 5795814407860715475
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ch1_Cloud_0: 6705074430866476712
+      shelf_0: 5795814407860715475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1f00834ebd6b0024685e9e92f79c0ec6
+guid: c4420c4329a1da340bed30775fca96f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5795814407860715475
-    second: shelf_0
+      213: 5540193139482336554
+    second: Market_Door.png_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shelf_0
+      name: Market_Door.png_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 58
-        height: 51
+        width: 990
+        height: 1010
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3dff0a41f7ede6050800000000000000
-      internalID: 5795814407860715475
+      spriteID: a2d96e1ae48b2ec40800000000000000
+      internalID: 5540193139482336554
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      shelf_0: 5795814407860715475
+      Market_Door.png_0: 5540193139482336554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

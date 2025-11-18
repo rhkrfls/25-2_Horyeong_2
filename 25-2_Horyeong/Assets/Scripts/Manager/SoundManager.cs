@@ -57,6 +57,9 @@ public class SoundManager : MonoBehaviour
     public TMP_Text MasterVolume;
     public TMP_Text BGMVolume;
     public TMP_Text SFXVolume;
+    public TMP_Text MasterVolume1;
+    public TMP_Text BGMVolume1;
+    public TMP_Text SFXVolume1;
 
     public AudioSource[] audioSourceEffects;    // 여러 오디로를 동시 재생하기 위해 배열로 선언
     public AudioSource audioSourceBgm;
@@ -107,9 +110,11 @@ public class SoundManager : MonoBehaviour
         if (MasterSlider.value < 0.01)
         {
             MasterVolume.text = "0";
+            MasterVolume1.text = "0";
         }
         float a = MasterSlider.value * 50;
         MasterVolume.text = Mathf.FloorToInt(a) + "%";
+        MasterVolume1.text = Mathf.FloorToInt(a) + "%";
     }
 
     private void BGMVolumeText()
@@ -117,18 +122,22 @@ public class SoundManager : MonoBehaviour
         if (BgmSlider.value < 0.01)
         {
             BGMVolume.text = "0";
+            BGMVolume1.text = "0";
         }
         float a = BgmSlider.value * 50;
         BGMVolume.text = Mathf.FloorToInt(a) + "%";
+        BGMVolume1.text = Mathf.FloorToInt(a) + "%";
     }
     private void SFXVolumeText()
     {
         if (SfxSlider.value < 0.01)
         {
             SFXVolume.text = "0";
+            SFXVolume1.text = "0";
         }
         float a = SfxSlider.value * 50;
         SFXVolume.text = Mathf.FloorToInt(a) + "%";
+        SFXVolume1.text = Mathf.FloorToInt(a) + "%";
     }
 
 

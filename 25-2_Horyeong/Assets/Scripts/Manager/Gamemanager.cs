@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,15 @@ public class GameManager : MonoBehaviour
     public GameOverUI gameOverPanel;
     public static GameManager Instance = null;
     public static bool isTelapote = false;
+
+    private Scene scene;
+    [SerializeField]
+    private string Lobby_BGM;
+    [SerializeField]
+    private string Chapter1_BGM;
+    [SerializeField]
+    private string Chapter2_BGM;
+
 
     public void Awake()
     {
@@ -38,6 +48,24 @@ public class GameManager : MonoBehaviour
         Debug.Log("그로기 풀림!");
         isGroggy = false;
         shouldEvaluate = true;
+    }
+
+    public void SceneBGM()
+    {
+        SoundManager.instance.StopAllSoundEffect();
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Lobby")
+        {
+            SoundManager.instance.PlaySoundBGM(Lobby_BGM);
+        }
+        else if (scene.name == "Chapter1")
+        {
+            SoundManager.instance.PlaySoundBGM(Chapter1_BGM);
+        }
+        else if (scene.name == "Chapter2")
+        {
+            SoundManager.instance.PlaySoundBGM(Chapter2_BGM);
+        }
     }
 
     public void LoadGame()

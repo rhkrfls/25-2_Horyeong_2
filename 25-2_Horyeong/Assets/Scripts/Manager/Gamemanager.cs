@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         SceneCount();
     }
 
-    public void ESCBtn(InputAction.CallbackContext context)
+    public void ESCAPE()
     {
         if (GamePause)
         {

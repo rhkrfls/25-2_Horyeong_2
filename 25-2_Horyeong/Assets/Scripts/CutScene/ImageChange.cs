@@ -29,7 +29,7 @@ public class ImageChange : MonoBehaviour
 
         if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].type == "end")
         {
-            SceneController.instance.LoadScene("CharacterScene");
+            SceneController.instance.LoadScene("MainScene");
         }
     }
 

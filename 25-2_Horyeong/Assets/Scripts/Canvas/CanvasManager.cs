@@ -42,6 +42,8 @@ public class CanvasManager : MonoBehaviour
     private Canvas canvas;
     [SerializeField]
     private Camera Main_Cam;
+    [SerializeField]
+    private GameObject Lobby_Btn;
 
 
     void Start()
@@ -52,7 +54,14 @@ public class CanvasManager : MonoBehaviour
 
     void Update()
     {
-
+        if (GameManager.Scene_Count != 0)
+        {
+            Lobby_Btn.SetActive(false);
+        }
+        else
+        {
+            Lobby_Btn.SetActive(true);
+        }
     }
 
     private void CanvasSortOrder()

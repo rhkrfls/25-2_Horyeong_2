@@ -37,6 +37,12 @@ public class Weapon : MonoBehaviour
     public virtual int takeDamage()
     {
         durability -= 1;
+
+        if (durability <= 0)
+        {
+            BreakWeapon();
+        }
+
         return damage;
     }
 
@@ -45,6 +51,11 @@ public class Weapon : MonoBehaviour
         if (!isSkill) return 0;
         //skill 내용 정리
 
-        return 1;
+        return 1;  
+    }
+
+    public virtual void BreakWeapon()
+    {
+        Destroy(this.gameObject);
     }
 }

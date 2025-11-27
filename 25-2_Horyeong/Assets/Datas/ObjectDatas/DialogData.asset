@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DialogData
   m_EditorClassIdentifier: Assembly-CSharp::InteractionData
   interactionType: 0
-  isInteracted: 0
+  isInteracted: 1
   isTriggered: 0
+  interactedCooldown: -0.0007986049

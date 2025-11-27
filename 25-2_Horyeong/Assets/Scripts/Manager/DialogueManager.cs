@@ -18,7 +18,10 @@ public class DialogueManager : MonoBehaviour
     // Inspector에서 연결할 대화 데이터
     public Dialogue currentDialogue;
     public bool isTypewriting = false;
+    public bool isPanelActive = false;
     public int currentLineIndex = 0;
+
+    public float lastTextTime = 0f;
 
     public static DialogueManager Instance;
 
@@ -46,9 +49,31 @@ public class DialogueManager : MonoBehaviour
         selectionPanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (isPanelActive == false) return;
+
+        if (talkPanel.activeInHierarchy == true)
+        {
+            SetTalkPanelPosition();
+        }
+
+        if (!isTypewriting)
+        {
+            lastTextTime += Time.deltaTime;
+
+            if (lastTextTime >= 2.5f)
+            {
+                CheckDialogueType();
+                lastTextTime = 0f;
+            }
+        }
+    }
     // 대화 시작 함수
     public void StartDialogue(Dialogue dialogueToStart)
     {
+        isPanelActive = true;
+
         currentDialogue = dialogueToStart;
 
         CheckDialogueType();
@@ -96,6 +121,8 @@ public class DialogueManager : MonoBehaviour
     // 다음 대화줄 출력 함수 (사용자 입력 등으로 호출됨)
     public void DisplayNextLine()
     {
+        lastTextTime = 0f;
+
         if (currentDialogue.lines[currentLineIndex].type == "end")
         {
             EndDialogue();
@@ -172,6 +199,7 @@ public class DialogueManager : MonoBehaviour
     // 대화 종료 함수
     void EndDialogue()
     {
+        isPanelActive = false;
         dialoguePanel.SetActive(false);
         talkPanel.SetActive(false);
         Debug.Log("대화가 종료되었습니다.");

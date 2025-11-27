@@ -74,6 +74,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string Main_BGM;
 
+    public Button loadGameButton;
+
+
+    private void Start()
+    {
+        loadGameButton = GameObject.Find("LoadGame").GetComponent<Button>();
+        if (DataManager.Instance.gameData == null)
+        {
+            loadGameButton.image.color = Color.gray;
+        }
+
+        else
+            loadGameButton.image.color = Color.white;
+    }
+
     void Update()
     {
         if (shouldEvaluate && isGroggy)
@@ -177,6 +192,25 @@ public class GameManager : MonoBehaviour
         ESC.SetActive(false);
         Time.timeScale = 1f;
         GamePause = false;
+    }
+
+    public void OnExitButtonPressed()
+    {
+        Debug.Log("Exit button pressed");
+        Application.Quit();
+    }
+
+    public void OnLoadGameButtonPressed()
+    {
+        Debug.Log("Load Game button pressed");
+        SceneController.instance.LoadScene(DataManager.Instance.gameData.lastSceneName);
+        //Gamemanager.Instance.LoadGame();
+    }
+
+    public void OnNewGameButtonPressed()
+    {
+        Loding();
+        SceneController.instance.LoadScene("IntroScene");
     }
 
     public void GetBackScene()

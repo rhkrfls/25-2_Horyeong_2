@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - GameManager
   - PlayerST
+  - GameOverPanel
   layers:
   - Default
   - TransparentFX

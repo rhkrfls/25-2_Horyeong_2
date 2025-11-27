@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D coll;          
 
     [Header("무기")]
-    public Weapon currentWeapon;
     public Gun yuseongWeapon;
+    public GameObject seolhanWeapon;
+    public Collider2D attackHitBox;
     public bool isAttacking = false;
     public void SetisAttacking() { Debug.Log($"공격 상태: {isAttacking}"); this.isAttacking = false; }
 
@@ -95,7 +96,17 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.Instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
         {
             isAttacking = true;
-            animator.SetTrigger("isAttack");
+
+            if (currentData.currentPlayerCharachter == PLAYERNAME.YUSEONG)
+            {
+                animator.SetTrigger("isAttack");
+            }
+
+            if (currentData.currentPlayerCharachter == PLAYERNAME.SEOLHAN)
+            {
+                //무기 클래스 별로 공격 애니메이션 다르게 설정
+                //무기 클래스 받아오는 거 어케 함? 고민해봐
+            }
         }
     }
 
@@ -114,7 +125,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
+        if (!GameManager.Instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
         {
             if (currentInteractable != null)
             {
@@ -129,7 +140,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.Instance.GetIsGameOver())
         {
-            
             swapManager.SwapCharacter();
             Debug.Log("캐릭터 변경");
         }

@@ -31,26 +31,19 @@ public class ImageChange : MonoBehaviour
         {
             SceneController.instance.LoadScene("MainScene");
         }
-    }
 
-    public void OnNextText(InputAction.CallbackContext context)
-    {
-        if (context.started)
+        if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].isChangeBG)
         {
-            DialogueManager.Instance.CheckDialogueType();
+            currentDialogueIndex = DialogueManager.Instance.currentLineIndex;
 
-            if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].isChangeBG)
+            if (isImageChanged == false && currentDialogueIndex == DialogueManager.Instance.currentLineIndex)
             {
-                currentDialogueIndex = DialogueManager.Instance.currentLineIndex;
-
-                if (isImageChanged == false && currentDialogueIndex == DialogueManager.Instance.currentLineIndex)
-                {
-                    isImageChanged = true;
-                    ChangeImage(changeCount++);
-                }
+                isImageChanged = true;
+                ChangeImage(changeCount++);
             }
         }
     }
+
     public void ChangeImage(int imageCount)
     {
         if (images.Length == 0) return;

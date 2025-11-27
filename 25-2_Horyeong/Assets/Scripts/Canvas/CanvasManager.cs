@@ -28,6 +28,14 @@ public class CanvasManager : MonoBehaviour
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (GameManager.Scene_Count == 1)
+        {
+            DialoguePanel.SetActive(true);
+        }
+        else
+        {
+            DialoguePanel.SetActive(false);
+        }
         Main_Cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas.worldCamera = Main_Cam;
         Invoke("CanvasSortOrder", 0.35f);
@@ -44,6 +52,8 @@ public class CanvasManager : MonoBehaviour
     private Camera Main_Cam;
     [SerializeField]
     private GameObject Lobby_Btn;
+    [SerializeField]
+    private GameObject DialoguePanel;
 
 
     void Start()

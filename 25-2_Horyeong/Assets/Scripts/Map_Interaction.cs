@@ -2,6 +2,22 @@ using UnityEngine;
 
 public class Map_Interaction : MonoBehaviour
 {
+    public static Map_Interaction instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public InteractionData interactionData;
     public GameObject interactionPrompt;    //상호작용 가능 오브젝트임을 표시
 

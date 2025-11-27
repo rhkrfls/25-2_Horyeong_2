@@ -110,6 +110,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (!GameManager.Instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
+        {
+            if (currentInteractable != null)
+            {
+                Debug.Log("대화 스킵 시도");
+                DialogueManager.Instance.SkipText();
+            }
+        }
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
@@ -120,17 +132,6 @@ public class PlayerController : MonoBehaviour
 
                 if (currentInteractable.interactionData.isInteracted == false)
                     currentInteractable.SetIsIntrecting(true);
-            }
-        }
-    }
-    public void OnSkip(InputAction.CallbackContext context)
-    {
-        if (!GameManager.Instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
-        {
-            if (currentInteractable != null)
-            {
-                Debug.Log("대화 스킵 시도");
-                DialogueManager.Instance.SkipText();
             }
         }
     }

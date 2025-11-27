@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    // 싱클톤화
+    #region
     // 싱글턴. singleton 1개... 싱글턴화를 시켜 씬 이동시에도 파괴가 안되도록한다.
     static public GameManager instance;
 
@@ -41,32 +43,45 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    #endregion
 
+
+    // 그로기
     [SerializeField]
     private float GroogyCount = 1f;
 
     public bool isGroggy = false;
     public bool shouldEvaluate = true;
     public bool isGameOver = false;
-    public bool GetIsGameOver() { return isGameOver; } 
 
+    // 게임 UI
     public GameOverUI gameOverPanel;
-    public static GameManager Instance = null;
-    public static bool isTelapote = false;
 
     public Image PadeScreen;
     [SerializeField]
     [Range(0.01f, 5f)]
     private float fadeTime;
-
     [SerializeField]
     private GameObject ESC;
 
+    // 스크립트 가져오기
+    public static GameManager Instance = null;
+    public PlayerController playerController;
+
+    // 게임 오버
+    public bool GetIsGameOver() { return isGameOver; } 
+
+    // 텔포
+    public static bool isTelapote = false;
+
+    // 겜 정지 시작
     public static bool GamePause = false;
 
+    // 겜 씬 카운트
     public static int Scene_Count = 0;
-
     private Scene scene;
+
+    // 겜 씬 별 BGM
     [SerializeField]
     private string Lobby_BGM;
     [SerializeField]
@@ -74,6 +89,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string Main_BGM;
 
+    // 겜 오브젝트 받아오기
     public Button loadGameButton;
 
 
@@ -112,6 +128,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 그로기
     public IEnumerator GroggyPlayer()
     {
         yield return new WaitForSeconds(GroogyCount);
@@ -120,6 +137,7 @@ public class GameManager : MonoBehaviour
         shouldEvaluate = true;
     }
 
+    // 씬 카운트
     private void SceneCount()
     {
         scene = SceneManager.GetActiveScene();
@@ -137,6 +155,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 씬 별 메인 BGM
     public void SceneBGM()
     {
         SoundManager.instance.StopAllSoundEffect();
@@ -155,6 +174,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    // 페이트 in out
     private void Loding()
     {
         StartCoroutine(ShowEndGame(0, 1));
@@ -180,6 +201,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    // 인 게임 대화 스킵
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (Scene_Count == 1)
+            DialogueManager.Instance.DisplayNextLine();
+    }
+
+
+    // 게임 정지(ESC) 시작 버튼
+    #region
     public void Pause()
     {
         ESC.SetActive(true);
@@ -209,10 +241,13 @@ public class GameManager : MonoBehaviour
 
     public void OnNewGameButtonPressed()
     {
-        Loding();
+        //Loding();
         SceneController.instance.LoadScene("IntroScene");
     }
+    #endregion
 
+    // 씬 로드 및 뒤로가기
+    #region
     public void GetBackScene()
     {
         ESC.SetActive(false);
@@ -231,6 +266,7 @@ public class GameManager : MonoBehaviour
 
         ResumeGame();
     }
+    #endregion
 
     public void SetGameStop()
     {

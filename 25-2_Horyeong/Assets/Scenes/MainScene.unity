@@ -1540,7 +1540,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &186079010
@@ -2608,7 +2608,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &515585062
@@ -4511,6 +4511,15 @@ MonoBehaviour:
   shouldEvaluate: 1
   isGameOver: 0
   gameOverPanel: {fileID: 0}
+  PadeScreen: {fileID: 0}
+  fadeTime: 0.01
+  ESC: {fileID: 0}
+  currentInteractable: {fileID: 1613995032}
+  playerController: {fileID: 0}
+  Lobby_BGM: 
+  IntroScene_BGM: 
+  Main_BGM: 
+  loadGameButton: {fileID: 0}
 --- !u!4 &895566685
 Transform:
   m_ObjectHideFlags: 0
@@ -5228,7 +5237,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1041412029
@@ -6592,7 +6601,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1408144157
@@ -7692,7 +7701,9 @@ MonoBehaviour:
   currentDialogue:
     lines: []
   isTypewriting: 0
+  isPanelActive: 0
   currentLineIndex: 0
+  lastTextTime: 0
 --- !u!4 &1630713853
 Transform:
   m_ObjectHideFlags: 0
@@ -9285,6 +9296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CanvasManager
   canvas: {fileID: 1895374670}
   Main_Cam: {fileID: 713077279}
+  Lobby_Btn: {fileID: 0}
 --- !u!1 &1913114691
 GameObject:
   m_ObjectHideFlags: 0

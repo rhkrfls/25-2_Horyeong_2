@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System.Runtime.CompilerServices;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,11 +36,21 @@ public class PlayerController : MonoBehaviour
     public Map_Interaction currentInteractable;
 
     [Header("Managers")]
-    public GameManager gameManager;
+    //public GameManager gameManager;
     public Player swapManager;
+    public PlayerInput input;
 
     private void Awake()
     {
+        /*input = GetComponent<PlayerInput>();
+        if (!input.enabled)
+            input.enabled = true;*/
+
+        /*input = GetComponent<PlayerInput>();
+        input.actions["Move"].performed += OnMove;
+        input.actions["Move"].canceled += OnMove;
+        input.actions.Enable(); // 반드시 활성화
+*/
         swapManager = FindAnyObjectByType<Player>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         yuseongWeapon = GetComponentInChildren<Gun>();
     }
+
 
     public void ResetPlayer()
     {
@@ -71,7 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
+        Debug.Log("OnMove");
+        if (!GameManager.instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
         {
             animator.SetBool("isWalkEnd", false);
             animator.SetBool("isWalkStart", true);
@@ -81,7 +91,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
+        Debug.Log("OnJump");
+        if (!GameManager.instance.GetIsGameOver() && !isKnockedBack)
         {
             if (isGrounded)
             {
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
+        if (!GameManager.instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
         {
             isAttacking = true;
 
@@ -112,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
+        if (!GameManager.instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
         {
             if (currentInteractable != null)
             {
@@ -139,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSwap(InputAction.CallbackContext context)
     {
-        if (!GameManager.Instance.GetIsGameOver())
+        if (!GameManager.instance.GetIsGameOver())
         {
             swapManager.SwapCharacter();
             Debug.Log("캐릭터 변경");
@@ -163,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     public void callBackGameStop()
     {
-        GameManager.Instance.SetGameStop();
+        GameManager.instance.SetGameStop();
     }
 
     public void ApplyKnockback(Transform attacker)
@@ -239,12 +250,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.GetIsGameOver() && isKnockedBack) return;
-        if (!GameManager.Instance.isGroggy && !isAttacking)
+        if (GameManager.instance.GetIsGameOver() && isKnockedBack) return;
+
+        if (!GameManager.instance.isGroggy && !isAttacking)
         {
             // 이동
             if (moveInput.x != 0)
             {
+                Debug.Log("움직임을 받는다");
                 isMoving = true;
 
                 // 1. 목표 속도 계산

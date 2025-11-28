@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneCount();
+        /*if (Scene_Count == 2)
+        {
+            playerController = GameObject.Find("Player_Yuseong").GetComponent<PlayerController>();
+            *//*var input = playerController.GetComponent<PlayerInput>();
+            input.actions.Enable();*//*
+        }*/
         Debug.Log("sceneCount = " + Scene_Count);
         SceneBGM();
         Scene_Count = 0;
@@ -44,7 +50,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     #endregion
-
 
     // 그로기
     [SerializeField]
@@ -66,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     // 스크립트 가져오기
     public static GameManager Instance = null;
-    public PlayerController playerController;
+    //public PlayerController playerController;
 
     // 게임 오버
     public bool GetIsGameOver() { return isGameOver; } 

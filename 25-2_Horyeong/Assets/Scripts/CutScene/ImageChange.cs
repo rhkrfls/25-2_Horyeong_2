@@ -33,7 +33,7 @@ public class ImageChange : MonoBehaviour
             nextSceneTimer -= Time.deltaTime;
 
             if (nextSceneTimer < 0.0f)
-                SceneController.instance.LoadScene("MainScene");
+                SceneController.instance.LoadScene("Chapter 1");
         }
 
         if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].isChangeBG)

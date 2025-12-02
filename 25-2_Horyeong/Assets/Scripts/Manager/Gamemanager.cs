@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
         {
             Scene_Count = 1;
         }
-        else if (scene.name == "MainScene")
+        else if (scene.name == "Chapter 1")
         {
             Scene_Count = 2;
         }
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.instance.PlaySoundBGM(IntroScene_BGM);
         }
-        else if (scene.name == "MainScene")
+        else if (scene.name == "Chapter 1")
         {
             SoundManager.instance.PlaySoundBGM(Main_BGM);
         }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81c0674d84fdfba4cab47241cbf9bb99
+guid: de51699ee74145b46913d35a647a7f5d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5328104982336953044
-    second: oil_0
+      213: -4771683342985131998
+    second: Stage2_Road_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oil_0
+      name: Stage2_Road_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 77
-        height: 103
+        width: 17498
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2521d18fb4ce06b0800000000000000
-      internalID: -5328104982336953044
+      spriteID: 22809b0f74397cdb0800000000000000
+      internalID: -4771683342985131998
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oil_0: -5328104982336953044
+      Stage2_Road_0: -4771683342985131998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

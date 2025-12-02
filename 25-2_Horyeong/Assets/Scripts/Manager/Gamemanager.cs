@@ -97,9 +97,6 @@ public class GameManager : MonoBehaviour
     // 겜 오브젝트 받아오기
     public Button loadGameButton;
 
-    // 플레이어 시작 위치
-    public GameObject startPosition;
-    private bool isStarted = false;
 
     private void Start()
     {
@@ -120,11 +117,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("그로기 실행됌");
             StartCoroutine(GroggyPlayer());
             shouldEvaluate = false;
-        }
-
-        if (Scene_Count == 2 && !isStarted)
-        {
-            SetGameStart();
         }
 
         SceneCount();
@@ -281,15 +273,6 @@ public class GameManager : MonoBehaviour
         ResumeGame();
     }
     #endregion
-
-    public void SetGameStart()
-    {
-        startPosition = GameObject.Find("StartPosition");
-
-        PlayerController player = FindAnyObjectByType<PlayerController>();
-        player.transform.position = startPosition.transform.position;
-        isStarted = true;
-    }
 
     public void SetGameStop()
     {

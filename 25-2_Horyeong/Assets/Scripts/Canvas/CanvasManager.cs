@@ -28,17 +28,16 @@ public class CanvasManager : MonoBehaviour
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (GameManager.Scene_Count == 1)
+        {
+            DialoguePanel.SetActive(true);
+        }
+        else
+        {
+            DialoguePanel.SetActive(false);
+        }
         Main_Cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas.worldCamera = Main_Cam;
-
-        //if (GameManager.Scene_Count == 1)
-        //{
-        //    DialoguePanel.SetActive(true);
-        //}
-
-        //else
-        //    DialoguePanel.SetActive(true);
-
         Invoke("CanvasSortOrder", 0.35f);
     }
 
@@ -55,8 +54,7 @@ public class CanvasManager : MonoBehaviour
     private GameObject Lobby_Btn;
     [SerializeField]
     private GameObject DialoguePanel;
-    [SerializeField]
-    private GameObject HPBar;
+
 
     void Start()
     {
@@ -75,13 +73,13 @@ public class CanvasManager : MonoBehaviour
             Lobby_Btn.SetActive(true);
         }
 
-        if (GameManager.Scene_Count == 0 || GameManager.Scene_Count == 1)
+        if(GameManager.Scene_Count == 2)
         {
-            HPBar.SetActive(false);
+            DialoguePanel.SetActive(false);
         }
         else
         {
-            HPBar.SetActive(true);
+            DialoguePanel.SetActive(true);
         }
     }
 

@@ -4,8 +4,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    static public PlayerController instance;
-
     public CharacterData currentData;
     public Rigidbody2D rb;
     public Animator animator;
@@ -44,14 +42,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);  // DontDestroyOnLoad(); 로 파괴 안되도록 막음
-        }
-        else
-            Destroy(this.gameObject);
-
         input = GetComponent<PlayerInput>();
 
         input.actions["Move"].performed += OnMove;

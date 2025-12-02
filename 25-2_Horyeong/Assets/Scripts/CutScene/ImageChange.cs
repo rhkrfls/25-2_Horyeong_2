@@ -10,7 +10,6 @@ public class ImageChange : MonoBehaviour
     public Sprite[] images;
     public SpriteRenderer spriteRenderer;
     public string dialogueCSVFileName;
-    private float nextSceneTimer = 0.5f;
 
     private void Start()
     {
@@ -30,10 +29,7 @@ public class ImageChange : MonoBehaviour
 
         if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].type == "end")
         {
-            nextSceneTimer -= Time.deltaTime;
-
-            if (nextSceneTimer < 0.0f)
-                SceneController.instance.LoadScene("MainScene");
+            SceneController.instance.LoadScene("MainScene");
         }
 
         if (DialogueManager.Instance.currentDialogue.lines[DialogueManager.Instance.currentLineIndex].isChangeBG)

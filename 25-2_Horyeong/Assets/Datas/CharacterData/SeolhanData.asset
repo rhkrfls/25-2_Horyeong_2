@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d72559cbfaca494d99c69ca13dc51ac, type: 3}
   m_Name: SeolhanData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  animatorController: {fileID: 9100000, guid: 1146c82997f51ee4f9c41e5da0c26c76, type: 2}
+  animatorController: {fileID: 9100000, guid: 462df9da95fc8cd40b9d778ead8ced86, type: 2}
   currentPlayerCharachter: 1
   maxMoveSpeed: 5
   accelerationRate: 15

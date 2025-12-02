@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
     {
         if (shouldEvaluate && isGroggy)
         {
+            Debug.Log("그로기 실행됌");
             StartCoroutine(GroggyPlayer());
             shouldEvaluate = false;
         }

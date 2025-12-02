@@ -72,6 +72,15 @@ public class CanvasManager : MonoBehaviour
         {
             Lobby_Btn.SetActive(true);
         }
+
+        if(GameManager.Scene_Count == 2)
+        {
+            DialoguePanel.SetActive(false);
+        }
+        else
+        {
+            DialoguePanel.SetActive(true);
+        }
     }
 
     private void CanvasSortOrder()

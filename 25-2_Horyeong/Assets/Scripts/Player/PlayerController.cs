@@ -42,15 +42,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        /*input = GetComponent<PlayerInput>();
-        if (!input.enabled)
-            input.enabled = true;*/
+        input = GetComponent<PlayerInput>();
 
-        /*input = GetComponent<PlayerInput>();
         input.actions["Move"].performed += OnMove;
         input.actions["Move"].canceled += OnMove;
-        input.actions.Enable(); // 반드시 활성화
-*/
+
+        input.actions["Jump"].performed += OnJump;
+        input.actions["Attack"].performed += OnAttack;
+
+        input.actions["Skip"].performed += OnSkip;
+        input.actions["Interact"].performed += OnInteract;
+        input.actions["Swap"].performed += OnSwap;
+
+        input.actions.Enable();
+
         swapManager = FindAnyObjectByType<Player>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -80,7 +85,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("OnMove");
         if (!GameManager.instance.GetIsGameOver() && isMoving == false && !isKnockedBack)
         {
             animator.SetBool("isWalkEnd", false);
@@ -91,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("OnJump");
         if (!GameManager.instance.GetIsGameOver() && !isKnockedBack)
         {
             if (isGrounded)
@@ -257,7 +260,6 @@ public class PlayerController : MonoBehaviour
             // 이동
             if (moveInput.x != 0)
             {
-                Debug.Log("움직임을 받는다");
                 isMoving = true;
 
                 // 1. 목표 속도 계산

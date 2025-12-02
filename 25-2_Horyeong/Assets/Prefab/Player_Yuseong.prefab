@@ -261,15 +261,16 @@ MonoBehaviour:
     m_Bits: 8
   isGrounded: 0
   coll: {fileID: 2215236236969268499}
-  currentWeapon: {fileID: 0}
   yuseongWeapon: {fileID: 0}
+  seolhanWeapon: {fileID: 0}
+  attackHitBox: {fileID: 0}
   isAttacking: 0
   knockbackPower: 5
   knockbackDuration: 0.3
   isKnockedBack: 0
   currentInteractable: {fileID: 0}
-  gameManager: {fileID: 0}
   swapManager: {fileID: 0}
+  input: {fileID: 0}
 --- !u!114 &6846081256379393106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1069260405374358184}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -309,10 +310,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
-    m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 579c1749-c7ce-40e0-9a26-5746a8ee5d05
     m_ActionName: 'Player/Run[/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -443,6 +440,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8b0d2014-1f5b-4dae-8f92-a3603fbf8afb
     m_ActionName: 'Player/Swap[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9bf487c-b3c7-4248-a943-ef8d51bf8070
+    m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04f53314-8290-4000-b5b5-8e297c1e3813
+    m_ActionName: 'UI/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 735bdf80-262f-4484-b612-a94545e329bb
+    m_ActionName: 'UI/ESCAPE[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

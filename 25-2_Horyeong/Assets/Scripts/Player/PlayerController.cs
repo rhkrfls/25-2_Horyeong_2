@@ -128,24 +128,31 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.instance.GetIsGameOver() && DialogueManager.Instance.isPanelActive && !isKnockedBack)
         {
-            if (currentInteractable != null)
-            {
                 Debug.Log("대화 스킵 시도");
                 DialogueManager.Instance.SkipText();
-            }
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (DialogueManager.Instance.isPanelActive)
+        {
+            DialogueManager.Instance.CheckDialogueType();
+            return;
+        }
+
         if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
         {
             if (currentInteractable != null)
             {
-                currentInteractable.Interact(this);
-
                 if (currentInteractable.interactionData.isInteracted == false)
+                {
+                    currentInteractable.Interact(this);
                     currentInteractable.SetIsIntrecting(true);
+                }
+
+                else
+                    DialogueManager.Instance.CheckDialogueType();
             }
         }
     }
@@ -171,6 +178,9 @@ public class PlayerController : MonoBehaviour
 
         rb.mass = currentData.mass;
         rb.gravityScale = currentData.gravityScale;
+
+        if (!GameManager.instance.isStarted)
+            rb.gravityScale = 0f;
 
         Debug.Log($"캐릭터가 스왑되었습니다. 새 이동 속도: {currentData.maxMoveSpeed}");
     }

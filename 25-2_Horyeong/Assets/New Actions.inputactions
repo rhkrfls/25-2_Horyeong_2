@@ -18,7 +18,7 @@
                 {
                     "name": "F",
                     "type": "Button",
-                    "id": "1f7a961b-fd72-4cb0-aa86-3950cfaa0091",
+                    "id": "f9333217-069c-4eb3-9d1b-2b17649a5ba7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -39,7 +39,7 @@
                 },
                 {
                     "name": "",
-                    "id": "8e4e725b-e43f-47d8-b59a-726131b9404f",
+                    "id": "0d7084b7-7821-46cb-b6cb-76b2cadf5fb4",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",

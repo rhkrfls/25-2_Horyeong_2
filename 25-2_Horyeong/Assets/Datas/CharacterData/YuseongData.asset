@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   animatorController: {fileID: 9100000, guid: 462df9da95fc8cd40b9d778ead8ced86, type: 2}
   currentPlayerCharachter: 0
-  maxMoveSpeed: 8
+  maxMoveSpeed: 7.5
   accelerationRate: 10
-  jumpForce: 5
+  jumpForce: 3.7
   mass: 1
   gravityScale: 2.5

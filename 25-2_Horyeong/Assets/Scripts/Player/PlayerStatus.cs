@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    static public PlayerStatus instance;
+
     PlayerController playerController;
 
     public event Action<float, float> OnHealthChanged;
@@ -13,6 +15,14 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);  // DontDestroyOnLoad(); 로 파괴 안되도록 막음
+        }
+        else
+            Destroy(this.gameObject);
+
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         currentHp = maxHp;
     }

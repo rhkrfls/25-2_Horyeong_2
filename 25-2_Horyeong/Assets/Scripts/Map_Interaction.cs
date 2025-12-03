@@ -71,11 +71,6 @@ public class Map_Interaction : MonoBehaviour
             {
                 DialogueManager.Instance.LoadAndStartDialogue(dialogueCSVFileName, this.name);
             }
-
-            else
-            {
-                DialogueManager.Instance.CheckDialogueType();
-            }
         }
     }
     private void SavePoint(PlayerController player)
@@ -87,9 +82,6 @@ public class Map_Interaction : MonoBehaviour
         {
             if (!interactionData.isInteracted)
                 DialogueManager.Instance.LoadAndStartDialogue(dialogueCSVFileName, this.name);
-
-            else
-                DialogueManager.Instance.CheckDialogueType();
         }
 
         PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();

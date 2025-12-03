@@ -10,7 +10,7 @@ public class ImageChange : MonoBehaviour
     public Sprite[] images;
     public SpriteRenderer spriteRenderer;
     public string dialogueCSVFileName;
-    private float nextSceneTimer = 0.5f;
+    private float nextSceneTimer = 0.2f;
 
     private void Start()
     {

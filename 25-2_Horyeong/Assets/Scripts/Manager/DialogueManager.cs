@@ -68,6 +68,9 @@ public class DialogueManager : MonoBehaviour
                 lastTextTime = 0f;
             }
         }
+
+        else
+            lastTextTime = 0f;
     }
     // 대화 시작 함수
     public void StartDialogue(Dialogue dialogueToStart)
@@ -168,6 +171,7 @@ public class DialogueManager : MonoBehaviour
             talkText.text = sentence;
 
         isTypewriting = false;
+        lastTextTime = 0f;
         currentLineIndex++;
     }
 

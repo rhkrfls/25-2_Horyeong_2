@@ -99,11 +99,12 @@ public class GameManager : MonoBehaviour
 
     // 플레이어 시작 위치
     public GameObject startPosition;
-    private bool isStarted = false;
+    public bool isStarted = false;
 
     private void Start()
     {
         loadGameButton = GameObject.Find("LoadGame").GetComponent<Button>();
+
         if (DataManager.Instance.gameData == null)
         {
             loadGameButton.image.color = Color.gray;
@@ -122,12 +123,12 @@ public class GameManager : MonoBehaviour
             shouldEvaluate = false;
         }
 
+        SceneCount();
+
         if (Scene_Count == 2 && !isStarted)
         {
             SetGameStart();
         }
-
-        SceneCount();
     }
 
     public void ESCAPE()
@@ -215,15 +216,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // 인 게임 대화 스킵
-    public void OnSkip(InputAction.CallbackContext context)
-    {
-        if (Scene_Count == 1)
-            DialogueManager.Instance.DisplayNextLine();
-    }
-
-
     // 게임 정지(ESC) 시작 버튼
     #region
     public void Pause()
@@ -288,6 +280,9 @@ public class GameManager : MonoBehaviour
 
         PlayerController player = FindAnyObjectByType<PlayerController>();
         player.transform.position = startPosition.transform.position;
+
+        DialogueManager.Instance.dialoguePanel.SetActive(false);
+        player.rb.gravityScale = player.currentData.gravityScale;
         isStarted = true;
     }
 

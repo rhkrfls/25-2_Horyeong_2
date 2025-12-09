@@ -62,6 +62,7 @@ public class CanvasManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         Main_Cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        HPBar = GameObject.Find("HPBar");
     }
 
     void Update()

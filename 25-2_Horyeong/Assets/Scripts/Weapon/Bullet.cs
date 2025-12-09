@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
 
     public int damage;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }

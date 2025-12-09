@@ -1,25 +1,17 @@
 using UnityEngine;
 
-public class Gun : Weapon
+public class Gun : MonoBehaviour
 {
+    public WeaponData gunData;
+
+    public PlayerController player;
     public GameObject bulletPrefab;      // 총알 프리팹을 Inspector에 드래그하여 연결
     public Transform firePoint;          // 총알이 나갈 위치 (Empty GameObject로 지정)
 
     private void Awake()
     {
         player = GetComponent<PlayerController>();
-
-        weaponType = WEAPONTYPE.GUN;
-        damage = 5;
-        skillDamage = 5;
-        durability = 100;
-        isBringing = true;
-        isSkill = false;
-    }
-
-    private void Update()
-    {
-        
+        firePoint = GameObject.Find("FirePoint").transform;
     }
 
     public void Attack()
@@ -33,7 +25,7 @@ public class Gun : Weapon
 
         if (bullet != null)
         {
-            bullet.Launch(shootDirection, damage);
+            bullet.Launch(shootDirection, gunData.damage);
         }
     }
 }

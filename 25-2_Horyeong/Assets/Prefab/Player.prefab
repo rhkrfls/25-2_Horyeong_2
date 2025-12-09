@@ -1,5 +1,94 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5047854570366939070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659116517796089461}
+  - component: {fileID: 1637277792617200204}
+  m_Layer: 0
+  m_Name: WeaponHitBox1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659116517796089461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047854570366939070}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3749981, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2624107374364954578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1637277792617200204
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047854570366939070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.1950912, y: 0.69947815}
+      - {x: 0.9103699, y: 0.9358902}
+      - {x: 0.21531767, y: 1.1326787}
+      - {x: 0.8377609, y: 0.5701599}
+      - {x: 0.77233124, y: 0.20384979}
+      - {x: 0.35238647, y: -0.060813904}
+      - {x: -0.74491256, y: -0.3337134}
+      - {x: 1.0664765, y: -0.31582236}
+      - {x: 1.4658508, y: -0.04901123}
+      - {x: 1.4558554, y: 0.4016227}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5685059297826109759
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900414760171208286}
   m_Layer: 0
-  m_Name: firePoint
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +120,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2624107374364954578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6260104781176857331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7909628728348844244}
+  - component: {fileID: 3900233752912287522}
+  m_Layer: 0
+  m_Name: WeaponHitBox2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7909628728348844244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6260104781176857331}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3749981, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2624107374364954578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &3900233752912287522
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6260104781176857331}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.3180237, y: 0.42629242}
+      - {x: 1.0833969, y: 0.5443344}
+      - {x: 0.802659, y: 0.55444694}
+      - {x: 1.0479584, y: 0.5072403}
+      - {x: 1.1746826, y: 0.2651062}
+      - {x: 0.92258453, y: -0.10575104}
+      - {x: 0.43889618, y: -0.30667877}
+      - {x: -0.30781692, y: -0.5477103}
+      - {x: 0.66135406, y: -0.4622879}
+      - {x: 1.0664765, y: -0.31582236}
+      - {x: 1.356575, y: -0.18560791}
+      - {x: 1.5378103, y: 0.19218057}
+  m_UseDelaunayMesh: 0
 --- !u!1 &8020917226258272972
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,10 +225,12 @@ GameObject:
   - component: {fileID: 2215236236969268499}
   - component: {fileID: 5029967069614592466}
   - component: {fileID: 1069260405374358184}
+  - component: {fileID: 8298586865140907263}
+  - component: {fileID: 5037180352592284931}
   - component: {fileID: 6846081256379393106}
   - component: {fileID: 6138244556182690617}
   m_Layer: 6
-  m_Name: Player_Yuseong
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,6 +250,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1900414760171208286}
+  - {fileID: 1659116517796089461}
+  - {fileID: 7909628728348844244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1338457630383649139
@@ -263,7 +447,6 @@ MonoBehaviour:
   coll: {fileID: 2215236236969268499}
   yuseongWeapon: {fileID: 0}
   seolhanWeapon: {fileID: 0}
-  attackHitBox: {fileID: 0}
   isAttacking: 0
   knockbackPower: 5
   knockbackDuration: 0.3
@@ -271,6 +454,53 @@ MonoBehaviour:
   currentInteractable: {fileID: 0}
   swapManager: {fileID: 0}
   input: {fileID: 0}
+--- !u!114 &8298586865140907263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020917226258272972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd09ede69b10084bbd39435a18ec237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  currentWeaponData: {fileID: 0}
+  woodStickData: {fileID: 0}
+  pipeData: {fileID: 0}
+  player: {fileID: 0}
+  weapon_hitbox1: {fileID: 0}
+  woodStickPrefab: {fileID: 0}
+  pipePrefab: {fileID: 0}
+  isEquipped: 0
+  isAttacked: 0
+  secondAttackTime: 0
+--- !u!114 &5037180352592284931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020917226258272972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61028be2390c8ad4b8cb8adf1cf824e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
+  currentWeaponData: {fileID: 0}
+  woodStickData: {fileID: 0}
+  pipeData: {fileID: 0}
+  player: {fileID: 0}
+  weapon_hitbox1: {fileID: 0}
+  woodStickPrefab: {fileID: 0}
+  pipePrefab: {fileID: 0}
+  isEquipped: 0
+  isAttacked: 0
+  secondAttackTime: 0
+  gunData: {fileID: 11400000, guid: e31b031899ff2db42923eb213628c8ba, type: 2}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!114 &6846081256379393106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,19 +527,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1069260405374358184}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 579c1749-c7ce-40e0-9a26-5746a8ee5d05
     m_ActionName: 'Player/Run[/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -333,7 +551,19 @@ MonoBehaviour:
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1069260405374358184}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
@@ -361,7 +591,19 @@ MonoBehaviour:
     m_ActionId: 2776c80d-3c14-4091-8c56-d04ced07a2b0
     m_ActionName: 'Player/Previous[/Keyboard/1]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1069260405374358184}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSkip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
@@ -409,19 +651,7 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8020917226258272972}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: bb184b29-3bab-4f43-b059-318fa85635d2
     m_ActionName: 'Player/Groggy[/Keyboard/k]'
   - m_PersistentCalls:
@@ -442,16 +672,40 @@ MonoBehaviour:
     m_ActionName: 'Player/Swap[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a9bf487c-b3c7-4248-a943-ef8d51bf8070
-    m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 04f53314-8290-4000-b5b5-8e297c1e3813
-    m_ActionName: 'UI/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 735bdf80-262f-4484-b612-a94545e329bb
     m_ActionName: 'UI/ESCAPE[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1069260405374358184}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fdf25771-7bbb-43bd-808d-d3b1bd622797
+    m_ActionName: 'Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ESCAPE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 29468539-ef21-4e03-92d6-9edcd8d851b8
+    m_ActionName: 'Player/Stop[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -467,7 +721,7 @@ Animator:
   m_GameObject: {fileID: 8020917226258272972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 462df9da95fc8cd40b9d778ead8ced86, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1146c82997f51ee4f9c41e5da0c26c76, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

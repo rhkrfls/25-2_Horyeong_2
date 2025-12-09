@@ -2,22 +2,6 @@ using UnityEngine;
 
 public class Map_Interaction : MonoBehaviour
 {
-    public static Map_Interaction instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public InteractionData interactionData;
     public GameObject interactionPrompt;    //상호작용 가능 오브젝트임을 표시
 
@@ -90,6 +74,23 @@ public class Map_Interaction : MonoBehaviour
         DataManager.Instance.UpdateAndSavePlayerPosition(player);
     }
 
+    private void GetWeapon(PlayerController player)
+    {
+        Debug.Log("Map_Interaction: GetWeapon");
+        if (interactionData.isTriggered)
+        {
+            Map_Weapon map_Weapon = this.GetComponent<Map_Weapon>();
+
+            if (map_Weapon.isUsed)
+                player.seolhanWeapon.GetWeapon(map_Weapon.GetUsedWeapon());
+
+            else
+                player.seolhanWeapon.GetWeapon(interactionData.weaponType);
+        }
+
+        Destroy(this.gameObject);
+    }
+
     public void Interact(PlayerController player)
     {
         if (interactionData.interactedCooldown > 0f) return;
@@ -99,5 +100,6 @@ public class Map_Interaction : MonoBehaviour
 
         if (interactionData.interactionType == InteractionType.SavePoint) SavePoint(player);
 
+        if (interactionData.interactionType == InteractionType.Weapon) GetWeapon(player);
     }
 }

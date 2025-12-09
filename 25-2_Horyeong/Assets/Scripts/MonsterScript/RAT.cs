@@ -53,6 +53,16 @@ public class RAT : Enemy
             // ÃÑ¾Ë ÆÄ±«
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("Weapon"))
+        {
+            Weapon weapon = collision.GetComponentInParent<Weapon>();
+
+            if (weapon != null)
+            {
+                Damage(weapon.takeDamage());
+            }
+        }
     }
 
     private IEnumerator Wait()

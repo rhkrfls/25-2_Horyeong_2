@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    static public PlayerController instance;
+
     public CharacterData currentData;
     public Rigidbody2D rb;
     public Animator animator;
@@ -21,8 +23,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("무기")]
     public Gun yuseongWeapon;
-    public GameObject seolhanWeapon;
-    public Collider2D attackHitBox;
+    public Weapon seolhanWeapon;
+    public float attackResetTime = 1.75f;
     public bool isAttacking = false;
     public void SetisAttacking() { Debug.Log($"공격 상태: {isAttacking}"); this.isAttacking = false; }
 
@@ -42,7 +44,16 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);  // DontDestroyOnLoad(); 로 파괴 안되도록 막음
+        }
+        else
+            Destroy(this.gameObject);
+
         input = GetComponent<PlayerInput>();
+        input.actions.Enable();
 
         input.actions["Move"].performed += OnMove;
         input.actions["Move"].canceled += OnMove;
@@ -54,7 +65,6 @@ public class PlayerController : MonoBehaviour
         input.actions["Interact"].performed += OnInteract;
         input.actions["Swap"].performed += OnSwap;
 
-        input.actions.Enable();
 
         swapManager = FindAnyObjectByType<Player>();
 
@@ -63,9 +73,24 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
 
-        yuseongWeapon = GetComponentInChildren<Gun>();
+        yuseongWeapon = GetComponent<Gun>();
+        seolhanWeapon = GetComponent<Weapon>();
     }
 
+    private void Update()
+    {
+        if (!isAttacking) return;
+
+        if (attackResetTime <= 0f)
+        {
+            isAttacking = false;
+            attackResetTime = 1.75f;
+        }
+        else
+        {
+            attackResetTime -= Time.deltaTime;
+        }
+    }
 
     public void ResetPlayer()
     {
@@ -107,19 +132,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!GameManager.instance.GetIsGameOver() && !isAttacking && !isKnockedBack)
-        {
-            isAttacking = true;
+        if (currentData.currentPlayerCharachter == PLAYERNAME.SEOLHAN && seolhanWeapon.isEquipped == false)
+            return;
 
+        if (!GameManager.instance.GetIsGameOver() && !isKnockedBack)
+        {
             if (currentData.currentPlayerCharachter == PLAYERNAME.YUSEONG)
             {
+                if (isAttacking) return;
+                isAttacking = true;
                 animator.SetTrigger("isAttack");
             }
 
             if (currentData.currentPlayerCharachter == PLAYERNAME.SEOLHAN)
             {
-                //무기 클래스 별로 공격 애니메이션 다르게 설정
-                //무기 클래스 받아오는 거 어케 함? 고민해봐
+                seolhanWeapon.Attack();
             }
         }
     }
@@ -141,18 +168,21 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!GameManager.Instance.GetIsGameOver() && !isKnockedBack)
+        if (!GameManager.instance.GetIsGameOver())
         {
-            if (currentInteractable != null)
+            if (!isKnockedBack)
             {
-                if (currentInteractable.interactionData.isInteracted == false)
+                if (currentInteractable != null)
                 {
-                    currentInteractable.Interact(this);
-                    currentInteractable.SetIsIntrecting(true);
-                }
+                    if (currentInteractable.interactionData.isInteracted == false)
+                    {
+                        currentInteractable.SetIsIntrecting(true);
+                        currentInteractable.Interact(this);
+                    }
 
-                else
-                    DialogueManager.Instance.CheckDialogueType();
+                    else
+                        DialogueManager.Instance.CheckDialogueType();
+                }
             }
         }
     }

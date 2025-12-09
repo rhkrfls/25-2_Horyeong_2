@@ -456,6 +456,16 @@ public class Enemy : MonoBehaviour
             // 총알 파괴
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("Weapon"))
+        {
+            Weapon weapon = collision.GetComponentInParent<Weapon>();
+
+            if (weapon != null)
+            {
+                Damage(weapon.takeDamage());
+            }
+        }
     }
 
     // 비공격 스크립트

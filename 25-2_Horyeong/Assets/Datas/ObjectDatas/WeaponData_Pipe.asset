@@ -16,4 +16,4 @@ MonoBehaviour:
   isInteracted: 0
   isTriggered: 0
   interactedCooldown: 0.5
-  weaponType: 1
+  weaponType: 2

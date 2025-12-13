@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0111b81e4cf1df547abce71ee16e60d1, type: 3}
   m_Name: PipeData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponType: 1
+  weaponType: 2
   damage: 7
   skillDamage: 15
   durability: 20
   isBringing: 0
   isSkill: 1
-  weapon_hitbox: {fileID: 0}

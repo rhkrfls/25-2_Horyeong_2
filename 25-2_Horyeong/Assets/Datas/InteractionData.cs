@@ -4,7 +4,8 @@ public enum InteractionType
 {
     Dialogue,
     SavePoint,
-    Weapon
+    Weapon,
+    Portal
 }
 
 [CreateAssetMenu(fileName = "InteractionData", menuName = "Scriptable Objects/InteractionData")]

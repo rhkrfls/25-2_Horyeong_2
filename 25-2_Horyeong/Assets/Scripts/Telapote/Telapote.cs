@@ -19,31 +19,19 @@ public class Telapote : MonoBehaviour
     [SerializeField]
     private string Zoom;
 
+
     private void Start()
     {
         thePlayer = GameObject.Find("Player");
+        GameObject imageObject = GameObject.Find("PadeImage");
+        PadeScreen = imageObject.GetComponent<Image>();
     }
 
-    private void Update()
+    public void TelapotePlayer()
     {
-        if (!isPortal)
-        {
-            TelapotePlayer();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        this.teleport();
-    }
-
-    private void TelapotePlayer()
-    {
-        if (GameManager.isTelapote)
-        {
-            thePlayer.transform.position = this.teleportPos.transform.position;
-            thePlayer.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+        teleport();
+        thePlayer.transform.position = this.teleportPos.transform.position;
+        thePlayer.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     private void teleport()

@@ -91,6 +91,26 @@ public class Map_Interaction : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void Teleport()
+    {
+        Debug.Log("Map_Interaction: Teleport");
+        if(interactionData.isTriggered)
+        {
+            Debug.Log("Teleport isTrigger");
+
+            Telapote portal = this.GetComponent<Telapote>();
+
+            if (portal != null)
+            {
+                Debug.Log("Teleport portal not null");
+                portal.TelapotePlayer();
+            }
+
+            else
+                Debug.Log("Teleport portal null");
+        }
+    }
+
     public void Interact(PlayerController player)
     {
         if (interactionData.interactedCooldown > 0f) return;
@@ -101,5 +121,7 @@ public class Map_Interaction : MonoBehaviour
         if (interactionData.interactionType == InteractionType.SavePoint) SavePoint(player);
 
         if (interactionData.interactionType == InteractionType.Weapon) GetWeapon(player);
+
+        if (interactionData.interactionType == InteractionType.Portal) Teleport();
     }
 }

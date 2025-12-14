@@ -6266,17 +6266,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 89574955}
     m_Modifications:
+    - target: {fileID: 979507755792281398, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4369908547391059671, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_Name
       value: InteractionPromat
       objectReference: {fileID: 0}
+    - target: {fileID: 4369908547391059671, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -225.53358
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5748997
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8662,7 +8682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b66275dd1c58642881ba0c341ce048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map_Interaction
-  interactionData: {fileID: 11400000, guid: 38a18b49a099cb74cbd8618cf7733255, type: 2}
+  interactionData: {fileID: 11400000, guid: 3fcbde5268120fb478b832727dab56ce, type: 2}
   interactionPrompt: {fileID: 1703194620}
   dialogueCSVFileName: DT_Object
 --- !u!58 &1513199393
@@ -8699,8 +8719,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.006239414, y: 0.05671631}
-  m_Radius: 1.8670644
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.8
 --- !u!1 &1520593201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3517216200643667145, guid: 318a65b17d3df28438cbe3ac7a9d03bc, type: 3}
@@ -9679,17 +9699,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1513199389}
     m_Modifications:
+    - target: {fileID: 979507755792281398, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4369908547391059671, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_Name
       value: InteractionPromat
       objectReference: {fileID: 0}
+    - target: {fileID: 4369908547391059671, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6756319
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1070907
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.z

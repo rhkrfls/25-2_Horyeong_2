@@ -25,7 +25,7 @@ public class Map_Interaction : MonoBehaviour
         if(interactionData.interactedCooldown > 0f)
             interactionData.interactedCooldown -= Time.deltaTime;
         
-        if(interactionData.isInteracted)
+        if(interactionData.interactionType == InteractionType.Portal && interactionData.isInteracted)
         {
             interactTime -= Time.deltaTime;
             if (interactTime < 0f)
@@ -34,6 +34,7 @@ public class Map_Interaction : MonoBehaviour
                 interactionData.isInteracted = false;
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,13 +60,16 @@ public class Map_Interaction : MonoBehaviour
     }
 
     private void DialogueRead()
-    {
+    { 
         if (interactionData.isTriggered)
         {
-            if (!interactionData.isInteracted)
+            if (interactionData.isInteracted == false)
             {
                 DialogueManager.Instance.LoadAndStartDialogue(dialogueCSVFileName, this.name);
             }
+
+            else
+                DialogueManager.Instance.CheckDialogueType();
         }
     }
     private void SavePoint(PlayerController player)
@@ -107,13 +111,10 @@ public class Map_Interaction : MonoBehaviour
         Debug.Log("Map_Interaction: Teleport");
         if(interactionData.isTriggered)
         {
-            Debug.Log("Teleport isTrigger");
-
             Telapote portal = this.GetComponent<Telapote>();
 
             if (portal != null)
             {
-                Debug.Log("Teleport portal not null");
                 portal.TelapotePlayer();
             }
 

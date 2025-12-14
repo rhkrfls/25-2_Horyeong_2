@@ -247,5 +247,8 @@ public class DialogueManager : MonoBehaviour
             selectionText1.text = currentDialogue.lines[currentLineIndex].selectionText1;
             selectionText2.text = currentDialogue.lines[currentLineIndex].selectionText2;
         }
+
+        else if (currentDialogue.lines[currentLineIndex].type == "end")
+            EndDialogue();
     }
 }

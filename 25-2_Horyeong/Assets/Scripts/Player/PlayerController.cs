@@ -162,28 +162,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (DialogueManager.Instance.isPanelActive)
-        {
-            DialogueManager.Instance.CheckDialogueType();
-            return;
-        }
-
         if (!GameManager.instance.GetIsGameOver())
         {
             if (!isKnockedBack)
             {
                 if (currentInteractable != null)
                 {
-                    if (currentInteractable.interactionData.isInteracted == false)
-                    {
+                    currentInteractable.Interact(this);
+                    if (!currentInteractable.interactionData.isInteracted)
                         currentInteractable.SetIsIntrecting(true);
-                        currentInteractable.Interact(this);
-                    }
-
-                    else
-                        DialogueManager.Instance.CheckDialogueType();
                 }
             }
+            return;
+        }
+
+        if (DialogueManager.Instance.isPanelActive)
+        {
+            DialogueManager.Instance.CheckDialogueType();
         }
     }
 

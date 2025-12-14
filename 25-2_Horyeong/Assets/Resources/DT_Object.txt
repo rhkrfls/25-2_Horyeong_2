@@ -1,0 +1,19 @@
+ID	type	select	select1	select2	Object	Name	String	changeImage
+Ch1_Obj_01_0	talk	FALSE			DT_Shelf	유성	텅 비어있네.. 배고픈데.. 밖에 나가 식량을 구해야겠다..	FALSE
+Ch1_Obj_01_1	end						end	FALSE
+Ch1_Obj_02_0	talk	FALSE			DT_Seolhan’s_Bag	유성	가방의 피가 묻어있어..	FALSE
+Ch1_Obj_02_1	talk	FALSE			DT_Seolhan’s_Bag	유성	아직 마르지 않은 걸 보니	FALSE
+Ch1_Obj_02_2	talk	FALSE			DT_Seolhan’s_Bag	유성	근처에 누군가 있나 봐..	FALSE
+Ch1_Obj_02_3	end						end	FALSE
+Ch1_Obj_03_0	talk	FALSE			DT_Lighter	유성	이건… 나중에 꽤 유용하게 쓰일 거야.	FALSE
+Ch1_Obj_03_1	end						end	FALSE
+Ch1_Obj_04_0	talk	FALSE			DT_V_Table	유성	이건..	FALSE
+Ch1_Obj_04_1	end						end	FALSE
+Ch1_Obj_05_0	talk	FALSE			DT_V_kitchencabinet	유성	통조림이 있어! 다행이다..	FALSE
+Ch1_Obj_05_1	talk						end	FALSE
+								
+								
+								
+								
+								
+								

@@ -3,17 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
-    static public GameOverUI instance;
+    public static GameOverUI instance;
 
-    private void Awake()    // 객체 생성시 최초 실행
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);  // DontDestroyOnLoad(); 로 파괴 안되도록 막음
+            DontDestroyOnLoad(gameObject);
         }
+
         else
-            Destroy(this.gameObject);
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnEnable()
@@ -49,10 +52,15 @@ public class GameOverUI : MonoBehaviour
     public void OnLoadGameButtonPressed()
     {
         Debug.Log("Load Game button pressed");
-        DataManager.Instance.LoadData();
-        GameManager.Instance.LoadGame();
+        //DataManager.Instance.LoadData();
+
+        //if (DataManager.Instance.gameData == null)
+        GameManager.instance.SetGameStart();
+
+        PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
+        playerStatus.Heal(playerStatus.GetmaxHp());
+
         HideGameOver();
-        //SceneController.instance.LoadScene("LoadGameScene");
     }
 
     public void OnExitButtonPressed()

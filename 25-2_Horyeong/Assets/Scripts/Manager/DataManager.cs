@@ -58,6 +58,7 @@ public class DataManager : MonoBehaviour
 
                 GameManager.Instance.LoadGame();
             }
+
             catch (System.Exception e)
             {
                 Debug.LogError($"[Load Error] 데이터 로드 실패. 새 데이터를 생성합니다. 오류: {e.Message}");

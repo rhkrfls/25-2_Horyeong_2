@@ -147,7 +147,7 @@ MonoBehaviour:
   thePlayer: {fileID: 0}
   teleportPos: {fileID: 0}
   PadeScreen: {fileID: 0}
-  fadeTime: 0.75
+  fadeTime: 0.25
   Zoom: 
 --- !u!114 &2531081911149882101
 MonoBehaviour:
@@ -349,15 +349,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4672683268953561818, guid: ef6684fd3554c5b4395a7f4e4df878e0, type: 3}
       propertyPath: m_LocalPosition.x

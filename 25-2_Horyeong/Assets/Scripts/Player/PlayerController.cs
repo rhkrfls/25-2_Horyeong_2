@@ -353,6 +353,7 @@ public class PlayerController : MonoBehaviour
         else if (isGrounded)
         {
             animator.SetBool("isJumpEnd", false);
+            
         }
 
         // ÁÂ¿ì¹ÝÀü

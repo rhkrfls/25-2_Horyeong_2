@@ -63,7 +63,6 @@ public class PlayerStatus : MonoBehaviour
     public void Die()
     {
         playerController.animator.SetTrigger("isDeath");
-
         Debug.Log("Player Died");
     }
 }

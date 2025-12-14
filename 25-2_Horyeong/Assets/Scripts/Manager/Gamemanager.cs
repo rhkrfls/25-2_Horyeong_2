@@ -242,6 +242,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Load Game button pressed");
         SceneController.instance.LoadScene(DataManager.Instance.gameData.lastSceneName);
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        player.rb.gravityScale = 0.0f;
+        SetGameStart();
         //Gamemanager.Instance.LoadGame();
     }
 
@@ -280,9 +283,14 @@ public class GameManager : MonoBehaviour
 
         PlayerController player = FindAnyObjectByType<PlayerController>();
         player.transform.position = startPosition.transform.position;
+        DataManager.Instance.UpdateAndSavePlayerPosition(player);
 
         DialogueManager.Instance.dialoguePanel.SetActive(false);
         player.rb.gravityScale = player.currentData.gravityScale;
+
+        ResumeGame();
+
+        player.animator.SetBool("isDeath", false);
         isStarted = true;
     }
 
@@ -291,8 +299,10 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         isGameOver = true;
-        
-        gameOverPanel.ShowGameOver();
+
+        GameObject padeScreenObj = GameObject.Find("PadeImage");
+        padeScreenObj.SetActive(false);
+        GameOverUI.instance.ShowGameOver();
         Time.timeScale = 0f;
     }
 

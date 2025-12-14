@@ -24,7 +24,7 @@ public class GameData
         activeCharacterName = "Yuseong";
         playerPositionX = 0f;
         playerPositionY = 0f;
-        lastSceneName = "CharacterScene";
+        lastSceneName = "Chapter 1";
         score = 0;
     }
 }

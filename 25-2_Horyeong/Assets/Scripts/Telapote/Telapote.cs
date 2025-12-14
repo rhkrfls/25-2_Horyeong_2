@@ -19,6 +19,11 @@ public class Telapote : MonoBehaviour
     [SerializeField]
     private string Zoom;
 
+    private void Start()
+    {
+        thePlayer = GameObject.Find("Player");
+    }
+
     private void Update()
     {
         if (!isPortal)

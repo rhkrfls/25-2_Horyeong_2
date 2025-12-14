@@ -6,6 +6,7 @@ public class Map_Interaction : MonoBehaviour
     public GameObject interactionPrompt;    //상호작용 가능 오브젝트임을 표시
 
     public string dialogueCSVFileName;
+    private float interactTime = 1.5f;
 
     public void SetIsIntrecting(bool isInteracting) { this.interactionData.isInteracted = isInteracting; }
 
@@ -23,6 +24,16 @@ public class Map_Interaction : MonoBehaviour
     {
         if(interactionData.interactedCooldown > 0f)
             interactionData.interactedCooldown -= Time.deltaTime;
+        
+        if(interactionData.isInteracted)
+        {
+            interactTime -= Time.deltaTime;
+            if (interactTime < 0f)
+            {
+                interactTime = 1.5f;
+                interactionData.isInteracted = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -108,6 +119,8 @@ public class Map_Interaction : MonoBehaviour
 
             else
                 Debug.Log("Teleport portal null");
+
+            SetIsIntrecting(false);
         }
     }
 

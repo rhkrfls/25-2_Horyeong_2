@@ -9,13 +9,29 @@ Ch1_Obj_02_3	end	FALSE			DT_Seolhan’s_Bag	유성	end	FALSE
 Ch1_Obj_03_0	talk	FALSE			DT_Lighter	유성	이건… 나중에 꽤 유용하게 쓸 수 있겠네.	FALSE
 Ch1_Obj_03_1	end	FALSE			DT_Lighter	유성	end	FALSE
 Ch1_Obj_04_0	talk	FALSE			DT_V_Table	유성	이건…	FALSE
-Ch1_Obj_04_1	end	FALSE			DT_V_Table	유성	end	FALSE
+Ch1_Obj_04_1	talk	FALSE			DT_V_Table	유성	20XX.XX.XX 강민석	FALSE
+Ch1_Obj_04_2	talk	FALSE			DT_V_Table	유성	키우던 고양이가 변신해버렸다.	FALSE
+Ch1_Obj_04_3	talk	FALSE			DT_V_Table	유성	고양이는 부모님을 잡아먹었다	FALSE
+Ch1_Obj_04_4	talk	FALSE			DT_V_Table	유성	고양이가 방 문을 긁는다.	FALSE
+Ch1_Obj_04_5	talk	FALSE			DT_V_Table	유성	무섭다. 누가 도와줬으면…	FALSE
+Ch1_Obj_04_6	talk	FALSE			DT_V_Table	유성	끝난 건가.	FALSE
+Ch1_Obj_04_7	end	FALSE			DT_V_Table	유성	end	FALSE
 Ch1_Obj_05_0	talk	FALSE			DT_V_kitchencabinet	유성	"아, 통조림."	FALSE
 Ch1_Obj_05_1	talk	FALSE			DT_V_kitchencabinet	유성	운이 좋은 걸.	FALSE
 Ch1_Obj_05_2	end	FALSE			DT_V_kitchencabinet	유성	end	FALSE
-								
-								
-								
-								
-								
-								
+Ch1_Col_01_0	talk	FALSE			DT_Col_Moving_To_Shelf	유성	배고파…	FALSE
+Ch1_Col_01_1	talk	FALSE			DT_Col_Moving_To_Shelf	유성	서랍에 음식이 있었던가..	FALSE
+Ch1_Col_01_2	end	FALSE			DT_Col_Moving_To_Shelf	유성	end	FALSE
+Ch1_Col_02_0	talk	FALSE			DT_Col_Jump	유성	쓰레기통이 넘어져 길을 막고 있잖아…	FALSE
+Ch1_Col_02_1	end	FALSE			DT_Col_Jump	유성	end	FALSE
+Ch1_Col_03_0	talk	FALSE			DT_Col_Hungry	유성	하아 배고파…	FALSE
+Ch1_Col_03_1	end	FALSE			DT_Col_Hungry	유성	end	FALSE
+Ch1_Col_04_0	talk	FALSE			DT_Col_Find_Villa	유성	빌라다. 	FALSE
+Ch1_Col_04_1	talk	FALSE			DT_Col_Find_Villa	유성	저기서 식량을 구해볼까.	FALSE
+Ch1_Col_04_2	end	FALSE			DT_Col_Find_Villa	유성	end	FALSE
+Ch1_Col_05_0	talk	FALSE			DT_Col_Friend	유성	누가 히어로처럼 구해줬으면 좋겠다.	FALSE
+Ch1_Col_05_1	end	FALSE			DT_Col_Friend	유성	end	FALSE
+Ch1_Col_06_0	talk	FALSE			DT_Col_Find_Bag	유성	가방이다!	FALSE
+Ch1_Col_06_1	end	FALSE			DT_Col_Find_Bag	유성	end	FALSE
+Ch1_Col_07_0	talk	FALSE			DT_Col_Find_Mart	유성	마트… 여기에 가방 주인이 있을까?	FALSE
+Ch1_Col_07_1	end	FALSE			DT_Col_Find_Mart	유성	end	FALSE
